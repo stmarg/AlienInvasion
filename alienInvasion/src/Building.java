@@ -8,14 +8,16 @@ public class Building {
 	private int color;
 	private boolean alive = true;
 
-	public Building(int x, int y, int s) {
+	public Building(int x, int y, int s) 
+	{
 		this.x = x;
 		this.y = y;
 		this.s = s;
 		this.color = color;
 	}
 
-	public void drawBuilding(GraphicsContext gc) {
+	public void drawBuilding(GraphicsContext gc) 
+	{
 		if (color == 1) {
 			gc.setFill(Color.ORANGE);
 			gc.fillRect(x, y, s, s);
@@ -35,7 +37,8 @@ public class Building {
 		}
 	}
 
-	public boolean checkHit(Ship s) {
+	public boolean checkHit(Ship s) 
+	{
 		// if (this.x > x + s && this.x + this.s < x && this.y < y + s && alive
 		// == true) {
 		// return true;
@@ -44,32 +47,39 @@ public class Building {
 		return false;
 	}
 
-	public boolean CheckHit(Ship s) {
+	public boolean CheckHit(Ship s) 
+	{
 		System.out.println("Hit");
 		return false;
 	}
 
-	public int getX() {
+	public int getX() 
+	{
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setX(int x) 
+	{
 		this.x = x;
 	}
 
-	public int getY() {
+	public int getY() 
+	{
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setY(int y) 
+	{
 		this.y = y;
 	}
 
-	public int getS() {
+	public int getS() 
+	{
 		return s;
 	}
 
-	public void setS(int s) {
+	public void setS(int s) 
+	{
 		this.s = s;
 	}
 
