@@ -35,7 +35,7 @@ public class Building {
 		}
 	}
 
-	public boolean checkHit(Spaceship s) {
+	public boolean checkHit(Ship s) {
 		// if (this.x > x + s && this.x + this.s < x && this.y < y + s && alive
 		// == true) {
 		// return true;
@@ -44,7 +44,7 @@ public class Building {
 		return false;
 	}
 
-	public boolean CheckHit(Spaceship s) {
+	public boolean CheckHit(Ship s) {
 		System.out.println("Hit");
 		return false;
 	}
