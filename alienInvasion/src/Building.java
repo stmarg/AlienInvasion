@@ -1,7 +1,8 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Building {
+public class Building 
+{
 	private int x;
 	private int y;
 	private int s;
@@ -18,7 +19,8 @@ public class Building {
 
 	public void drawBuilding(GraphicsContext gc) 
 	{
-		if (color == 1) {
+		if (color == 1) 
+		{
 			gc.setFill(Color.ORANGE);
 			gc.fillRect(x, y, s, s);
 			gc.fillRect(x + s / 6, y - s / 3, s / 1.8, s / 3);
@@ -27,7 +29,8 @@ public class Building {
 			gc.fillRect(x + s / 3, y + s / 4, s / 3, s - s / 4);
 		}
 
-		if (color == 2) {
+		if (color == 2) 
+		{
 			gc.setFill(Color.GREEN);
 			gc.fillRect(x, y, s, s);
 			gc.fillRect(x + s / 6, y - s / 3, s / 1.8, s / 3);
