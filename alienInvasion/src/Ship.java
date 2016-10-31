@@ -1,7 +1,12 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
-
+/**
+ * The Ship class represents the idea of a space ship in the Alien Invasion game.
+ * @author Kevin
+ * @author Madi
+ *
+ */
 public class Ship
 {
 	Image alien = new Image("Alien.jpg");
@@ -41,6 +46,8 @@ public class Ship
 	{
 		return speedY;
 	}
+	
+	//Why are you making a public method like this? 
 	public void setDimensions( double xLocation, double yLocation, double width, double height)
 	{
 		this.xLocation = xLocation;

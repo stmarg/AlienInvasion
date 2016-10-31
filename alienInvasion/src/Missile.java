@@ -1,5 +1,10 @@
 import javafx.scene.canvas.GraphicsContext;
-
+/**
+ * The Missile class contains represents the idea of a missile in the Alien Invasion game. 
+ * @author Charlie
+ * @author Gavin
+ *
+ */
 public class Missile
 {
 	private double xPos, yPos, speed;
@@ -8,7 +13,7 @@ public class Missile
 	
 	double angle = Math.atan(yPos / xPos);
 	
-	public void exist(GraphicsContext gc, SpaceShip s)
+	public void exist(GraphicsContext gc, Ship s)
 	{
 		if (DidHit == false)
 		{
@@ -29,6 +34,7 @@ public class Missile
 		
 	}
 	
+	//What is the purpose of this method?
 	public void shootMissile(double angle, Ship s)
 	{
 		boolean test = false;

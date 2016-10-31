@@ -1,6 +1,12 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * The Building class represents the idea of a building in the Alien Invasion game
+ * @author Julia
+ * @author Madison
+ *
+ */
 public class Building 
 {
 	private int x;
@@ -14,6 +20,8 @@ public class Building
 		this.x = x;
 		this.y = y;
 		this.s = s;
+		
+		//This does nothing...why are you assigning the value of color to itself?!?
 		this.color = color;
 	}
 
@@ -50,9 +58,10 @@ public class Building
 		return false;
 	}
 
+	//Why are you declaring this with upper case? Methods should be lower case - like the one above! How about just use that one?
 	public boolean CheckHit(Ship s) 
 	{
-		System.out.println("Hit");
+		System.out.println("Not Implemented. Returning false.");
 		return false;
 	}
 

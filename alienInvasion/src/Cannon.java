@@ -1,4 +1,9 @@
-
+/**
+ * The Cannon class represents the idea of a cannon in the Alien Invasion game.
+ * @author Jason
+ * @author Linna
+ *
+ */
 public class Cannon
 {
 	private int aradius;
@@ -29,6 +34,7 @@ public class Cannon
 		this.aradius = 1;
 	}
 	
+	//Why do we need to know this?
 	public double setArea;
 	{
 		this.asize = (3.14159*aradius*aradius)/2;
