@@ -86,11 +86,13 @@ public class Building
 		this.s = s;
 	}
 
-	public boolean isAlive() {
+	public boolean isAlive() 
+	{
 		return alive;
 	}
 
-	public void setAlive(boolean alive) {
+	public void setAlive(boolean alive) 
+	{
 		this.alive = alive;
 	}
 }
