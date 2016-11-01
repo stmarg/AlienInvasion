@@ -69,10 +69,12 @@ public class Ship {
 		this.y = this.y + vy;
 		this.x = this.x + vx;
 		
+		//why? Do you think everyone will want this?
 		if (x > originalx+10 || x < originalx-10) {
 			vx = -vx;
 		}
 		
+		//why 900? What happens if the screen is a different size? Would everyone want this? Maybe move to your main game code.
 		if (y > 900) {
 			y = (int) (0 - height/1.5);
 			x = (int) (Math.random() * 800) + 100;
