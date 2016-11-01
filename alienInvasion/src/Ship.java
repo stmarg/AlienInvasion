@@ -7,72 +7,75 @@ import javafx.scene.image.Image;
  * @author Madi
  *
  */
-public class Ship
-{
-	Image alien = new Image("Alien.jpg");
-	private double xLocation;
-	private double yLocation;
+public class Ship {
+	Image alien = new Image("Tommy.jpg");
+	private double x;
+	private double originalx;
+	private double y;
 	private double width;
 	private double height;
-	private double speedX;
-	private double speedY;
+	private double vx;
+	private double vy;
 
-	public Ship(double x, double d, double w, double h)
-	{
-		this.setDimensions(x, d, w, h);
+	public Ship(double x, double y, double w, double h){
+		this.x = x;
+		this.originalx = x;
+		this.y = y;
+		this.width = w;
+		this.height = h;
+	}
+	
+	public void draw(GraphicsContext gc){
+		gc.drawImage(alien, x, y, width, height);
 	}
 
-	public double getX()
-	{
-		return xLocation;
+	public double getX(){
+		return x;
 	}
-	public double getY()
-	{
-		return yLocation;
+	
+	public double getY(){
+		return y;
 	}
-	public double getW()
-	{
+	
+	public double getWidth(){
 		return width;
 	}
-	public double getH()
-	{
+	
+	public double getHeight(){
 		return height;
 	}
-	public double getSpeedX()
-	{
-		return speedX;
+	public double getvx(){
+		return vx;
 	}
-	public double getSpeedY()
-	{
-		return speedY;
+	
+	public double getvy(){
+		return vy;
 	}
 	
 	//Why are you making a public method like this? 
-	public void setDimensions( double xLocation, double yLocation, double width, double height)
-	{
-		this.xLocation = xLocation;
-		this.yLocation = yLocation;
+	public void setDimensions( double x, double y, double width, double height){
+		this.x = x;
+		this.y = y;
 		this.width = width;
 		this.height = height;
 	}
-	public void setSpeed (double speedX, double speedY)
-	{
-		this.speedX = speedX;
-		this.speedY = speedY;
-	}
-	public void moveIt(double speedX2, double speedY2)
-	{
-		xLocation = xLocation + speedX2;
-		yLocation = yLocation + speedY2;
-	}
-	public void moveIt()
-	{
-		moveIt(speedX, speedY);
+	
+	public void setSpeed (double vx, double vy){
+		this.vx = vx;
+		this.vy = vy;
 	}
 	
-	public void drawIt(GraphicsContext gc)
-	{
-		gc.drawImage(alien, getX(), getY(), getH(), getW());
+	public void move(){
+		this.y = this.y + vy;
+		this.x = this.x + vx;
 		
+		if (x > originalx+10 || x < originalx-10) {
+			vx = -vx;
+		}
+		
+		if (y > 900) {
+			y = (int) (0 - height/1.5);
+			x = (int) (Math.random() * 800) + 100;
+		}
 	}
 }
