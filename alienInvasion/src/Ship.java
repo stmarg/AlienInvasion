@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
  *
  */
 public class Ship {
-	Image alien = new Image("Tommy.jpg");
+	Image alien = new Image("Alien.jpg");
 	private double x;
 	private double originalx;
 	private double y;
