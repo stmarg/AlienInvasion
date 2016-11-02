@@ -19,7 +19,7 @@ public class kevingame extends SimpleApp {
 	}
 
 	public void updateAnimation(long arg0) {
-
+		
 	}
 
 	public void draw(GraphicsContext gc) {
