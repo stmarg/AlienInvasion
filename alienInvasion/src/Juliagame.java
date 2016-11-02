@@ -3,7 +3,7 @@ import javafx.scene.paint.Color;
 import tsinn.ui.Drawable;
 import tsinn.ui.SimpleApp;
 
-public class MainGame extends SimpleApp {
+public class Juliagame extends SimpleApp {
 	Building[] buildings = new Building[6];
 	
 
@@ -34,7 +34,7 @@ public class MainGame extends SimpleApp {
 			int x = (int) (getWidth() * (.15 * (i + 1)));
 			int y = getHeight() - 25;
 
-			buildings[i] = new Building(x, y, 50, Color.BLUE);
+			buildings[i] = new Building(x, y, 50, Color.BLUE, Color.BLUE);
 		}
 
 		

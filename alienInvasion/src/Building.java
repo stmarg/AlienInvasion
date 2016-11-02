@@ -42,12 +42,6 @@ public class Building
 		return false;
 	}
 
-	/*Why are you declaring this with upper case? Methods should be lower case - like the one above! How about just use that one?
-	public boolean CheckHit(Ship s) 
-	{
-		System.out.println("Not Implemented. Returning false.");
-		return false;
-	}*/
 
 	public int getX() {
 		return x;
