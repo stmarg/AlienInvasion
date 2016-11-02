@@ -1,5 +1,10 @@
 import javafx.scene.canvas.GraphicsContext; 
-
+/**
+ * The Missile class contains represents the idea of a missile in the Alien Invasion game. 
+ * @author Charlie
+ * @author Gavin
+ *
+ */
 public class Missile
 {
 	private double xPos, yPos;
