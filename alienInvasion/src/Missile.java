@@ -7,17 +7,20 @@ public class Missile
 	
 	
 	public void Missile (GraphicsContext gc, double startingxPos, double startingyPos, double speed, double angle, double diameter)
-	{
-		this.xPos = startingxPos;
-		this.yPos = startingyPos;
-		
-		while (DidHit == false)
+	{	
+		if (DidHit == false)
 		{
 			gc.fillOval(xPos, yPos, diameter, diameter);
-			this.xPos = this.xPos + speed * Math.cos(angle);
-			this.yPos = this.yPos + speed * Math.sin(angle);
+			this.xPos = this.xPos + speed * Math.cos(angle/180*3.1416);
+			this.yPos = this.yPos - speed * Math.sin(angle/180*3.1416);
 		}
 		
+	}
+	
+	public void setPos(double x, double y)
+	{
+		this.xPos = x;
+		this.yPos = y;
 	}
 	
 	public boolean getDidHit()
@@ -28,6 +31,16 @@ public class Missile
 	public void setDidHit(boolean dh)
 	{
 		this.DidHit = dh;
+	}
+	
+	public double getxPos()
+	{
+		return xPos;
+	}
+	
+	public double getyPos()
+	{
+		return yPos;
 	}
 	
 }	
