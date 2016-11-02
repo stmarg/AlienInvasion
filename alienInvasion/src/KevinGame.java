@@ -3,7 +3,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import tsinn.ui.SimpleApp;
 
-public class kevingame extends SimpleApp {
+public class KevinGame extends SimpleApp {
 	// private Cannon c;
 	private Building b1;
 	private Building b2;
