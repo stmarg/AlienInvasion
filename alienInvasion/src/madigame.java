@@ -27,8 +27,8 @@ public class madigame extends SimpleApp {
 		// TODO Auto-generated method stub
 		for (int i = 0; i<ships.length; i++)
 		{
-			ships[i].drawIt(gc);
-			ships[i].moveIt();
+			ships[i].draw(gc);
+			ships[i].move();
 		}
 		
 	}
