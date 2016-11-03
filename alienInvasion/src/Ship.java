@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
  *
  */
 public class Ship {
-	Image alien = new Image("Alien.jpg");
+	
 	private double x;
 	private double originalx;
 	private double y;
@@ -16,6 +16,7 @@ public class Ship {
 	private double height;
 	private double vx;
 	private double vy;
+	//private Image alien = new Image("Alien.png");
 
 	public Ship(double x, double y, double w, double h){
 		this.x = x;
@@ -26,7 +27,11 @@ public class Ship {
 	}
 	
 	public void draw(GraphicsContext gc){
-		gc.drawImage(alien, x, y, width, height);
+		//gc.drawImage(alien, x, y, width, height);
+		gc.setFill(Color.GREEN);
+		gc.rect(x, y, width, height);
+	
+		
 	}
 
 	public double getX(){
