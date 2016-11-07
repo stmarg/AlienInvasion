@@ -1,9 +1,11 @@
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import tsinn.ui.SimpleApp;
 
 public class madigame extends SimpleApp {
 
 	Ship[] ships = new Ship [10];
+	Building[] buildings = new Building[6];
 	
 	@Override
 	public void updateAnimation(long arg0) {
@@ -20,6 +22,14 @@ public class madigame extends SimpleApp {
 			//ships[i].setSpeed(0, (Math.random()*10));
 			ships[i].setSpeed(0, 1);
 		}
+		
+		for (int i = 0; i < buildings.length; i++) 
+		{
+			int x = (int) (getWidth() * (.15 * (i + 1)));
+			int y = getHeight() - 25;
+
+			buildings[i] = new Building(x, y, 50, Color.RED, Color.BLACK);
+		}
 	}
 	
 	@Override
@@ -29,6 +39,11 @@ public class madigame extends SimpleApp {
 		{
 			ships[i].draw(gc);
 			ships[i].move();
+		}
+		
+		for (Building b : buildings) 
+		{
+			b.draw(gc);
 		}
 		
 	}
