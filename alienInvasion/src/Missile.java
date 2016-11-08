@@ -18,19 +18,15 @@ public class Missile
 		diameter = setdiameter;
 	}
 	
-	public void shoot (double speed, double angle)//takes the angle in degrees
+	public void drawAndShoot (GraphicsContext gc, double speed, double angle)//takes the angle in degrees
 	{	
 		if (DidHit == false)
 		{
 			this.xPos = this.xPos + speed * Math.cos(angle/180*3.1416);
 			this.yPos = this.yPos - speed * Math.sin(angle/180*3.1416);
+			gc.fillOval(xPos, yPos, diameter, diameter);
 		}
 		
-	}
-	
-	public void draw(GraphicsContext gc)
-	{
-		gc.fillOval(xPos, yPos, diameter, diameter);
 	}
 	
 	public void setPos(double x, double y)
