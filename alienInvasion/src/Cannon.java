@@ -28,9 +28,9 @@ public class Cannon
 	{
 		return length;
 	}
-	public int setSize(int length, int width, int size)
+	public int setSize(int length,int width)
 	{
-		this.size = width*length;
+		 size = (width*length);
 	}
 	public int setAlocation;
 	{
