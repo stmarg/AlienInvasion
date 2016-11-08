@@ -6,12 +6,11 @@
  */
 public class Cannon
 {
-	private int aradius;
-	private double asize;
+	private int size;
 	private int x;
 	private int y;
-	private int bwidth;
-	private int blength;
+	private int width;
+	private int length;
 	
 	public int getX()
 	{
@@ -23,28 +22,23 @@ public class Cannon
 	}
 	public int getWidth()
 	{
-		return bwidth;
+		return width;
 	}
 	public int getLength()
 	{
-		return blength;
+		return length;
 	}
-	public int setAradius;
+	public int setSize(int length,int width)
 	{
-		this.aradius = 1;
+		 size = (width*length);
 	}
-	
-	//Why do we need to know this?
-	public double setArea;
-	{
-		this.asize = (3.14159*aradius*aradius)/2;
-	}
-	
 	public int setAlocation;
 	{
 		this.x = x;
 		this.y = y;
 	}
+	
+	
 	
 	
 	
