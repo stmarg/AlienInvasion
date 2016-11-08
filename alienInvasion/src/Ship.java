@@ -1,88 +1,83 @@
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
-/**
- * The Ship class represents the idea of a space ship in the Alien Invasion game.
- * @author Kevin
- * @author Madi
- *
- */
-public class Ship {
-	
-	private double x;
-	private double originalx;
-	private double y;
-	private double width;
-	private double height;
-	private double vx;
-	private double vy;
-	//private Image alien = new Image("Alien.png");
 
-	public Ship(double x, double y, double w, double h){
+public class Ship {
+	private int x;
+	private int originalx;
+	private int y;
+	private int s;
+	private int vx = (int) 1.5;
+	private int vy = (int) (Math.random() * 4) + 3;
+	private boolean alive = true;
+	private Image Alien = new Image("Alien.jpg");
+	
+	public Ship(int x, int y, int s) {
 		this.x = x;
 		this.originalx = x;
 		this.y = y;
-		this.width = w;
-		this.height = h;
+		this.s = s;
 	}
 	
-	public void draw(GraphicsContext gc){
-		//gc.drawImage(alien, x, y, width, height);
-		gc.setFill(Color.GREEN);
-		gc.rect(x, y, width, height);
-	
-		
-	}
-
-	public double getX(){
-		return x;
+	public void draw(GraphicsContext gc) {
+		gc.drawImage(Alien, x, y, s, s/1.5);
 	}
 	
-	public double getY(){
-		return y;
-	}
-	
-	public double getWidth(){
-		return width;
-	}
-	
-	public double getHeight(){
-		return height;
-	}
-	public double getvx(){
-		return vx;
-	}
-	
-	public double getvy(){
-		return vy;
-	}
-	
-	//Why are you making a public method like this? 
-	public void setDimensions( double x, double y, double width, double height){
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
-	}
-	
-	public void setSpeed (double vx, double vy){
-		this.vx = vx;
-		this.vy = vy;
-	}
-	
-	public void move(){
+	public void move() {
 		this.y = this.y + vy;
 		this.x = this.x + vx;
 		
-		//why? Do you think everyone will want this?
 		if (x > originalx+10 || x < originalx-10) {
 			vx = -vx;
 		}
-		
-		//why 900? What happens if the screen is a different size? Would everyone want this? Maybe move to your main game code.
-		if (y > 900) {
-			y = (int) (0 - height/1.5);
-			x = (int) (Math.random() * 800) + 100;
-		}
+	}
+	
+	public void setLocation(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getS() {
+		return s;
+	}
+
+	public void setS(int s) {
+		this.s = s;
+	}
+	
+	public void setSpeed(int vx, int vy) {
+		this.vx = vx;
+		this.vy = vy;
+	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
+
+	public int getOriginalx() {
+		return originalx;
+	}
+
+	public void setOriginalx(int originalx) {
+		this.originalx = originalx;
 	}
 }
