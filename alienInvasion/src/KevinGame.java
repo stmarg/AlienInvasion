@@ -25,13 +25,26 @@ public class KevinGame extends SimpleApp {
 	public void draw(GraphicsContext gc) {
 		// c.draw(gc);
 
+		for (Ship s : ships) {
+			s.draw(gc);
+			s.move();
+		}
+		
+		gc.fillText("Score: " + score, getWidth() - getWidth()/8, getHeight()/8);
+		
 		for (int i = 0; i < ships.length; i++) {
-			ships[i].draw(gc);
-			ships[i].move();
+			if (ships[i].getY() > 900) {
+				ships[i].setY(-50);
+				ships[i].setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
+				ships[i].setOriginalx(ships[i].getX());
+				ships[i].setSpeed((int) 1.5, ((int) (Math.random() * 4) + 3));
+				score++;
+			}
+			//ships[i].remove();
 		}
 
-		for (int i = 0; i < buildings.length; i++) {
-			buildings[i].draw(gc);
+		for (Building b : buildings) {
+			b.draw(gc);
 		}
 
 		if (hi == true) {
