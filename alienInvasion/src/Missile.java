@@ -7,19 +7,30 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class Missile
 {
-	private double xPos, yPos;
+	private double xPos, yPos, diameter;
 	private boolean DidHit;
 	
+	public Missile (double startingxPos, double startingyPos, boolean setDidHit, double setdiameter)
+	{
+		xPos = startingxPos;
+		yPos = startingyPos;
+		DidHit = setDidHit;
+		diameter = setdiameter;
+	}
 	
-	public void Missile (GraphicsContext gc, double startingxPos, double startingyPos, double speed, double angle, double diameter)
+	public void shoot (double speed, double angle)//takes the angle in degrees
 	{	
 		if (DidHit == false)
 		{
-			gc.fillOval(xPos, yPos, diameter, diameter);
 			this.xPos = this.xPos + speed * Math.cos(angle/180*3.1416);
 			this.yPos = this.yPos - speed * Math.sin(angle/180*3.1416);
 		}
 		
+	}
+	
+	public void draw(GraphicsContext gc)
+	{
+		gc.fillOval(xPos, yPos, diameter, diameter);
 	}
 	
 	public void setPos(double x, double y)
