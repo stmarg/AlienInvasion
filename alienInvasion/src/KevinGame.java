@@ -57,7 +57,7 @@ public class KevinGame extends SimpleApp {
 		// c = new Cannon(getWidth() / 2 - 20, getHeight() - 50, 40);
 
 		for (int i = 0; i < ships.length; i++) {
-			ships[i] = new Ship(50 + i * 150, 50, 100);
+			ships[i] = new Ship(50 + i * 150, 50, 100, (int) (100/1.5));
 		}
 
 		for (int i = 0; i < buildings.length; i++) {
