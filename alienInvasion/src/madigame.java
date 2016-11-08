@@ -18,7 +18,7 @@ public class madigame extends SimpleApp {
 		// TODO Auto-generated method stub
 		for (int i=0; i< ships.length; i++)
 		{
-			ships[i] = new Ship((int)(Math.random()*getWidth()), (Math.random()* -(getHeight()*2)), 100, 100);
+			ships[i] = new Ship((int)(Math.random()*getWidth()), (int)(Math.random()* -(getHeight()*2)), 100, 100);
 			//ships[i].setSpeed(0, (Math.random()*10));
 			ships[i].setSpeed(0, 1);
 		}
