@@ -28,7 +28,7 @@ public class Cannon
 	{
 		return length;
 	}
-	public int setSize(int length,int width)
+	public void setSize(int length,int width)
 	{
 		 size = (width*length);
 	}
@@ -37,9 +37,4 @@ public class Cannon
 		this.x = x;
 		this.y = y;
 	}
-	
-	
-	
-	
-	
 }
