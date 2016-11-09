@@ -19,6 +19,10 @@ public class madigame extends SimpleApp {
 		//	ships[i] = new Ship((int)(Math.random()*getWidth()), (Math.random()* -(getHeight()*2)), 100, 100);
 			//ships[i].setSpeed(0, (Math.random()*10));
 			ships[i].setSpeed(0, 1);
+			if (ships[i].getY() > getHeight()) 
+			{
+				ships[i].setY(-50);
+			}
 		}
 		
 		for (int i = 0; i < buildings.length; i++) 
