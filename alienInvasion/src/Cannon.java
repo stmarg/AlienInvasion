@@ -32,6 +32,8 @@ public class Cannon
 	{
 		 size = (width*length);
 	}
+	
+	//THis is not how you write a method! It's  like you do in Python. Where are the parenthesis?
 	public int setAlocation;
 	{
 		this.x = x;
