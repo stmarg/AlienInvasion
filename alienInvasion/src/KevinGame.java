@@ -39,7 +39,8 @@ public class KevinGame extends SimpleApp {
 			s1.sChange();
 		}
 		
-		gc.fillText("Score: " + score + time, getWidth() - getWidth()/8, getHeight()/8);
+		//gc.fillText("Score: " + score + time, getWidth() - getWidth()/8, getHeight()/8);
+		gc.fillText("Score: " + score, getWidth() - getWidth()/8, getHeight()/8);
 		
 		for (int i = 0; i < ships.length; i++) {
 			if (ships[i].getY() > getHeight()) {
