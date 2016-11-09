@@ -7,18 +7,16 @@ public class madigame extends SimpleApp {
 	Ship[] ships = new Ship [10];
 	Building[] buildings = new Building[6];
 	
-	@Override
 	public void updateAnimation(long arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	@Override
 	public void setupApp(GraphicsContext arg0) {
 		// TODO Auto-generated method stub
 		for (int i=0; i< ships.length; i++)
 		{
-			ships[i] = new Ship((int)(Math.random()*getWidth()), (int)(Math.random()* -(getHeight()*2)), 100, 100);
+		//	ships[i] = new Ship((int)(Math.random()*getWidth()), (Math.random()* -(getHeight()*2)), 100, 100);
 			//ships[i].setSpeed(0, (Math.random()*10));
 			ships[i].setSpeed(0, 1);
 			if (ships[i].get() > 900) 

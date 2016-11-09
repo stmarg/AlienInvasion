@@ -7,29 +7,55 @@ public class Ship {
 	private int y;
 	private int width;
 	private int height;
+	private int originalW;
+	private int originalH;
 	private int vx = (int) 1.5;
 	private int vy = (int) (Math.random() * 4) + 3;
-	private boolean alive = true;
-	private Image Alien = new Image("Alien.jpg");
+	private int vs = 2;
 	
-	public Ship(int x, int y, int width, int height) {
+	private int mode = 1;
+	private boolean alive = true;
+	
+	private Image Alien = new Image("Alien.jpg");
+	private Image Tommy = new Image("Tommy.png");
+	
+	public Ship(int x, int y, int width, int height, int mode) {
 		this.x = x;
-		this.originalx = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		
+		this.originalx = x;
+		this.originalW = width;
+		this.originalH = height;
+		this.mode = mode;
 	}
 	
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(Alien, x, y, width, height);
+		if (mode == 1) {
+			gc.drawImage(Alien, x, y, width, height);
+		}
+		
+		if (mode == 2) {
+			gc.drawImage(Tommy, x, y, width, height);
+		}
 	}
 	
 	public void move() {
-		this.y = this.y + vy;
 		this.x = this.x + vx;
+		this.y = this.y + vy;
 		
 		if (x > originalx+10 || x < originalx-10) {
 			vx = -vx;
+		}
+	}
+	
+	public void sChange() {
+		this.width = this.width + vs;
+		this.height = this.height + vs;
+		
+		if (width > originalW+30 || width < originalW-30) {
+			vs = -vs;
 		}
 	}
 	
