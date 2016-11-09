@@ -28,18 +28,15 @@ public class Cannon
 	{
 		return length;
 	}
-	public int setSize(int length,int width)
+	public void setSize(int length,int width)
 	{
 		 size = (width*length);
 	}
+	
+	//THis is not how you write a method! It's  like you do in Python. Where are the parenthesis?
 	public int setAlocation;
 	{
 		this.x = x;
 		this.y = y;
 	}
-	
-	
-	
-	
-	
 }
