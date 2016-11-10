@@ -1,88 +1,119 @@
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
-/**
- * The Ship class represents the idea of a space ship in the Alien Invasion game.
- * @author Kevin
- * @author Madi
- *
- */
+
 public class Ship {
+	private int x;
+	private int originalx;
+	private int y;
+	private int width;
+	private int height;
+	private int originalW;
+	private int originalH;
+	private int vx = (int) 1.5;
+	private int vy = (int) (Math.random() * 4) + 3;
+	private int vs = 2;
 	
-	private double x;
-	private double originalx;
-	private double y;
-	private double width;
-	private double height;
-	private double vx;
-	private double vy;
-	//private Image alien = new Image("Alien.png");
-
-	public Ship(double x, double y, double w, double h){
-		this.x = x;
-		this.originalx = x;
-		this.y = y;
-		this.width = w;
-		this.height = h;
-	}
+	private int mode = 1;
+	private boolean alive = true;
 	
-	public void draw(GraphicsContext gc){
-		//gc.drawImage(alien, x, y, width, height);
-		gc.setFill(Color.GREEN);
-		gc.rect(x, y, width, height);
+	private Image Alien = new Image("Alien.jpg");
+	private Image Tommy = new Image("Tommy.png");
 	
-		
-	}
-
-	public double getX(){
-		return x;
-	}
-	
-	public double getY(){
-		return y;
-	}
-	
-	public double getWidth(){
-		return width;
-	}
-	
-	public double getHeight(){
-		return height;
-	}
-	public double getvx(){
-		return vx;
-	}
-	
-	public double getvy(){
-		return vy;
-	}
-	
-	//Why are you making a public method like this? 
-	public void setDimensions( double x, double y, double width, double height){
+	public Ship(int x, int y, int width, int height, int mode) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-	}
-	
-	public void setSpeed (double vx, double vy){
-		this.vx = vx;
-		this.vy = vy;
-	}
-	
-	public void move(){
-		this.y = this.y + vy;
-		this.x = this.x + vx;
 		
-		//why? Do you think everyone will want this?
+		this.originalx = x;
+		this.originalW = width;
+		this.originalH = height;
+		this.mode = mode;
+	}
+	
+	public void draw(GraphicsContext gc) {
+		if (mode == 1) {
+			gc.drawImage(Alien, x, y, width, height);
+		}
+		
+		if (mode == 2) {
+			gc.drawImage(Tommy, x, y, width, height);
+		}
+	}
+	
+	public void move() {
+		this.x = this.x + vx;
+		this.y = this.y + vy;
+		
 		if (x > originalx+10 || x < originalx-10) {
 			vx = -vx;
 		}
+	}
+	
+	public void sChange() {
+		this.width = this.width + vs;
+		this.height = this.height + vs;
 		
-		//why 900? What happens if the screen is a different size? Would everyone want this? Maybe move to your main game code.
-		if (y > 900) {
-			y = (int) (0 - height/1.5);
-			x = (int) (Math.random() * 800) + 100;
+		if (width > originalW+30 || width < originalW-30) {
+			vs = -vs;
 		}
+	}
+	
+	public void setLocation(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public void setSpeed(int vx, int vy) {
+		this.vx = vx;
+		this.vy = vy;
+	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
+
+	public int getOriginalx() {
+		return originalx;
+	}
+
+	public void setOriginalx(int originalx) {
+		this.originalx = originalx;
 	}
 }
