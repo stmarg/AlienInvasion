@@ -36,6 +36,7 @@ public class LinnaGame extends SimpleApp
 			buildings[i] = new Building((getWidth() / 4 + i * 420) - 110, getHeight() - 40, 60, Color.CYAN,
 					Color.ROYALBLUE);
 			//At first I thought it wasn't drawing.. then I realized the colors were just too light XD
+			//halp me
 		}
 		
 	}
