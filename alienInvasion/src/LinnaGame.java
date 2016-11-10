@@ -1,6 +1,9 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
+<<<<<<< HEAD
 import javafx.scene.paint.Color;
+=======
+>>>>>>> branch 'HEAD' of https://github.com/stmarg/alienInvasion.git
 import tsinn.ui.SimpleApp;
 
 //I'm so pleased that my commits actually seem to be working now!!!
@@ -46,5 +49,27 @@ public class LinnaGame extends SimpleApp
 	{
 		launch();
 	}
+<<<<<<< HEAD
 }
 
+=======
+
+	@Override
+	public void updateAnimation(long arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(GraphicsContext arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setupApp(GraphicsContext arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+}
+>>>>>>> branch 'HEAD' of https://github.com/stmarg/alienInvasion.git
