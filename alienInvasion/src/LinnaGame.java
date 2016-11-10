@@ -37,6 +37,7 @@ public class LinnaGame extends SimpleApp
 					Color.ROYALBLUE);
 			//At first I thought it wasn't drawing.. then I realized the colors were just too light XD
 		}
+		
 	}
 	
 	
