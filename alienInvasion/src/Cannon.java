@@ -1,17 +1,35 @@
-/**
- * The Cannon class represents the idea of a cannon in the Alien Invasion game.
- * @author Jason
- * @author Linna
- *
- */
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 public class Cannon
 {
 	private int size;
 	private int x;
 	private int y;
+	private int angle;
+	private int barrelx;
+	private int barrely;
 	private int width;
 	private int length;
 	
+	public Cannon(int x, int y, int size, int color)
+	{
+		this.x=x;
+		this.y=y;
+		this.size=size;
+	}
+	public int getbX()
+	{
+		return barrelx;
+	}
+	public int getbY()
+	{
+		return barrely;
+	}
+	public int getSize()
+	{
+		return size;
+	}
 	public int getX()
 	{
 		return x;
@@ -28,15 +46,29 @@ public class Cannon
 	{
 		return length;
 	}
+	public double getAngle()
+	{
+		return angle;
+	}
 	public void setSize(int length,int width)
 	{
 		 size = (width*length);
 	}
-	
-	//THis is not how you write a method! It's  like you do in Python. Where are the parenthesis?
-	public int setAlocation;
+	public int setAlocation()
 	{
-		this.x = x;
-		this.y = y;
+		this.x=x;
+		this.y=y;
+		this.barrelx=x;
+		this.barrely=(y+2);
+	}
+	public void shoot()
+	{
+		
+	}
+	public void draw(GraphicsContext gc)
+	{
+		gc.setFill(Color.RED);
+		gc.fillRect(x, y, length, width);
+		gc.fillRect((x+length/2)-5, y-10, 10, 10);
 	}
 }
