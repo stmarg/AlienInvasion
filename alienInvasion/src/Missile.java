@@ -7,26 +7,36 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class Missile
 {
-	private double xPos, yPos, diameter;
-	private boolean DidHit;
+	private double xPos, yPos, diameter, angle, speed, sx, sy;
+	private boolean DidHit = false;;
 	
-	public Missile (double startingxPos, double startingyPos, boolean setDidHit, double setdiameter)
+	public Missile (double x, double y, double setdiameter, double setangle, double setspeed)
 	{
-		xPos = startingxPos;
-		yPos = startingyPos;
-		DidHit = setDidHit;
+		
+		xPos = x;
+		yPos = y;
 		diameter = setdiameter;
+		angle = setangle;
+		speed = setspeed;
+		
+		sx = speed * Math.cos(angle/180*3.1416);
+		sy = speed * Math.sin(angle/180*3.1416);
+		
 	}
 	
-	public void drawAndShoot (GraphicsContext gc, double speed, double angle)//takes the angle in degrees
+	
+	public void draw(GraphicsContext gc)//takes the angle in degrees
 	{	
-		if (DidHit == false)
-		{
-			this.xPos = this.xPos + speed * Math.cos(angle/180*3.1416);
-			this.yPos = this.yPos - speed * Math.sin(angle/180*3.1416);
 			gc.fillOval(xPos, yPos, diameter, diameter);
-		}
-		
+	//}
+	
+	//public void shoot()
+	//{
+			
+		//this.xPos = this.xPos + speed * Math.cos(angle/180*3.1416);
+		//this.yPos = this.yPos - speed * Math.sin(angle/180*3.1416);
+			xPos += sx;
+			yPos += sy;
 	}
 	
 	public void setPos(double x, double y)
@@ -53,6 +63,11 @@ public class Missile
 	public double getyPos()
 	{
 		return yPos;
+	}
+	
+	public double getDiameter()
+	{
+		return diameter;
 	}
 	
 }	
