@@ -3,11 +3,12 @@ import tsinn.ui.SimpleApp;
 
 public class GavinGame extends SimpleApp
 {  
-	Ship[] S = new Ship[4];
-	Building[] B= new Building[2];
 	
-	private Ship s;
-	private Building b;
+	Building[] buildings = new Building[4];
+	Ship[] ships = new Ship[2];
+	
+	//private Ship s;
+	//private Building b;
 	
 	public static void main(String[] args) {
 		launch();
@@ -17,11 +18,19 @@ public class GavinGame extends SimpleApp
 		
 	}
 	@Override
-	public void draw(GraphicsContext arg0) {
+	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		s.draw(gc);
-		b.draw(gc);
 		
+		for (Ship s : ships)
+		{
+			s.draw(gc);
+			s.move();
+		}
+		
+		for (Building b : buildings) 
+		{
+			b.draw(gc);
+		}
 	}
 	@Override
 	public void setupApp(GraphicsContext arg0) {
