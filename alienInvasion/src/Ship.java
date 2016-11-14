@@ -13,11 +13,21 @@ public class Ship {
 	private int vy = (int) (Math.random() * 4) + 3;
 	private int vs = 2;
 	
+	/**An example of how you can create a "constant". 
+	 * It's public so everything can reference it. It's static so there is only one
+	 * variable shared accross all instances (ie: it's a "class" variable and not an instance variable
+	 * It's 'final' which means that it's value can not change. Note that constants are usually written all cap
+	 */
+	public static final int ALIEN_MODE = 1;
+	public static final int TOMMY_MODE = 2;
 	private int mode = 1;
+	
 	private boolean alive = true;
 	
 	private Image Alien = new Image("Alien.jpg");
 	private Image Tommy = new Image("Tommy.png");
+	
+
 	
 	public Ship(int x, int y, int width, int height, int mode) {
 		this.x = x;
@@ -31,6 +41,22 @@ public class Ship {
 		this.mode = mode;
 	}
 	
+	/**
+	 * This is an example of an overloaded constructor. It allows a ship to be created without
+	 * specifying a 'mode'. This constructor simply 'chains' to the original constructor, passing
+	 * in the value ALIEN_MODE as the mode value
+	 * @param x The location of the ship in the x coordinate
+	 * @param y The location of the ship in the y coordinate
+	 * @param width The width of the ship
+	 * @param height The height of the ship
+	 */
+	public Ship(int x, int y, int width, int height)
+	{
+		this (x,y,width,height, ALIEN_MODE);
+	}
+	
+
+
 	public void draw(GraphicsContext gc) {
 		if (mode == 1) {
 			gc.drawImage(Alien, x, y, width, height);
