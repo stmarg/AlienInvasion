@@ -12,9 +12,11 @@ public class KevinGame extends SimpleApp {
 	private int score = 0;
 	private int time = 0;
 	private boolean hi = false;
+	private int ammo = 100;
 
 	Ship[] ships = new Ship[3];
 	Building[] buildings = new Building[4];
+	Missile[] bullets = new Missile[ammo];
 
 	public static void main(String[] args) {
 		launch();
