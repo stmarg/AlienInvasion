@@ -8,22 +8,35 @@ public class CharlieGame extends SimpleApp
 {
 	boolean test = false;
 	int ammo = 100;
+	double angle;
 	
 	Missile[] bullets = new Missile[ammo];
 	
-	Building B = new Building(400, 400, 50, Color.BLUE, Color.BEIGE);
+	Building[] buildings = new Building[6];
 	
-	Missile M = new Missile(400, 700, false, 50);
+	int count = 0;
 	
 	
 	
 	public void onKeyPressed(KeyEvent ke)
 	{
+		
+		if (ke.isAltDown() == true)
+		{
+			this.angle = this.angle + 10;
+		}
+		
+		
 		if (ke.isShiftDown() == true)
 		{
+			
+			Missile M = new Missile(angle); 
+			
 			test = true;
-			ammo = ammo + 1;
+			count = count + 1;
 		}
+		
+		
 	}
 	
 	
@@ -38,16 +51,17 @@ public class CharlieGame extends SimpleApp
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
-		
-		B.draw(gc);
-		
-		if (test == true)
+		if (M != null)
 		{
-			M.drawAndShoot(gc, 3, 90);
-			
-			bullets[0].drawAndShoot(gc, 4, 45);
-			
+			M.draw(gc);
 		}
+		
+		
+		for (int i = 1; i < buildings.length; i++)
+		{
+			buildings[i].draw(gc);
+		}
+		
 		
 	}
 
@@ -55,10 +69,19 @@ public class CharlieGame extends SimpleApp
 	public void setupApp(GraphicsContext arg0) {
 		// TODO Auto-generated method stub
 		
-		for (int i = 0; i < bullets.length; i++)
+		/*for (int i = 0; i < bullets.length; i++)
 		{
-			bullets[i] = new Missile(400, 700, false, 50);
+			bullets[i] = new Missile(10*i);
+		}*/
+		
+		for (int i = 0; i < buildings.length; i++)
+		{
+			buildings[i] = new Building(getWidth() * i / 6, getHeight() - 50, 50, Color.BEIGE, Color.BURLYWOOD);
 		}
+		
+		
+		
+		
 		
 	}
 	

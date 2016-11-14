@@ -26,15 +26,7 @@ public class Missile
 	
 	public Missile (double setangle)
 	{
-		xPos = 800;
-		yPos = 700;
-		diameter = 50;
-		angle = setangle;
-		speed = 4;
-		
-		sx = speed * Math.cos(angle/180*3.1416);
-		sy = speed * Math.sin(angle/180*3.1416);
-		
+		this (800, 700, 50, setangle, 4);
 	}
 	
 	
