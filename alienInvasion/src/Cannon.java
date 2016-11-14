@@ -1,22 +1,25 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
 
 public class Cannon
 {
-	private int size;
+	//private int size;
 	private int x;
 	private int y;
-	private int angle;
+	private double angle;
 	private int barrelx;
 	private int barrely;
 	private int width;
-	private int length;
+	private int height;
+	private int size;
 	
-	public Cannon(int x, int y, int size, int color)
+	public Cannon(int x, int y, int size)
 	{
 		this.x=x;
 		this.y=y;
-		this.size=size;
+		this.size= width*height;
+		
 	}
 	public int getbX()
 	{
@@ -25,10 +28,6 @@ public class Cannon
 	public int getbY()
 	{
 		return barrely;
-	}
-	public int getSize()
-	{
-		return size;
 	}
 	public int getX()
 	{
@@ -44,31 +43,27 @@ public class Cannon
 	}
 	public int getLength()
 	{
-		return length;
+		return height;
 	}
 	public double getAngle()
 	{
 		return angle;
 	}
-	public void setSize(int length,int width)
+	public Missile shoot()
 	{
-		 size = (width*length);
+		Missile m = new Missile(x,y,diameter, angle, speed);
+		return m;
 	}
-	public int setAlocation()
+	public void setLocation(int x, int y)
 	{
 		this.x=x;
 		this.y=y;
-		this.barrelx=x;
-		this.barrely=(y+2);
-	}
-	public void shoot()
-	{
-		
 	}
 	public void draw(GraphicsContext gc)
 	{
 		gc.setFill(Color.RED);
-		gc.fillRect(x, y, length, width);
-		gc.fillRect((x+length/2)-5, y-10, 10, 10);
+		gc.fillRect(x, y, height, width);
+		gc.fillRect(x, y, height, width);
+		
 	}
 }
