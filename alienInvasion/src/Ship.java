@@ -16,7 +16,7 @@ public class Ship {
 	private int mode = 1;
 	private boolean alive = true;
 	
-	private Image Alien = new Image("alien.png");
+	private Image Alien = new Image("Alien.jpg");
 	private Image Tommy = new Image("Tommy.png");
 	
 	public Ship(int x, int y, int width, int height, int mode) {
@@ -58,8 +58,6 @@ public class Ship {
 			vs = -vs;
 		}
 	}
-	
-	
 	
 	public void setLocation(int x, int y) {
 		this.x = x;
