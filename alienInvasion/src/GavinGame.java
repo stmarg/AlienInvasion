@@ -4,8 +4,8 @@ import tsinn.ui.SimpleApp;
 public class GavinGame extends SimpleApp
 {  
 	
-	Building[] buildings = new Building[4];
-	Ship[] ships = new Ship[2];
+	Building[] buildings = new Building[8];
+	Ship[] ships = new Ship[4];
 	
 	//private Ship s;
 	//private Building b;
@@ -30,12 +30,15 @@ public class GavinGame extends SimpleApp
 		for (Building b : buildings) 
 		{
 			b.draw(gc);
-		}
+		} 
 	}
 	@Override
 	public void setupApp(GraphicsContext arg0) {
 		// TODO Auto-generated method stub
-		
+	     for(int i=0;i<Building.length;i++){
+	         Building[i];
+	     }
+	  }
+
 	}
 	
-}
