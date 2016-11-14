@@ -3,10 +3,15 @@ import tsinn.ui.SimpleApp;
 
 public class GavinGame extends SimpleApp
 {  
-	private int x=10;
-	private int y=10;
-	private int s=10;
-	@Override
+	Ship[] S = new Ship[4];
+	Building[] B= new Building[2];
+	
+	private Ship s;
+	private Building b;
+	
+	public static void main(String[] args) {
+		launch();
+	}
 	public void updateAnimation(long arg0) {
 		// TODO Auto-generated method stub
 		
@@ -14,6 +19,8 @@ public class GavinGame extends SimpleApp
 	@Override
 	public void draw(GraphicsContext arg0) {
 		// TODO Auto-generated method stub
+		s.draw(gc);
+		b.draw(gc);
 		
 	}
 	@Override
