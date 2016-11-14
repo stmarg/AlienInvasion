@@ -8,7 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 public class Missile
 {
 	private double xPos, yPos, diameter, angle, speed, sx, sy;
-	private boolean DidHit = false;;
+	private boolean DidHit = false;
 	
 	public Missile (double x, double y, double setdiameter, double setangle, double setspeed)
 	{
@@ -18,6 +18,19 @@ public class Missile
 		diameter = setdiameter;
 		angle = setangle;
 		speed = setspeed;
+		
+		sx = speed * Math.cos(angle/180*3.1416);
+		sy = speed * Math.sin(angle/180*3.1416);
+		
+	}
+	
+	public Missile (double setangle)
+	{
+		xPos = 800;
+		yPos = 700;
+		diameter = 50;
+		angle = setangle;
+		speed = 4;
 		
 		sx = speed * Math.cos(angle/180*3.1416);
 		sy = speed * Math.sin(angle/180*3.1416);
