@@ -10,7 +10,8 @@ public class madigame extends SimpleApp {
 	
 	Ship[] ships = new Ship [10];
 	Building[] buildings = new Building[6];
-	
+	private Missile m;
+ 
 	public void updateAnimation(long arg0) {
 		// TODO Auto-generated method stub
 		
