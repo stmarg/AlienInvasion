@@ -90,7 +90,7 @@ public class KevinGame extends SimpleApp {
 					Color.DARKBLUE);
 		}
 	}
-
+ 
 	public void onKeyPressed(KeyEvent k) {
 		if (k.equals("k") == true) {
 			Missile M = new Missile(angle); 
