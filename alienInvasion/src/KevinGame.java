@@ -94,7 +94,7 @@ public class KevinGame extends SimpleApp {
 	public void onKeyPressed(KeyEvent k) {
 		if (k.equals("k") == true) {
 			Missile M = new Missile(angle); 
-			
+			 
 			test = true;
 			//score = score + 1;
 		}
