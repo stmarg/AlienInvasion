@@ -65,6 +65,8 @@ public class KevinGame extends SimpleApp {
 		for (Building b : buildings) {
 			b.draw(gc);
 		}
+		
+		c.draw(gc);
 
 		if (hi == true) {
 			// c.rotate(gc);
@@ -72,8 +74,8 @@ public class KevinGame extends SimpleApp {
 		}
 	}
 
-	public void setupApp(GraphicsContext arg0) {
-		c = new Cannon(getWidth() / 2 - 20, getHeight() - 50, 40);
+	public void setupApp(GraphicsContext gc) {
+		c = new Cannon(getWidth() / 2 - 20, getHeight() - 50, 40, 40, 100);
 
 		for (int i = 0; i < ships.length; i++) {
 			ships[i] = new Ship(50 + i * 150, 50, 100, (int) (100/1.5));
