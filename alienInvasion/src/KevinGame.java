@@ -1,4 +1,5 @@
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import tsinn.ui.SimpleApp;
@@ -11,8 +12,9 @@ public class KevinGame extends SimpleApp {
 
 	private int score = 0;
 	private int time = 0;
-	private boolean hi = false;
 	private int ammo = 100;
+	private double angle;
+	boolean test = false;
 
 	Ship[] ships = new Ship[3];
 	Building[] buildings = new Building[4];
@@ -49,7 +51,7 @@ public class KevinGame extends SimpleApp {
 				ships[i].setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
 				ships[i].setOriginalx(ships[i].getX());
 				ships[i].setSpeed((int) 1.5, ((int) (Math.random() * 4) + 3));
-				score++;
+				//score++;
 			}
 			//ships[i].remove();
 		}
@@ -59,7 +61,7 @@ public class KevinGame extends SimpleApp {
 			s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
 			s1.setOriginalx(s1.getX());
 			s1.setSpeed((int) 1.5, ((int) (Math.random() * 4) + 3));
-			score++;
+			//score++;
 		}
 
 		for (Building b : buildings) {
@@ -68,9 +70,9 @@ public class KevinGame extends SimpleApp {
 		
 		c.draw(gc);
 
-		if (hi == true) {
-			// c.rotate(gc);
-			hi = false;
+		if (test == true) {
+			gc.fillText("100", 100, 100);;
+			test = false;
 		}
 	}
 
@@ -89,7 +91,12 @@ public class KevinGame extends SimpleApp {
 		}
 	}
 
-	public void onMousePressed(MouseEvent me) {
-		hi = true;
+	public void onKeyPressed(KeyEvent k) {
+		if (k.equals("k") == true) {
+			Missile M = new Missile(angle); 
+			
+			test = true;
+			//score = score + 1;
+		}
 	}
 }
