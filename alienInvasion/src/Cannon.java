@@ -1,18 +1,34 @@
-/**
- * The Cannon class represents the idea of a cannon in the Alien Invasion game.
- * @author Jason
- * @author Linna
- *
- */
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
+
 public class Cannon
 {
-	private int aradius;
-	private double asize;
+	//private int size;
 	private int x;
 	private int y;
-	private int bwidth;
-	private int blength;
+	private double angle;
+	private int barrelx;
+	private int barrely;
+	private int width;
+	private int height;
+	private int size;
 	
+	public Cannon(int x, int y, int size)
+	{
+		this.x=x;
+		this.y=y;
+		this.size= width*height;
+		
+	}
+	public int getbX()
+	{
+		return barrelx;
+	}
+	public int getbY()
+	{
+		return barrely;
+	}
 	public int getX()
 	{
 		return x;
@@ -23,29 +39,31 @@ public class Cannon
 	}
 	public int getWidth()
 	{
-		return bwidth;
+		return width;
 	}
 	public int getLength()
 	{
-		return blength;
+		return height;
 	}
-	public int setAradius;
+	public double getAngle()
 	{
-		this.aradius = 1;
+		return angle;
 	}
-	
-	//Why do we need to know this?
-	public double setArea;
+	public Missile shoot()
 	{
-		this.asize = (3.14159*aradius*aradius)/2;
+		Missile m = new Missile(x,y,diameter, angle, speed);
+		return m;
 	}
-	
-	public int setAlocation;
+	public void setLocation(int x, int y)
 	{
-		this.x = x;
-		this.y = y;
+		this.x=x;
+		this.y=y;
 	}
-	
-	
-	
+	public void draw(GraphicsContext gc)
+	{
+		gc.setFill(Color.RED);
+		gc.fillRect(x, y, height, width);
+		gc.fillRect(x, y, height, width);
+		
+	}
 }

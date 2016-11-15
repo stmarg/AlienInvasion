@@ -5,14 +5,18 @@ import tsinn.ui.SimpleApp;
 
 public class KevinGame extends SimpleApp {
 	// private Cannon c;
-	private Building b1;
-	private Building b2;
+	//private Building b1;
+	//private Building b2;
+	private Ship s1;
 
 	private int score = 0;
+	private int time = 0;
 	private boolean hi = false;
+	private int ammo = 100;
 
 	Ship[] ships = new Ship[3];
 	Building[] buildings = new Building[4];
+	Missile[] bullets = new Missile[ammo];
 
 	public static void main(String[] args) {
 		launch();
@@ -24,14 +28,42 @@ public class KevinGame extends SimpleApp {
 
 	public void draw(GraphicsContext gc) {
 		// c.draw(gc);
+		time++;
 
+		for (Ship s : ships) {
+			s.draw(gc);
+			s.move();
+		}
+		
+		if (time > 500) {
+			s1.draw(gc);
+			s1.move();
+			s1.sChange();
+		}
+		
+		gc.fillText("Score: " + score + time, getWidth() - getWidth()/8, getHeight()/8);
+		
 		for (int i = 0; i < ships.length; i++) {
-			ships[i].draw(gc);
-			ships[i].move();
+			if (ships[i].getY() > getHeight()) {
+				ships[i].setY(-50);
+				ships[i].setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
+				ships[i].setOriginalx(ships[i].getX());
+				ships[i].setSpeed((int) 1.5, ((int) (Math.random() * 4) + 3));
+				score++;
+			}
+			//ships[i].remove();
+		}
+		
+		if (s1.getY() > getHeight()) {
+			s1.setY(-50);
+			s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
+			s1.setOriginalx(s1.getX());
+			s1.setSpeed((int) 1.5, ((int) (Math.random() * 4) + 3));
+			score++;
 		}
 
-		for (int i = 0; i < buildings.length; i++) {
-			buildings[i].draw(gc);
+		for (Building b : buildings) {
+			b.draw(gc);
 		}
 
 		if (hi == true) {
@@ -44,8 +76,10 @@ public class KevinGame extends SimpleApp {
 		// c = new Cannon(getWidth() / 2 - 20, getHeight() - 50, 40);
 
 		for (int i = 0; i < ships.length; i++) {
-			ships[i] = new Ship(50 + i * 150, 50, 100, 100);
+			ships[i] = new Ship(50 + i * 150, 50, 100, (int) (100/1.5));
 		}
+		
+		s1 = new Ship(getWidth()/2, -50, 100, (int) (100/1.5), 2);
 
 		for (int i = 0; i < buildings.length; i++) {
 			buildings[i] = new Building((getWidth() / 4 + i * 300) - 110, getHeight() - 40, 40, Color.CORNFLOWERBLUE,
