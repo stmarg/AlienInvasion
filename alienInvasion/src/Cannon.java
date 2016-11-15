@@ -1,10 +1,10 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.transform.Rotate;
+
 
 public class Cannon
 {
-	//private int size;
+	
 	private int x;
 	private int y;
 	private double angle;
@@ -12,14 +12,23 @@ public class Cannon
 	private int barrely;
 	private int width;
 	private int height;
-	private int size;
+
 	
-	public Cannon(int x, int y, int size)
+	public Cannon(int x, int y, int width, int height, double angle)
 	{
 		this.x=x;
 		this.y=y;
-		this.size= width*height;
-		
+		this.width= width;
+		this.height=height;
+		this.angle=angle;
+	}
+	public Cannon(double angle)
+	{
+		x =800;
+		y=700;
+		this.angle=angle;
+		width = 800;
+		height = 800;
 	}
 	public int getbX()
 	{
@@ -51,7 +60,7 @@ public class Cannon
 	}
 	public Missile shoot()
 	{
-		Missile m = new Missile(x,y,diameter, angle, speed);
+		Missile m = new Missile(angle);
 		return m;
 	}
 	public void setLocation(int x, int y)
