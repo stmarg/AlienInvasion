@@ -41,9 +41,9 @@ public class GavinGame extends SimpleApp
 	    // for(int i=0;i<Building.s;i++){
 	    //     Building[i];
 	   //  }
-		new Ship((int)(Math.random()*getWidth()), (int) (Math.random()* -(getHeight()*2)), 200, 200, 1);
+		//new Ship((int)(Math.random()*getWidth()), (int) (Math.random()* -(getHeight()*2)), 200, 200, 1);
 		
-		new Building(x, y, 50, Color.RED, Color.BLACK);
+		//new Building(x, y, 50, Color.RED, Color.BLACK);
 	  }
 
 	}
