@@ -14,12 +14,21 @@ public class Cannon
 	private int height;
 
 	
-	public Cannon(int x, int y, int width, int height)
+	public Cannon(int x, int y, int width, int height, double angle)
 	{
 		this.x=x;
 		this.y=y;
 		this.width= width;
 		this.height=height;
+		this.angle=angle;
+	}
+	public Cannon(double angle)
+	{
+		x =800;
+		y=700;
+		this.angle=angle;
+		width = 800;
+		height = 800;
 	}
 	public int getbX()
 	{
