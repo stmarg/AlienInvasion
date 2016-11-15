@@ -10,7 +10,7 @@ public class Ship {
 	private int originalW;
 	private int originalH;
 	private int vx = (int) 1.5;
-	private int vy = (int) (Math.random() * 4) + 3;
+	private int vy = (int) (Math.random() * 3) + 2;
 	private int vs = 2;
 	
 	/**An example of how you can create a "constant". 
@@ -18,6 +18,7 @@ public class Ship {
 	 * variable shared accross all instances (ie: it's a "class" variable and not an instance variable
 	 * It's 'final' which means that it's value can not change. Note that constants are usually written all cap
 	 */
+	
 	public static final int ALIEN_MODE = 1;
 	public static final int TOMMY_MODE = 2;
 	private int mode = 1;
@@ -50,12 +51,10 @@ public class Ship {
 	 * @param width The width of the ship
 	 * @param height The height of the ship
 	 */
-	public Ship(int x, int y, int width, int height)
-	{
+	
+	public Ship(int x, int y, int width, int height) {
 		this (x,y,width,height, ALIEN_MODE);
 	}
-	
-
 
 	public void draw(GraphicsContext gc) {
 		if (mode == 1) {
