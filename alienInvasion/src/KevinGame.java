@@ -20,7 +20,6 @@ public class KevinGame extends SimpleApp {
 	Building[] buildings = new Building[4];
 	//Missile[] bullets = new Missile[ammo];
 	ArrayList <Missile> bullets = new ArrayList<> ();
-	
 
 	public static void main(String[] args) {
 		launch();
