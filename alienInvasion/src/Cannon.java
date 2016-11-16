@@ -56,6 +56,7 @@ public class Cannon {
 
 	public void setAngle(double angle) {
 		this.angle = angle;
+
 	}
 
 	public Missile shoot() {
