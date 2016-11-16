@@ -51,8 +51,8 @@ public class Cannon {
 	{
 		return height;
 	}
-	public double getAngle()
-	{
+	
+	public double getAngle() {
 		return angle;
 	}
 
@@ -66,9 +66,10 @@ public class Cannon {
 	}
 	
 	public void setLocation(int x, int y) {
-		this.x=x;
-		this.y=y;
+		this.x = x;
+		this.y = y;
 	}
+	
 	public void draw(GraphicsContext gc) {
 		gc.setFill(Color.RED);
 		gc.fillRect(x, y, height, width);
