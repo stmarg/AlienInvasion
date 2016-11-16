@@ -54,6 +54,10 @@ public class Cannon {
 		return angle;
 	}
 
+	public void setAngle(double angle) {
+		this.angle = angle;
+	}
+
 	public Missile shoot() {
 		Missile m = new Missile(angle);
 		return m;
