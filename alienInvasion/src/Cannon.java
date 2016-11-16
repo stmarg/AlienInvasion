@@ -1,4 +1,5 @@
 import javafx.scene.canvas.GraphicsContext;
+import 
 import javafx.scene.paint.Color;
 
 
@@ -72,7 +73,7 @@ public class Cannon
 	{
 		gc.setFill(Color.RED);
 		gc.fillRect(x, y, height, width);
-		gc.fillRect(x, y, height, width);
+		gc.fillRect(x, y, 2*height, width/2);
 		
 	}
 }
