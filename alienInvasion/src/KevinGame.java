@@ -14,7 +14,6 @@ public class KevinGame extends SimpleApp {
 	private int score = 0;
 	private int time = 0;
 	private int ammo = 0;
-	private double angle;
 	boolean test = false;
 
 	Ship[] ships = new Ship[3];
