@@ -11,15 +11,15 @@ public class Building
 {
 	private int x;
 	private int y;
-	private int s;
+	private int size;
 	private Color bcolor;
 	private Color tcolor;
 	private boolean alive = true;
 
-	public Building(int x, int y, int s, Color bcolor, Color tcolor) {
+	public Building(int x, int y, int size, Color bcolor, Color tcolor) {
 		this.x = x;
 		this.y = y;
-		this.s = s;
+		this.size = size;
 		this.bcolor = bcolor;
 		this.tcolor = tcolor;
 	}
@@ -27,21 +27,42 @@ public class Building
 	public void draw(GraphicsContext gc) 
 	{
 		gc.setFill(tcolor);
-		gc.fillRect(x, y, s, s);
-		gc.fillRect(x + s / 6, y - s / 3, s / 1.8, s / 3);
-		gc.fillRect(x + s / 4.2, y - s / 3 - s / 5, s / 4, s / 5);
+		gc.fillRect(x, y, size, size);
+		gc.fillRect(x + size / 6, y - size / 3, size / 1.8, size / 3);
+		gc.fillRect(x + size / 4.2, y - size / 3 - size / 5, size / 4, size / 5);
 		gc.setFill(bcolor);
-		gc.fillRect(x + s / 3, y + s / 4, s / 3, s - s / 4);
+		gc.fillRect(x + size / 3, y + size / 4, size / 3, size - size / 4);
 	}
 
-	public boolean checkHit(Ship s) {
-		// if (this.x > x + s.x && this.x + s.x < x && this.y < y + s.y && alive == true) {
-		// return true;
-		// }
+	public boolean checkHit(Ship s) 
+	{
+		
+		int buildingLeft = this.x; 
+		int buildingRight = this.x + this.size; 
 
-		return false;
-	}
+		int shipLeft = s.getX(); 
+		int shipRight = s.getX() + s.getWidth(); 
 
+		int buildingTop = this.y - this.size; 
+		int buildingBottom = this.y; 
+
+		double shipTop = s.getY(); 
+		double shipBottom = s.getY() - s.getHeight(); 
+
+
+		if ((buildingLeft < shipLeft && buildingLeft > shipRight) ||  
+			(buildingLeft > shipLeft && buildingRight < shipRight)) 
+		{ 
+			if ((shipBottom < buildingTop && shipBottom > buildingBottom) || 
+				(shipTop < buildingTop && shipTop > buildingBottom))
+			{ 
+				return true; 
+			} 
+		} 	
+
+		return false; 
+
+	} 
 
 	public int getX() {
 		return x;
@@ -60,11 +81,11 @@ public class Building
 	}
 
 	public int getS() {
-		return s;
+		return size;
 	}
 
-	public void setS(int s) {
-		this.s = s;
+	public void setS(int size) {
+		this.size = size;
 	}
 
 	public boolean isAlive() {
