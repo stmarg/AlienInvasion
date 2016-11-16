@@ -6,7 +6,7 @@ import tsinn.ui.SimpleApp;
 public class JasonGame extends SimpleApp {
 	Cannon[] c = new Cannon[1];
 	Building[] b = new Building[6];
-	Ship[] s = new Ship[]
+	Ship[] s = new Ship[8];
 	
 	
 	@Override
