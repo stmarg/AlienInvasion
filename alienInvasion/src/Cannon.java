@@ -1,8 +1,7 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-
-public class Cannon
+public class Cannon 
 {
 	
 	private int x;
@@ -30,6 +29,7 @@ public class Cannon
 		width = 800;
 		height = 800;
 	}
+	
 	public int getbX()
 	{
 		return barrelx;
@@ -54,21 +54,28 @@ public class Cannon
 	{
 		return height;
 	}
-	public double getAngle()
+	
+	public double getAngle() 
 	{
 		return angle;
 	}
-	
-	public Missile shoot()
+
+	public void setAngle(double angle)
+	{
+		this.angle = angle;
+	}
+	public Missile shoot() 
 	{
 		Missile m = new Missile(angle);
 		return m;
 	}
+	
 	public void setLocation(int x, int y)
 	{
-		this.x=x;
-		this.y=y;
+		this.x = x;
+		this.y = y;
 	}
+	
 	public void draw(GraphicsContext gc)
 	{
 		gc.setFill(Color.RED);
