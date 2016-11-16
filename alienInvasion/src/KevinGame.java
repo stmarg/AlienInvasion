@@ -32,6 +32,9 @@ public class KevinGame extends SimpleApp {
 
 	public void draw(GraphicsContext gc) {
 		// c.draw(gc);
+		
+		//Use the updateAnimation method for this. note that the parameter it takes is the time since it was last called.
+		//It's like the DeltaTime variable in Codea. SImply add it to your variable.
 		time++;
 
 		for (Ship s : ships) {
@@ -62,6 +65,7 @@ public class KevinGame extends SimpleApp {
 			s1.setY(-50);
 			s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
 			s1.setOriginalx(s1.getX());
+			//You are casting 1.5 to 1...why? Just pass in 1 or make setSpeed take a double
 			s1.setSpeed((int) 1.5, ((int) (Math.random() * 4) + 3));
 			// score++;
 		}
