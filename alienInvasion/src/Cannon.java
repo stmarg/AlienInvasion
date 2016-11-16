@@ -1,5 +1,4 @@
 import javafx.scene.canvas.GraphicsContext;
-import 
 import javafx.scene.paint.Color;
 
 
@@ -59,6 +58,7 @@ public class Cannon
 	{
 		return angle;
 	}
+	
 	public Missile shoot()
 	{
 		Missile m = new Missile(angle);
