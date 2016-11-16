@@ -29,7 +29,6 @@ public class Missile
 		this (800, 700, 50, setangle, 4);
 	}
 	
-	
 	public void draw(GraphicsContext gc)//takes the angle in degrees
 	{	
 			gc.fillOval(xPos, yPos, diameter, diameter);

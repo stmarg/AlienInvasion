@@ -21,10 +21,18 @@ public class Juliagame extends SimpleApp {
 		for (int i = 0; i < buildings.length; i++) {
 			buildings[i].draw(gc);
 		}
-		
-		for (Ship s: ships) { 
-			s.draw(gc); 
-			s.move(); 
+		for (Building b : buildings) 
+		{
+			if (b.checkHit(s) == true) 
+			{
+				gc.fillText("Building Hit", getWidth() / 2, getHeight() / 2);
+			}
+		} 
+
+		for (Ship s : ships) 
+		{
+			s.draw(gc);
+			s.move();
 		}
 			
 	}
