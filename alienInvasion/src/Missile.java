@@ -20,17 +20,17 @@ public class Missile
 		speed = setspeed;
 		
 		sx = speed * Math.cos(angle/180*3.1416);
-		sy = -speed * Math.sin(angle/180*3.1416);
+		sy = speed * Math.sin(angle/180*3.1416);
 		
 	}
 	
-	public Missile (double setangle)//takes the angle in degrees
+	public Missile (double setangle)
 	{
 		this (800, 700, 50, setangle, 4);
 	}
 	
 	
-	public void draw(GraphicsContext gc)
+	public void draw(GraphicsContext gc)//takes the angle in degrees
 	{	
 			gc.fillOval(xPos, yPos, diameter, diameter);
 	//}
