@@ -89,11 +89,11 @@ public class Ship {
 		this.y = y;
 	}
 	
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setX(double x) {
 		this.x = x;
 	}
 
@@ -134,11 +134,11 @@ public class Ship {
 		this.alive = alive;
 	}
 
-	public int getOriginalx() {
+	public double getOriginalx() {
 		return originalx;
 	}
 
-	public void setOriginalx(int originalx) {
+	public void setOriginalx(double originalx) {
 		this.originalx = originalx;
 	}
 }
