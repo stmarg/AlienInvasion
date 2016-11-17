@@ -10,7 +10,9 @@ public class Missile
 	private double xPos, yPos, diameter, angle, speed, sx, sy;
 	private boolean DidHit = false;
 	
-	public Missile (double x, double y, double setdiameter, double setangle, double setspeed) {
+	public Missile (double x, double y, double setdiameter, double setangle, double setspeed)
+	{
+		
 		xPos = x;
 		yPos = y;
 		diameter = setdiameter;
@@ -19,12 +21,14 @@ public class Missile
 		
 		sx = speed * Math.cos(angle/180*3.1416);
 		sy = speed * Math.sin(angle/180*3.1416);
+		
 	}
 	
 	public Missile (double setangle)
 	{
 		this (800, 700, 50, setangle, 4);
 	}
+	
 	
 	public void draw(GraphicsContext gc)//takes the angle in degrees
 	{	

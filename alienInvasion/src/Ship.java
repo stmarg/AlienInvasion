@@ -2,14 +2,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Ship {
-	private int x;
-	private int originalx;
+	private double x;
+	private double originalx;
 	private int y;
 	private int width;
 	private int height;
 	private int originalW;
 	private int originalH;
-	private int vx = (int) 1.5;
+	private double vx = (int) 1.5;
 	private int vy = (int) (Math.random() * 3) + 2;
 	private int vs = 2;
 	
@@ -28,7 +28,9 @@ public class Ship {
 	private Image Alien = new Image("Alien.jpg");
 	private Image Tommy = new Image("Tommy.png");
 	
-	public Ship(int x, int y, int width, int height, int mode) {
+
+	
+	public Ship(double x, int y, int width, int height, int mode) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
