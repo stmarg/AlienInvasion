@@ -72,7 +72,7 @@ public class KevinGame extends SimpleApp {
 		c.draw(gc);
 
 		if (test == true) {
-			gc.fillText("100", 100, 100);
+			gc.fillText("" + c.getAngle(), 100, 100);
 			bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
 			test = false;
 		}
@@ -89,7 +89,7 @@ public class KevinGame extends SimpleApp {
 	}
 
 	public void setupApp(GraphicsContext gc) {
-		c = new Cannon(getWidth() / 2 - 20, getHeight() - 50, 40, 40, -90);
+		c = new Cannon(getWidth() / 2 - 20, getHeight() - 70, 40, 40, 270);
 
 		for (int i = 0; i < ships.length; i++) {
 			ships[i] = new Ship(50 + i * 150, 50, 100, (int) (100 / 1.5));
@@ -104,17 +104,17 @@ public class KevinGame extends SimpleApp {
 	}
 	
 	public void onKeyPressed(KeyEvent k) {
-		if (k.getCode() == KeyCode.A) {
+		if (k.getCode() == KeyCode.A && c.getAngle() > 180) {
 			c.setAngle(c.getAngle() - 10);
 			score = score + 1;
 		}
 		
-		if (k.getCode() == KeyCode.D) {
+		if (k.getCode() == KeyCode.D && c.getAngle() < 360) {
 			c.setAngle(c.getAngle() + 10);
 			score = score + 1;
 		}
 	}
-
+	
 	public void onMousePressed(MouseEvent m) {
 		ammo++;
 		test = true;
