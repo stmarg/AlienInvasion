@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -11,8 +13,9 @@ public class madigame extends SimpleApp {
 	private Ship[] ships = new Ship[10];
 	private Building[] buildings = new Building[6];
 	private  Cannon c;
-	private Missile m;
-		
+	private int ammo = 100;
+	ArrayList <Missile> bullets = new ArrayList<> ();
+	
 
 	// Angle
 	public void onMouseMove(MouseEvent me) //{
@@ -28,7 +31,9 @@ public class madigame extends SimpleApp {
 	}
 	public void onMousePressed (MouseEvent me) 
 	{
-		c.shoot();
+		ammo++;
+		bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
+
 	}
 
 	
@@ -55,38 +60,58 @@ public class madigame extends SimpleApp {
 		}
 		
 		
-		c = new Cannon(getWidth()/2, getHeight()/2, 100, 150, angle);
-		m = new Missile(angle);
+		c = new Cannon(getWidth() / 2 - 20, getHeight() - 70, 40, 40, angle);
+		
 	}
 
 	// This function draws the game provided that you are alive
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		if (score >= 0) {
+		if (score >= 0) 
+		{
 			c.draw(gc);
-			for (int i = 0; i < ships.length; i++) {
+			for (int i = 0; i < ships.length; i++) 
+			{
 				ships[i].draw(gc);
 				ships[i].move();
-				if (ships[i].getY() > getHeight()) {
+				if (ships[i].getY() > getHeight()) 
+				{
 					ships[i].setY(-100);
 					score -= 5;
 				}
 			}
 
-			for (Building b : buildings) {
+			for (Building b : buildings) 
+			{
 				b.draw(gc);
 			}
+			for (Missile m : bullets) 
+			{
+				if (ammo != 0) 
+				{
+					m.draw(gc);
+				}
+					
+				if (m.getxPos() > getWidth() && m.getxPos() < 0 && m.getyPos() > getHeight() && m.getyPos() < 10) 
+				{
+					bullets.remove(m);
+				}
+			}
+			c.draw(gc);
+			bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
 			gc.setFill(Color.GREEN);
 			gc.setFont(javafx.scene.text.Font.font(50));
 			String scoreL = "" + score;
 			gc.fillText(scoreL, getWidth() / 15, getHeight() / 8);
-		} else {
+		}
+		  else 
+		  {
 			gc.setFont(javafx.scene.text.Font.font(100));
 			gc.setFill(Color.FIREBRICK);
 			gc.fillText("You LOSE!", (getWidth() / 2), getHeight() / 2);
 
-		}
+		  }
 		
 		gc.setFill(Color.BLUE);
 		gc.fillOval(c.getX()-5, c.getY()-5, 10, 10);
