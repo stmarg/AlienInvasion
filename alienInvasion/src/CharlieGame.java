@@ -3,6 +3,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import tsinn.ui.SimpleApp;
+import java.util.ArrayList;
 
 public class CharlieGame extends SimpleApp
 {
@@ -10,16 +11,17 @@ public class CharlieGame extends SimpleApp
 	//boolean test = false;
 	//int count = -1;
 	
-	int ammo = 0;
 	double angle = 90;
 	
 	//Missile[] bullets = new Missile[ammo];
 	
-	Missile[] bullets = new Missile[10];
+	//Missile[] bullets = new Missile[10];
 	
 	Building[] buildings = new Building[6];
 	
-	//ArrayList<Missile> missiles = new ArrayList<>();
+	ArrayList <Missile> missiles = new ArrayList<> ();
+	
+	ArrayList <Ship> ships = new ArrayList<> ();
 	
 	Missile M = null;
 	
@@ -52,7 +54,8 @@ public class CharlieGame extends SimpleApp
 				bullets[i] = new Missile(22.5 * i);
 			}*/
 			
-			ammo += 1;
+			
+			missiles.add(new Missile(angle));
 			
 			
 			//test = true;
@@ -85,10 +88,22 @@ public class CharlieGame extends SimpleApp
 			}
 		}
 		
-		for (int i = 0; i < ammo; i++)
+		/*for (int i = 0; i < ammo; i++)
 		{
 			bullets[i].draw(gc);
+		}*/
+		
+		
+		
+		
+		
+		for (Missile m : missiles)
+		{
+			m.draw(gc);
 		}
+		
+		
+		
 		
 		
 		
