@@ -4,9 +4,11 @@ import javafx.scene.paint.Color;
 import tsinn.ui.SimpleApp;
 
 public class JasonGame extends SimpleApp {
-	// private Cannon c;
-	private Building b1;
-	private Building b2;
+	Cannon[] c = new Cannon[1];
+	Building[] b = new Building[6];
+	Ship[] s = new Ship[8];
+	private 
+	
 	
 	@Override
 	public void updateAnimation(long arg0) {
