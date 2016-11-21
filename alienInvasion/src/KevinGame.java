@@ -13,27 +13,22 @@ public class KevinGame extends SimpleApp {
 
 	private int score = 0;
 	private int time = 0;
-	private int ammo = 0;
+	private int ammo = 100;
 	boolean test = false;
 
 	Ship[] ships = new Ship[3];
 	Building[] buildings = new Building[4];
-	//Missile[] bullets = new Missile[ammo];
 	ArrayList <Missile> bullets = new ArrayList<> ();
-	
 
 	public static void main(String[] args) {
 		launch();
 	}
 
 	public void updateAnimation(long arg0) {
-
+		time++;
 	}
 
 	public void draw(GraphicsContext gc) {
-		// c.draw(gc);
-		time++;
-
 		for (Ship s : ships) {
 			s.draw(gc);
 			s.move();
@@ -62,7 +57,7 @@ public class KevinGame extends SimpleApp {
 			s1.setY(-50);
 			s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
 			s1.setOriginalx(s1.getX());
-			s1.setSpeed((int) 1.5, ((int) (Math.random() * 4) + 3));
+			s1.setSpeed(1, ((int) (Math.random() * 4) + 3));
 			// score++;
 		}
 
@@ -73,9 +68,10 @@ public class KevinGame extends SimpleApp {
 		c.draw(gc);
 
 		if (test == true) {
+			gc.fillText("" + c.getAngle(), 100, 100);
+			bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
 			gc.fillText("100", 100, 100);
-			//bullets.add(new Missile(c.getAngle()));
-			bullets.add(new Missile(c.getAngle()));
+			//Missile M = new Missile(angle); 
 			test = false;
 		}
 		
@@ -84,14 +80,14 @@ public class KevinGame extends SimpleApp {
 				m.draw(gc);
 			}
 			
-			if (m.getxPos() > getWidth() && m.getxPos() < 0 && m.getyPos() > getHeight() && m.getyPos() < 0) {
+			if (m.getxPos() > getWidth() && m.getxPos() < 0 && m.getyPos() > getHeight() && m.getyPos() < 10) {
 				bullets.remove(m);
 			}
 		}
 	}
 
 	public void setupApp(GraphicsContext gc) {
-		c = new Cannon(getWidth() / 2 - 20, getHeight() - 50, 40, 40, 90);
+		c = new Cannon(getWidth() / 2 - 20, getHeight() - 70, 40, 40, 270);
 
 		for (int i = 0; i < ships.length; i++) {
 			ships[i] = new Ship(50 + i * 150, 50, 100, (int) (100 / 1.5));
@@ -104,24 +100,19 @@ public class KevinGame extends SimpleApp {
 					Color.DARKBLUE);
 		}
 	}
-	
+
 	public void onKeyPressed(KeyEvent k) {
-		if (k.getCode() == KeyCode.A) {
-			//this.angle = this.angle - 10;
+		if (k.getCode() == KeyCode.A && c.getAngle() > 180) {
 			c.setAngle(c.getAngle() - 10);
-			score = score + 1;
 		}
 		
-		if (k.getCode() == KeyCode.D) {
-			//this.angle = this.angle + 10;
+		if (k.getCode() == KeyCode.D && c.getAngle() < 360) {
 			c.setAngle(c.getAngle() + 10);
-			score = score + 1;
 		}
 	}
-
+	
 	public void onMousePressed(MouseEvent m) {
 		ammo++;
-		score = score + 5;
 		test = true;
 	}
 }
