@@ -22,7 +22,7 @@ public class madigame extends SimpleApp {
 	//public void onMousePressed(MouseEvent me)
 	{
 		
-		 double radians =  Math.atan2(c.getY()-me.getY(), c.getX()-me.getX());
+		 double radians =  Math.atan2(c.getY()-me.getY(), -c.getX()+me.getX());
 		 double angle = Math.toDegrees(radians);
 		 c.setAngle(angle); 
 		angle = 180 - angle;
@@ -33,7 +33,6 @@ public class madigame extends SimpleApp {
 	{
 		ammo++;
 		bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
-
 	}
 
 	
@@ -99,7 +98,6 @@ public class madigame extends SimpleApp {
 				}
 			}
 			c.draw(gc);
-			bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
 			gc.setFill(Color.GREEN);
 			gc.setFont(javafx.scene.text.Font.font(50));
 			String scoreL = "" + score;
