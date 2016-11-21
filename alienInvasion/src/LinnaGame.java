@@ -4,6 +4,8 @@ import javafx.scene.paint.Color;
 import tsinn.ui.SimpleApp;
 
 //I'm so pleased that my commits actually seem to be working now!!!
+//Does anyone know why my code doesn't want to run?
+//Error message says that it "references non-existing project alienInvasion".
 
 public class LinnaGame extends SimpleApp
 {
