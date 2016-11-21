@@ -2,14 +2,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Ship {
-	private int x;
-	private int originalx;
+	private double x;
+	private double originalx;
 	private int y;
 	private int width;
 	private int height;
 	private int originalW;
 	private int originalH;
-	private int vx = (int) 1.5;
+	private double vx = (int) 1.5;
 	private int vy = (int) (Math.random() * 3) + 2;
 	private int vs = 2;
 	
@@ -30,7 +30,7 @@ public class Ship {
 	
 
 	
-	public Ship(int x, int y, int width, int height, int mode) {
+	public Ship(double x, int y, int width, int height, int mode) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -89,11 +89,11 @@ public class Ship {
 		this.y = y;
 	}
 	
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setX(double x) {
 		this.x = x;
 	}
 
@@ -134,11 +134,11 @@ public class Ship {
 		this.alive = alive;
 	}
 
-	public int getOriginalx() {
+	public double getOriginalx() {
 		return originalx;
 	}
 
-	public void setOriginalx(int originalx) {
+	public void setOriginalx(double originalx) {
 		this.originalx = originalx;
 	}
 }
