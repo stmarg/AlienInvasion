@@ -20,7 +20,7 @@ public class Missile
 		speed = setspeed;
 		
 		sx = speed * Math.cos(angle/180*3.1416);
-		sy = speed * Math.sin(angle/180*3.1416);
+		sy = -speed * Math.sin(angle/180*3.1416);
 		
 	}
 	

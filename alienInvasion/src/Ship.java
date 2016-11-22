@@ -28,8 +28,6 @@ public class Ship {
 	private Image Alien = new Image("Alien.jpg");
 	private Image Tommy = new Image("Tommy.png");
 	
-
-	
 	public Ship(double x, int y, int width, int height, int mode) {
 		this.x = x;
 		this.y = y;
