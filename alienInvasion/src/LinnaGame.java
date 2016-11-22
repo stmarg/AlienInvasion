@@ -4,14 +4,13 @@ import javafx.scene.paint.Color;
 import tsinn.ui.SimpleApp;
 
 //I'm so pleased that my commits actually seem to be working now!!!
-//Does anyone know why my code doesn't want to run?
-//Error message says that it "references non-existing project alienInvasion".
+
 
 public class LinnaGame extends SimpleApp
 {
 	Building[] buildings = new Building [3];
-	//Ship[] ships = new Ship [a number]
-	//private Cannon c
+	Ship[] ships = new Ship [2];
+	private Cannon c;
 	
 	@Override
 	public void updateAnimation(long arg0) 
@@ -28,6 +27,8 @@ public class LinnaGame extends SimpleApp
 			
 			b.draw(gc);
 		}
+		
+		c.draw(gc);
 	}
 	@Override
 	public void setupApp(GraphicsContext arg0)
@@ -38,8 +39,8 @@ public class LinnaGame extends SimpleApp
 			buildings[i] = new Building((getWidth() / 4 + i * 420) - 110, getHeight() - 40, 60, Color.CYAN,
 					Color.ROYALBLUE);
 			//At first I thought it wasn't drawing.. then I realized the colors were just too light XD
-			//halp me I thought it 
 		}
+		Cannon c = new Cannon (getWidth()/2, getHeight()-20, 60, 60, 90);
 		
 	}
 	
