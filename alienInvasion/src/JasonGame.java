@@ -4,10 +4,16 @@ import javafx.scene.paint.Color;
 import tsinn.ui.SimpleApp;
 
 public class JasonGame extends SimpleApp {
-	Cannon[] c = new Cannon[1];
-	Building[] b = new Building[6];
-	Ship[] s = new Ship[8];
-	private 
+	Cannon[] cc = new Cannon[1];
+	Building[] bb = new Building[6];
+	Ship[] ss = new Ship[8];
+	private Cannon c ;
+	private Building b;
+	private Ship s;
+	
+	//score
+	//angle
+	//
 	
 	
 	@Override
@@ -16,7 +22,7 @@ public class JasonGame extends SimpleApp {
 		
 	}
 	@Override
-	public void draw(GraphicsContext arg0) {
+	public void draw(GraphicsContext ) {
 		// TODO Auto-generated method stub
 		
 	}
