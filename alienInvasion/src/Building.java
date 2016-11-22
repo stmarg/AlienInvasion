@@ -36,21 +36,39 @@ public class Building
 
 	public boolean checkHit(Ship s) 
 	{
-		
 		int buildingLeft = this.x; 
 		int buildingRight = this.x + this.size; 
 
-		int shipLeft = s.getX(); 
-		int shipRight = s.getX() + s.getWidth(); 
+		double shipLeft = s.getX(); 
+		double shipRight = s.getX() + s.getWidth(); 
 
 		int buildingTop = this.y - this.size; 
 		int buildingBottom = this.y; 
 
 		double shipTop = s.getY(); 
 		double shipBottom = s.getY() - s.getHeight(); 
+		
+		if ( shipBottom < buildingTop || 
+				shipLeft > buildingRight ||
+				shipTop > buildingBottom ||
+				shipRight < buildingLeft) 
+		{
+			return false; 
+		}
+				
+		if ( shipBottom > buildingTop || 
+				shipLeft < buildingRight ||
+				shipTop < buildingBottom ||
+				shipRight > buildingLeft)
+		{
+			return true; 
+		} 
+		
+		return false; 
+	} 
 
 
-		if ((buildingLeft < shipLeft && buildingLeft > shipRight) ||  
+		/*if ((buildingLeft < shipLeft && buildingLeft > shipRight) ||  
 			(buildingLeft > shipLeft && buildingRight < shipRight)) 
 		{ 
 			if ((shipBottom < buildingTop && shipBottom > buildingBottom) || 
@@ -62,7 +80,7 @@ public class Building
 
 		return false; 
 
-	} 
+	} */
 
 	public int getX() {
 		return x;
