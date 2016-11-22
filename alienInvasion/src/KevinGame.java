@@ -12,7 +12,6 @@ public class KevinGame extends SimpleApp {
 
 	private int score = 0;
 	private int level = 1;
-	private int time = 0;
 	private int ammo = 100;
 	boolean fire = false;
 	boolean addShip = false;
@@ -136,7 +135,7 @@ public class KevinGame extends SimpleApp {
 	}
 
 	public void onMousePressed(MouseEvent m) {
-		ammo++;
+		ammo--;
 		fire = true;
 	}
 }
