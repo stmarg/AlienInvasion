@@ -18,22 +18,19 @@ public class madigame extends SimpleApp {
 	
 
 	// Angle
-	public void onMouseMove(MouseEvent me) //{
-	//public void onMousePressed(MouseEvent me)
+	public void onMouseMove(MouseEvent me) 
 	{
-		
-		 double radians =  Math.atan2(c.getY()-me.getY(), c.getX()-me.getX());
+		 double radians =  Math.atan2(c.getY()-me.getY(), -c.getX()+me.getX());
 		 double angle = Math.toDegrees(radians);
 		 c.setAngle(angle); 
 		angle = 180 - angle;
 		 
-		 System.out.println(angle);
 	}
+	
 	public void onMousePressed (MouseEvent me) 
 	{
 		ammo++;
 		bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
-
 	}
 
 	
@@ -60,7 +57,7 @@ public class madigame extends SimpleApp {
 		}
 		
 		
-		c = new Cannon(getWidth() / 2 - 20, getHeight() - 70, 40, 40, angle);
+		c = new Cannon((getWidth() / 2)+30, getHeight()-100,100 , 50, angle);
 		
 	}
 
@@ -86,7 +83,7 @@ public class madigame extends SimpleApp {
 			{
 				b.draw(gc);
 			}
-			for (Missile m : bullets) 
+			for (Missile m : bullets)
 			{
 				if (ammo != 0) 
 				{
@@ -99,11 +96,12 @@ public class madigame extends SimpleApp {
 				}
 			}
 			c.draw(gc);
-			bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
 			gc.setFill(Color.GREEN);
 			gc.setFont(javafx.scene.text.Font.font(50));
 			String scoreL = "" + score;
 			gc.fillText(scoreL, getWidth() / 15, getHeight() / 8);
+			
+			
 		}
 		  else 
 		  {
@@ -112,10 +110,6 @@ public class madigame extends SimpleApp {
 			gc.fillText("You LOSE!", (getWidth() / 2), getHeight() / 2);
 
 		  }
-		
-		gc.setFill(Color.BLUE);
-		gc.fillOval(c.getX()-5, c.getY()-5, 10, 10);
-		
 	}
 
 

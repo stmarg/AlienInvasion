@@ -9,7 +9,7 @@ import tsinn.ui.SimpleApp;
 public class KevinGame extends SimpleApp {
 	private Cannon c;
 	private Ship s1;
-	
+
 	private int score = 0;
 	private int time = 0;
 	private int ammo = 100;
@@ -17,7 +17,7 @@ public class KevinGame extends SimpleApp {
 
 	Ship[] ships = new Ship[3];
 	Building[] buildings = new Building[4];
-	ArrayList <Missile> bullets = new ArrayList<> ();
+	ArrayList<Missile> bullets = new ArrayList<>();
 
 	public static void main(String[] args) {
 		launch();
@@ -71,14 +71,23 @@ public class KevinGame extends SimpleApp {
 			bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
 			test = false;
 		}
-		
+
 		for (Missile m : bullets) {
 			if (ammo != 0) {
 				m.draw(gc);
 			}
-			
+
 			if (m.getxPos() > getWidth() && m.getxPos() < 0 && m.getyPos() > getHeight() && m.getyPos() < 10) {
 				bullets.remove(m);
+			}
+		}
+
+		for (Building b : buildings) {
+			for (Ship s : ships) {
+				if (s.didHit(b) == true) {
+					score = score + 100;
+					gc.fillText("OUCH", getWidth()/2, getHeight()/2);
+				}
 			}
 		}
 	}
@@ -102,12 +111,12 @@ public class KevinGame extends SimpleApp {
 		if (k.getCode() == KeyCode.A && c.getAngle() < 180) {
 			c.setAngle(c.getAngle() + 10);
 		}
-		
+
 		if (k.getCode() == KeyCode.D && c.getAngle() > 0) {
 			c.setAngle(c.getAngle() - 10);
 		}
 	}
-	
+
 	public void onMousePressed(MouseEvent m) {
 		ammo++;
 		test = true;
