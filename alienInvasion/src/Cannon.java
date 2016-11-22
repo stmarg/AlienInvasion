@@ -54,8 +54,8 @@ public class Cannon
 	public double getAngle() {
 		return angle;
 	}
-	public void setAngle(double angle)
-	{
+	
+	public void setAngle(double angle) {
 		this.angle = angle;
 	}
 

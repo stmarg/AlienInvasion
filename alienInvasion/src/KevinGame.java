@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -10,7 +9,7 @@ import tsinn.ui.SimpleApp;
 public class KevinGame extends SimpleApp {
 	private Cannon c;
 	private Ship s1;
-
+	
 	private int score = 0;
 	private int time = 0;
 	private int ammo = 100;
@@ -70,8 +69,6 @@ public class KevinGame extends SimpleApp {
 		if (test == true) {
 			gc.fillText("" + c.getAngle(), 100, 100);
 			bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
-			gc.fillText("100", 100, 100);
-			//Missile M = new Missile(angle); 
 			test = false;
 		}
 		
@@ -87,7 +84,7 @@ public class KevinGame extends SimpleApp {
 	}
 
 	public void setupApp(GraphicsContext gc) {
-		c = new Cannon(getWidth() / 2 - 20, getHeight() - 70, 40, 40, 270);
+		c = new Cannon(getWidth() / 2 - 20, getHeight() - 70, 40, 40, 90);
 
 		for (int i = 0; i < ships.length; i++) {
 			ships[i] = new Ship(50 + i * 150, 50, 100, (int) (100 / 1.5));
@@ -102,12 +99,12 @@ public class KevinGame extends SimpleApp {
 	}
 
 	public void onKeyPressed(KeyEvent k) {
-		if (k.getCode() == KeyCode.A && c.getAngle() > 180) {
-			c.setAngle(c.getAngle() - 10);
+		if (k.getCode() == KeyCode.A && c.getAngle() < 180) {
+			c.setAngle(c.getAngle() + 10);
 		}
 		
-		if (k.getCode() == KeyCode.D && c.getAngle() < 360) {
-			c.setAngle(c.getAngle() + 10);
+		if (k.getCode() == KeyCode.D && c.getAngle() > 0) {
+			c.setAngle(c.getAngle() - 10);
 		}
 	}
 	
