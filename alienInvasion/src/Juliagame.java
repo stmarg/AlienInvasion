@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import tsinn.ui.Drawable;
@@ -6,9 +8,12 @@ import tsinn.ui.SimpleApp;
 public class Juliagame extends SimpleApp {
 	Building[] buildings = new Building[6];
 	Ship[] ships = new Ship[3];
+	ArrayList <Missile> bullets = new ArrayList<> ();
 	
 	private Ship s; 
 	private Building b; 
+	private Missile m; 
+	private Cannon c; 
 	
 
 	public void updateAnimation(long arg0) {
@@ -34,7 +39,13 @@ public class Juliagame extends SimpleApp {
 			s.draw(gc);
 			s.move();
 		}
+		
+		for (Missile m : bullets)
+		{ 
 			
+		}
+		
+		c.draw(gc); 
 	}
 
 	public void setupApp(GraphicsContext gc) 
