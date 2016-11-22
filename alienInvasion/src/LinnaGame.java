@@ -5,12 +5,14 @@ import tsinn.ui.SimpleApp;
 
 //I'm so pleased that my commits actually seem to be working now!!!
 
+//cannon isn't drawing????
+
 
 public class LinnaGame extends SimpleApp
 {
 	Building[] buildings = new Building [3];
 	Ship[] ships = new Ship [2];
-	private Cannon c;
+	//private Cannon c;
 	
 	@Override
 	public void updateAnimation(long arg0) 
@@ -28,7 +30,7 @@ public class LinnaGame extends SimpleApp
 			b.draw(gc);
 		}
 		
-		c.draw(gc);
+		//c.draw(gc);
 	}
 	@Override
 	public void setupApp(GraphicsContext arg0)
@@ -40,7 +42,7 @@ public class LinnaGame extends SimpleApp
 					Color.ROYALBLUE);
 			//At first I thought it wasn't drawing.. then I realized the colors were just too light XD
 		}
-		Cannon c = new Cannon (getWidth()/2, getHeight()-20, 60, 60, 90);
+		//Cannon c = new Cannon (getWidth()/2, getHeight()-20, 60, 60, 90);
 		
 	}
 	
