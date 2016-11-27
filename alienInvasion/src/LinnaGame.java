@@ -14,6 +14,7 @@ public class LinnaGame extends SimpleApp
 	Ship[] ships = new Ship [2];
 	//private Cannon c;
 	
+	
 	@Override
 	public void updateAnimation(long arg0) 
 	{
@@ -30,6 +31,12 @@ public class LinnaGame extends SimpleApp
 			b.draw(gc);
 		}
 		
+		for (Ship s: ships)
+		{
+			s.draw(gc);
+			s.move();
+		}
+		
 		//c.draw(gc);
 	}
 	@Override
@@ -41,6 +48,11 @@ public class LinnaGame extends SimpleApp
 			buildings[i] = new Building((getWidth() / 4 + i * 420) - 110, getHeight() - 40, 60, Color.CYAN,
 					Color.ROYALBLUE);
 			//At first I thought it wasn't drawing.. then I realized the colors were just too light XD
+		}
+		for (int i = 0; i < ships.length; i++)
+		{
+			int x = (int)((Math.random()*getWidth())+1);
+			ships[i] = new Ship(x, getHeight(), 40, 40);
 		}
 		//Cannon c = new Cannon (getWidth()/2, getHeight()-20, 60, 60, 90);
 		
