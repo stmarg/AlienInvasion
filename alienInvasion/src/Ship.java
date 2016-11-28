@@ -96,12 +96,15 @@ public class Ship {
 		double bRight = b.getX() + b.getS();
 		double bTop = b.getY();
 		double bBottom = b.getY() + b.getS();
+		
+		return sRight > bLeft && sLeft < bRight && sBottom > bTop && sTop < bBottom;
 
-		if (sRight > bLeft && sLeft < bRight && sBottom > bTop && sTop < bBottom) {
+		/*if (sRight > bLeft && sLeft < bRight && sBottom > bTop && sTop < bBottom) {
 			return true;
 		} else {
 			return false;
 		}
+		*/
 	}
 	
 	//return (abs(s.x + s.w/2) - b.x + (b.w/2)) < (s.w + b.w)/2 && abs(s.y + (s.h/2) - b.y + (b.h/2) < (s.b + b.h)/2)
