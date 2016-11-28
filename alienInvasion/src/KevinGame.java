@@ -26,6 +26,7 @@ public class KevinGame extends SimpleApp {
 	}
 
 	public void updateAnimation(long arg0) {
+		
 	}
 
 	public void draw(GraphicsContext gc) {
@@ -74,7 +75,7 @@ public class KevinGame extends SimpleApp {
 		
 		if (fire == true) {
 			gc.fillText("" + c.getAngle(), 100, 100);
-			bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
+			bullets.add(new Missile(c.getX() + c.getLength()/2, c.getY(), 10, c.getAngle(), 4));
 			fire = false;
 		}
 		
@@ -125,17 +126,23 @@ public class KevinGame extends SimpleApp {
 	}
 
 	public void onKeyPressed(KeyEvent k) {
-		if (k.getCode() == KeyCode.A && c.getAngle() < 180) {
+		/*if (k.getCode() == KeyCode.A && c.getAngle() < 180) {
 			c.setAngle(c.getAngle() + 10);
 		}
 
 		if (k.getCode() == KeyCode.D && c.getAngle() > 0) {
 			c.setAngle(c.getAngle() - 10);
 		}
+		*/
 	}
 
 	public void onMousePressed(MouseEvent m) {
 		ammo--;
 		fire = true;
+		
+		double radians =  Math.atan2(c.getY()-m.getY(), -c.getX()+m.getX());
+		double angle = Math.toDegrees(radians);
+		c.setAngle(angle); 
+		angle = 180 - angle;
 	}
 }

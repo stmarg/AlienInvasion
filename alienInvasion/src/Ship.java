@@ -103,6 +103,8 @@ public class Ship {
 			return false;
 		}
 	}
+	
+	//return (abs(s.x + s.w/2) - b.x + (b.w/2)) < (s.w + b.w)/2 && abs(s.y + (s.h/2) - b.y + (b.h/2) < (s.b + b.h)/2)
 
 	public void setLocation(int x, int y) {
 		this.x = x;
