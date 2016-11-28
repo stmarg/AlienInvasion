@@ -6,6 +6,7 @@ import tsinn.ui.SimpleApp;
 //I'm so pleased that my commits actually seem to be working now!!!
 
 //cannon isn't drawing???
+//ships aren't drawing??????
 
 
 public class LinnaGame extends SimpleApp
@@ -53,6 +54,7 @@ public class LinnaGame extends SimpleApp
 		{
 			int x = (int)((Math.random()*getWidth())+1);
 			ships[i] = new Ship(x, getHeight(), 40, 40);
+			//Give the new ship's an initial Y speed.
 		}
 		//Cannon c = new Cannon (getWidth()/2, getHeight()-20, 60, 60, 90);
 		

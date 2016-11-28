@@ -24,6 +24,7 @@ public class GavinGame extends SimpleApp
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
+		//Why are you creating an new set of 4 ships 60 times a second? Don't init your array in the draw! Do it in the setup.
 		for (int i = 0; i < ships.length; i++)
 		{ 
 			ships[i] = new Ship(50 + i *150, 50, 100, (int) (100/1.5),i);
@@ -37,6 +38,7 @@ public class GavinGame extends SimpleApp
 		//	}
 		}
 		
+		//Same here for the buildings
 			for (int i = 0; i < buildings.length; i++)
 			{
 				buildings[i] = new Building((getWidth() / 4 + i * 420) - 110, getHeight() - 40, 60, Color.GREY,
