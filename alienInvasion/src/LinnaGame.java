@@ -6,6 +6,7 @@ import tsinn.ui.SimpleApp;
 //I'm so pleased that my commits actually seem to be working now!!!
 
 //cannon isn't drawing???
+//ships aren't drawing??????
 
 
 public class LinnaGame extends SimpleApp
