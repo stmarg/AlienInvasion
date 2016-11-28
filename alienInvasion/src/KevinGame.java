@@ -83,12 +83,18 @@ public class KevinGame extends SimpleApp {
 		refillShip();
 	}
 	
+	
+	//You've already looped over the ships and the buildings...now you're looping over both of them again? Why not do it inside one of your existing loops?
+	//Also, why is this public? If you really want it to be in it's own method, have it just return true or false and not take a GC. Then, do your fillText only if the result
+	//of calling this method is true
 	public void check(GraphicsContext gc) {
 		for (Building b : buildings) {
 			for (Ship s : ships) {
 				if (s.didHit(b) == true) {
 					score = score + 100;
 					gc.fillText("OUCH", getWidth()/2, getHeight()/2);
+					
+					//You can't remove from an arraylist when you are looping inside of it using the enhanced for loop. Use a regular for loop and subtract from i if you do remove something.
 					ships.remove(s);
 				}
 			}
@@ -113,6 +119,7 @@ public class KevinGame extends SimpleApp {
 	public void setupApp(GraphicsContext gc) {
 		c = new Cannon(getWidth() / 2 - 20, getHeight() - 70, 40, 40, 90);
 		
+		//Do this in a for loop and have it loop 3 times
 		ships.add(new Ship((int) (Math.random() * (getWidth() - 100)) + 100, 50, 100, (int) (100 / 1.5)));
 		ships.add(new Ship((int) (Math.random() * (getWidth() - 100)) + 100, 50, 100, (int) (100 / 1.5)));
 		ships.add(new Ship((int) (Math.random() * (getWidth() - 100)) + 100, 50, 100, (int) (100 / 1.5)));
@@ -140,6 +147,7 @@ public class KevinGame extends SimpleApp {
 		ammo--;
 		fire = true;
 		
+		//Maybe Cannon should be able to do this for you? 
 		double radians =  Math.atan2(c.getY()-m.getY(), -c.getX()+m.getX());
 		double angle = Math.toDegrees(radians);
 		c.setAngle(angle); 
