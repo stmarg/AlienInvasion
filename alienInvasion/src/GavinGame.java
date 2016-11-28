@@ -9,9 +9,9 @@ public class GavinGame extends SimpleApp
 	Building[] buildings = new Building[10];
 	Ship[] ships = new Ship[4];
 	Missile[] bullets = new Missile[ammo];
-	
-		/*private Ship s;
-	private Building b; */
+
+	//private Ship s;
+	//private Building b; 
 	
 	public static void main(String[] args) {
 		launch();
@@ -27,6 +27,14 @@ public class GavinGame extends SimpleApp
 		for (int i = 0; i < ships.length; i++)
 		{ 
 			ships[i] = new Ship(50 + i *150, 50, 100, (int) (100/1.5),i);
+			ships[i].setX((int) (Math.random()* (getWidth() - getWidth() / 10)));
+			
+			//ships[i].draw(gc);
+			//ships[i].move();
+			//if (ships[i].getY() > getHeight()) 
+			//{
+				//ships[i].setY(-100);
+		//	}
 		}
 		
 			for (int i = 0; i < buildings.length; i++)
@@ -41,6 +49,7 @@ public class GavinGame extends SimpleApp
 			 * drawing(0,0)
 			 * pop matrix
 			 */
+			
 			for (Ship s : ships) {
 				s.draw(gc);
 				s.move();
@@ -51,6 +60,7 @@ public class GavinGame extends SimpleApp
 			}
 		
 		}
+		
 	
 	@Override
 	public void setupApp(GraphicsContext arg0) {
