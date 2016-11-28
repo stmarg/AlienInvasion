@@ -33,6 +33,7 @@ public class Cannon
 		gc.rotate(angle);
 		gc.rect(50,-25,100,50);
 	}
+	
 	public int getbX() {
 		return barrelx;
 		

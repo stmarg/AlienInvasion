@@ -31,68 +31,77 @@ public class KevinGame extends SimpleApp {
 
 	public void draw(GraphicsContext gc) {
 		for (Ship s : ships) {
+			// Basic ship draw/move
 			s.draw(gc);
 			s.move();
 			
+			// If ship goes below screen
 			if (s.getY() > getHeight()) {
 				s.setY(-50);
 				s.setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
 				s.setOriginalx(s.getX());
 				s.setSpeed((int) 1.5, ((int) (Math.random() * 4) + 3));
 			}
-		}
-
-		if (level >= 2) {
-			s1.draw(gc);
-			s1.move();
-			s1.sChange();
-		}
-		
-		if (s1.getY() > getHeight()) {
-			s1.setY(-50);
-			s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
-			s1.setOriginalx(s1.getX());
-			s1.setSpeed(1, ((int) (Math.random() * 4) + 3));
-		}
-
-		gc.fillText("Score: " + score + level, getWidth() - getWidth() / 8, getHeight() / 8);
-
-		for (Building b : buildings) {
-			b.draw(gc);
-		}
-
-		c.draw(gc);
-
-		for (Missile m : bullets) {
-			if (ammo != 0) {
-				m.draw(gc);
-			}
-
-			if (m.getxPos() > getWidth() && m.getxPos() < 0 && m.getyPos() > getHeight() && m.getyPos() < 10) {
-				bullets.remove(m);
-			}
-		}
-		
-		if (fire == true) {
-			gc.fillText("" + c.getAngle(), 100, 100);
-			bullets.add(new Missile(c.getX() + c.getLength()/2, c.getY(), 10, c.getAngle(), 4));
-			fire = false;
-		}
-		
-		check(gc);
-		refillShip();
-	}
-	
-	public void check(GraphicsContext gc) {
-		for (Building b : buildings) {
-			for (Ship s : ships) {
+			
+			for (Building b : buildings) {
+				b.draw(gc);
+				
+				// Check if ship1 hit building
 				if (s.didHit(b) == true) {
 					score = score + 100;
 					gc.fillText("OUCH", getWidth()/2, getHeight()/2);
 					ships.remove(s);
 				}
+				
+				if (s1.didHit(b) == true) {
+					score = score + 300;
+					gc.fillText("OUCH", getWidth()/2, getHeight()/2);
+					s1.setY(-100);
+				}
 			}
 		}
+
+		// Level 2 and beyond
+		if (level >= 2) {
+			s1.draw(gc);
+			s1.move();
+			s1.sChange();
+			
+			if (s1.getY() > getHeight()) {
+				s1.setY(-50);
+				s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
+				s1.setOriginalx(s1.getX());
+				s1.setSpeed(1, ((int) (Math.random() * 4) + 3));
+			}
+		}
+		
+		// Score
+		gc.fillText("Score: " + score + level, getWidth() - getWidth() / 8, getHeight() / 8);
+		
+		// Cannon
+		c.draw(gc);
+		//c.rotate(gc);
+
+		// Drawing missile
+		for (Missile m : bullets) {
+			if (ammo != 0) {
+				m.draw(gc);
+			}
+			
+			// Remove missile if off screen
+			if (m.getxPos() > getWidth() && m.getxPos() < 0 && m.getyPos() > getHeight() && m.getyPos() < 10) {
+				bullets.remove(m);
+			}
+		}
+		
+		// Firing missiles
+		if (fire == true) {
+			gc.fillText("" + Math.floor(c.getAngle()), 100, 100);
+			bullets.add(new Missile(c.getX() + c.getLength()/2, c.getY(), 10, c.getAngle(), 4));
+			fire = false;
+		}
+		
+		refillShip();
 	}
 	
 	public void refillShip() {
@@ -137,12 +146,9 @@ public class KevinGame extends SimpleApp {
 	}
 
 	public void onMousePressed(MouseEvent m) {
+		double radians =  Math.atan2(c.getY()-m.getY(), -c.getX()+m.getX());
+		c.setAngle(Math.toDegrees(radians)); 
 		ammo--;
 		fire = true;
-		
-		double radians =  Math.atan2(c.getY()-m.getY(), -c.getX()+m.getX());
-		double angle = Math.toDegrees(radians);
-		c.setAngle(angle); 
-		angle = 180 - angle;
 	}
 }
