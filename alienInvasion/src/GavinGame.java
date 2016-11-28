@@ -23,20 +23,24 @@ public class GavinGame extends SimpleApp
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		
+		for (int i = 0; i < ships.length; i++) 
+		{
+			ships[i].draw(gc);
+			ships[i].move();
+			if (ships[i].getY() > getHeight()) 
+			{
+				ships[i].setY(-50);
+			}
+		}
 		//Why are you creating an new set of 4 ships 60 times a second? Don't init your array in the draw! Do it in the setup.
-		for (int i = 0; i < ships.length; i++)
-		{ 
-			ships[i] = new Ship(50 + i *150, 50, 100, (int) (100/1.5),i);
-			ships[i].setX((int) (Math.random()* (getWidth() - getWidth() / 10)));
-			
+		
 			//ships[i].draw(gc);
 			//ships[i].move();
 			//if (ships[i].getY() > getHeight()) 
 			//{
-				//ships[i].setY(-100);
+				//ships[i].setY(-50);
 		//	}
-		}
+		
 		
 		//Same here for the buildings
 			for (int i = 0; i < buildings.length; i++)
@@ -55,6 +59,7 @@ public class GavinGame extends SimpleApp
 			for (Ship s : ships) {
 				s.draw(gc);
 				s.move();
+				s.setSpeed(0, 2);
 			}
 			
 			for (Building b : buildings) {
@@ -67,13 +72,16 @@ public class GavinGame extends SimpleApp
 	@Override
 	public void setupApp(GraphicsContext arg0) {
 		// TODO Auto-generated method stub
-	    /* for(int i=0;i<Building.s;i++){
-	    //     Building[i];
-	   //  }*/
-		
+	   
 		//How to to array list..... 
 	//	ArrayList<Missle> allMissles ammo = new ArrayList<>();
 		
+		for (int i = 0; i < ships.length; i++)
+		{ 
+			//ships[i] = new Ship(50 + i *150, 50,80,85,i);
+			ships[i]= new Ship(Math.random()* (getWidth() - getWidth() / 10),50,95,100,1);
+			//ships[i].setX((int) (Math.random()* (getWidth() - getWidth())));
+		}
 	  }
 
 	}
