@@ -10,6 +10,9 @@ public class Juliagame extends SimpleApp {
 	Ship[] ships = new Ship[3];
 	ArrayList <Missile> bullets = new ArrayList<> ();
 	
+	
+	//Don't have both arrays and single variables. Use arrays when you have many things (like buildings and ships), use single variables when you have only one thing...like a cannon.
+	//Your program is crashing because you are using this single ship variable when you should be using the array.
 	private Ship s; 
 	private Building b; 
 	private Missile m; 

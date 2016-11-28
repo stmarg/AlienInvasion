@@ -34,6 +34,7 @@ public class Building
 		gc.fillRect(x + size / 3, y + size / 4, size / 3, size - size / 4);
 	}
 
+	//This doesn't work. Please check to ensure that it is working. 
 	public boolean checkHit(Ship s) 
 	{
 		int buildingLeft = this.x; 
