@@ -9,9 +9,9 @@ public class CharlieGame extends SimpleApp
 {
 	
 	//boolean test = false;
-	//int count = -1;
+	double count = 0;
 	
-	double angle = 90;
+	//double angle = 90;
 	
 	//Missile[] bullets = new Missile[ammo];
 	
@@ -25,6 +25,8 @@ public class CharlieGame extends SimpleApp
 	
 	Missile M = null;
 	
+	Cannon C = new Cannon(700, 800, 100, 100, 90);
+	
 	
 	
 	
@@ -33,19 +35,21 @@ public class CharlieGame extends SimpleApp
 		
 		if (ke.isControlDown() == true)
 		{
-			this.angle = this.angle + 22.5;
+			C.setAngle(C.getAngle() + 22.5);
+			//this.angle = this.angle + 22.5;
 		}
 		
 		if (ke.isAltDown() == true)
 		{
-			this.angle = this.angle - 22.5;
+			C.setAngle(C.getAngle() - 22.5);
+			//this.angle = this.angle - 22.5;
 		}
 		
 		
 		if (ke.isShiftDown() == true)
 		{
 			
-			M = new Missile(angle);
+			//M = new Missile(C.getX(), C.getY(), 50, angle, 4);
 			
 			//bullets = new Missile[ammo];
 			
@@ -55,7 +59,11 @@ public class CharlieGame extends SimpleApp
 			}*/
 			
 			
-			missiles.add(new Missile(angle));
+			missiles.add(new Missile(C.getX(), C.getY(), 50, C.getAngle(), 4, Color.BLACK));
+			//missiles.add(C.shoot());
+			
+			//ships.add(new Ship(600, 100, 100, 100));
+			
 			
 			
 			//test = true;
@@ -78,6 +86,10 @@ public class CharlieGame extends SimpleApp
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
+		count = count + (int)(10 * Math.random());
+		
+		
+		/*if (M != null)
 		
 		//Why are you using M and missiles?
 		if (M != null)
@@ -88,7 +100,7 @@ public class CharlieGame extends SimpleApp
 			{
 				M = null;
 			}
-		}
+		}*/
 		
 		/*for (int i = 0; i < ammo; i++)
 		{
@@ -96,6 +108,18 @@ public class CharlieGame extends SimpleApp
 		}*/
 		
 		
+		if (count % 100 == 0)
+		{
+			ships.add(new Ship((int)(this.getWidth() * Math.random()), 0, 100, 100));
+		}
+		
+		
+		
+		
+		
+		
+		
+		C.draw(gc);
 		
 		
 		
@@ -104,7 +128,11 @@ public class CharlieGame extends SimpleApp
 			m.draw(gc);
 		}
 		
-		
+		for (Ship s : ships)
+		{
+			s.draw(gc);
+			s.move();
+		}
 		
 		
 		
