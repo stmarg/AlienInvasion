@@ -74,6 +74,7 @@ public class Cannon
 			speed = setspeed;
 			return m;
 		}
+
 	}
 
 	public void setLocation(int x, int y) {
@@ -88,6 +89,6 @@ public class Cannon
 		gc.save();
 		gc.translate(x,y);
 		gc.rotate(angle);
-		gc.rect(50,-25,100,50)
+		gc.rect(50,-25,100,50);
 	}
 }

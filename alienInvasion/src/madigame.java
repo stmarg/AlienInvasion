@@ -16,16 +16,17 @@ public class madigame extends SimpleApp {
 	private int ammo = 100;
 	ArrayList <Missile> bullets = new ArrayList<> ();
 	
-
 	// Angle
 	public void onMouseMove(MouseEvent me) 
 	{
+		double radians =  Math.atan2(c.getY()-me.getY(), -c.getX()+me.getX());
+		double angle = Math.toDegrees(radians);
+		c.setAngle(angle); 
 		//Kevin is doning a similar thing...Would it make sense for the Cannon to contain this setAngle code? In other words, a way to set it's angle by passing in an x and y?
 		 double radians =  Math.atan2(c.getY()-me.getY(), -c.getX()+me.getX());
 		 double angle = Math.toDegrees(radians);
 		 c.setAngle(angle); 
 		angle = 180 - angle;
-		 
 	}
 	
 	public void onMousePressed (MouseEvent me) 
@@ -33,8 +34,6 @@ public class madigame extends SimpleApp {
 		ammo++;
 		bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
 	}
-
-	
 
 	public void updateAnimation(long arg0) {
 		// TODO Auto-generated method stub
@@ -46,8 +45,7 @@ public class madigame extends SimpleApp {
 		for (int i = 0; i < ships.length; i++) {
 			ships[i] = new Ship((int) (Math.random() * getWidth()), (int) (Math.random() * -(getHeight() * 2)), 100,
 					100, 1);
-			ships[i].setSpeed(0, (int) (Math.random() * 5 + 1));
-
+			ships[i].setSpeed(0, (int) (Math.random() * 2 + 1));
 		}
 
 		for (int i = 0; i < buildings.length; i++) {
@@ -57,9 +55,7 @@ public class madigame extends SimpleApp {
 			buildings[i] = new Building(x, y, 50, Color.RED, Color.BLACK);
 		}
 		
-		
 		c = new Cannon((getWidth() / 2)+30, getHeight()-100,100 , 50, angle);
-		
 	}
 
 	// This function draws the game provided that you are alive
@@ -80,11 +76,16 @@ public class madigame extends SimpleApp {
 					score -= 5;
 				}
 			}
-
+			
+			//INSERT DIDHIT MISSILE+SHIP TO MAKE SHIP MOVE UP -100
+			
+			
 			for (Building b : buildings) 
 			{
 				b.draw(gc);
+				
 			}
+			
 			for (Missile m : bullets)
 			{
 				if (ammo != 0) 
@@ -102,8 +103,6 @@ public class madigame extends SimpleApp {
 			gc.setFont(javafx.scene.text.Font.font(50));
 			String scoreL = "" + score;
 			gc.fillText(scoreL, getWidth() / 15, getHeight() / 8);
-			
-			
 		}
 		  else 
 		  {
