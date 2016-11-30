@@ -8,6 +8,7 @@ public class Cannon
 	private double angle;
 	private int barrelx;
 	private int barrely;
+	private int barrelh;
 	private int width;
 	private int height;
 
@@ -27,13 +28,6 @@ public class Cannon
 		height = 800;
 	}
 
-	//No, This needs to be part of the draw method.  
-	public void rotate(GraphicsContext gc){
-		gc.save();
-		gc.translate(x,y);
-		gc.rotate(angle);
-		gc.rect(50,-25,100,50);
-	}
 	
 	public int getbX() {
 		return barrelx;
@@ -68,11 +62,18 @@ public class Cannon
 		this.angle = angle;
 	}
 
-
 	public Missile shoot() {
-		//Use the other Missile constructor. You need to tell the missile what its location is and maybe it's speed
-		Missile m = new Missile(angle);
-		return m;
+		double setangle = 10;
+		double setdiameter = 10;
+		double setspeed = 10;
+		Missile m = new Missile( x, y, setdiameter, setangle, setspeed);
+		{
+			barrelx = x ;
+			barrely = y;
+			angle= setangle;
+			return m;
+		}
+
 	}
 
 	public void setLocation(int x, int y) {
@@ -84,5 +85,10 @@ public class Cannon
 		gc.setFill(Color.RED);
 		gc.fillRect(x, y, height, width);
 		gc.fillRect(x, y, height, width);
+		gc.save();
+		gc.translate(x,y);
+		gc.rotate(angle);
+		gc.restore();
+		gc.rect(50,-25,100,50);
 	}
 }

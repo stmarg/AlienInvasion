@@ -13,7 +13,7 @@ public class LinnaGame extends SimpleApp
 {
 	Building[] buildings = new Building [3];
 	Ship[] ships = new Ship [2];
-	//private Cannon c;
+	private Cannon c;
 	
 	
 	@Override
@@ -38,7 +38,7 @@ public class LinnaGame extends SimpleApp
 			s.move();
 		}
 		
-		//c.draw(gc);
+		c.draw(gc);
 	}
 	@Override
 	public void setupApp(GraphicsContext arg0)
@@ -53,11 +53,19 @@ public class LinnaGame extends SimpleApp
 		for (int i = 0; i < ships.length; i++)
 		{
 			int x = (int)((Math.random()*getWidth())+1);
-			ships[i] = new Ship(x, getHeight(), 40, 40);
-			//Give the new ship's an initial Y speed.
+			ships[i] = new Ship(x, getHeight(), 40, 40, 1);
+			ships[i].setSpeed(7, (int)(Math.random()*20));
+			//Give the new ships an initial Y speed.
+			//Is this what you meant? It's still not drawing for me, so...
+			
 		}
-		//Cannon c = new Cannon (getWidth()/2, getHeight()-20, 60, 60, 90);
+		c = new Cannon (getWidth()/2, getHeight()-20, 60, 60, 90);
 		
+	}
+	
+	public void mouseclicked(MouseEvent m)
+	{
+		c.shoot();
 	}
 	
 	
