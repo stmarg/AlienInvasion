@@ -1,7 +1,10 @@
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import tsinn.ui.SimpleApp;
+
 
 public class JasonGame extends SimpleApp {
 	Cannon[] cc = new Cannon[1];
@@ -14,7 +17,9 @@ public class JasonGame extends SimpleApp {
 	//score
 	//angle
 	//
-	
+	public static void main(String[] args) {
+		launch();
+	}
 	
 	@Override
 	public void updateAnimation(long arg0) {
@@ -22,12 +27,13 @@ public class JasonGame extends SimpleApp {
 		
 	}
 	@Override
-	public void draw(GraphicsContext ) {
+	public void setupApp(GraphicsContext arg0) {
 		// TODO Auto-generated method stub
 		
 	}
+
 	@Override
-	public void setupApp(GraphicsContext arg0) {
+	public void draw(GraphicsContext arg0) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -27,12 +27,6 @@ public class Cannon
 		height = 800;
 	}
 
-	public void rotate(GraphicsContext gc){
-		gc.save();
-		gc.translate(x,y);
-		gc.rotate(angle);
-		gc.rect(50,-25,100,50);
-	}
 	public int getbX() {
 		return barrelx;
 		
@@ -80,5 +74,9 @@ public class Cannon
 		gc.setFill(Color.RED);
 		gc.fillRect(x, y, height, width);
 		gc.fillRect(x, y, height, width);
+		gc.save();
+		gc.translate(x,y);
+		gc.rotate(angle);
+		gc.rect(50,-25,100,50);
 	}
 }
