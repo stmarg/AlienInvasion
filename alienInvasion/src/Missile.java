@@ -1,4 +1,5 @@
-import javafx.scene.canvas.GraphicsContext; 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 /**
  * The Missile class contains represents the idea of a missile in the Alien Invasion game. 
  * @author Charlie
@@ -9,6 +10,7 @@ public class Missile
 {
 	private double xPos, yPos, diameter, angle, speed, sx, sy;
 	private boolean DidHit = false;
+	private Color c;
 	
 	public Missile (double x, double y, double setdiameter, double setangle, double setspeed)
 	{
@@ -18,6 +20,7 @@ public class Missile
 		diameter = setdiameter;
 		angle = setangle;
 		speed = setspeed;
+		c = Color.RED;
 		
 		sx = speed * Math.cos(angle/180*3.1416);
 		sy = -speed * Math.sin(angle/180*3.1416);
@@ -29,9 +32,26 @@ public class Missile
 		this (800, 700, 50, setangle, 4);
 	}
 	
+	public Missile (double x, double y, double setdiameter, double setangle, double setspeed, Color whatcolor)
+	{
+		
+		xPos = x;
+		yPos = y;
+		diameter = setdiameter;
+		angle = setangle;
+		speed = setspeed;
+		c = whatcolor;
+		
+		
+		sx = speed * Math.cos(angle/180*3.1416);
+		sy = -speed * Math.sin(angle/180*3.1416);
+		
+	}
+	
 	
 	public void draw(GraphicsContext gc)//takes the angle in degrees
 	{	
+			gc.setFill(c);
 			gc.fillOval(xPos, yPos, diameter, diameter);
 	//}
 	
