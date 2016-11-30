@@ -7,7 +7,7 @@ import tsinn.ui.SimpleApp;
 
 public class Juliagame extends SimpleApp {
 	Building[] buildings = new Building[6];
-	Ship[] ships = new Ship[3];
+	Ship[] ships = new Ship[10];
 	ArrayList <Missile> bullets = new ArrayList<> ();
 	
 	
@@ -25,34 +25,43 @@ public class Juliagame extends SimpleApp {
 
 	public void draw(GraphicsContext gc) 
 	{
+		for (Ship s : ships) 
+		{
+			s.draw(gc);
+			s.move();
+			
+			//if(s.getY() < getHeight())
+			//{ 
+				//s.draw(gc); 
+			//}
+			
+			
+			
+		}
 		
 		for (int i = 0; i < buildings.length; i++) {
 			buildings[i].draw(gc); 
 		//}
-		
+			
 		//for (Building b : buildings) 
 		//{
 			for (Ship s : ships) 
 			{
 				if (buildings[i].checkHit(s) == true) 
 				{
+					gc.setFill(Color.RED);
 					gc.fillText("Building Hit", getWidth() / 2, getHeight() / 2);
 				}
 			}
 		} 
 
-		for (Ship s : ships) 
-		{
-			s.draw(gc);
-			s.move();
-		}
 		
-		for (Missile m : bullets)
+		for (Missile m : bullets)              
 		{ 
 			
 		}
 		
-		c.draw(gc); 
+		//c.draw(gc); 
 	}
 
 	public void setupApp(GraphicsContext gc) 
@@ -63,10 +72,12 @@ public class Juliagame extends SimpleApp {
 			buildings[i] = new Building((int) (getWidth() * (.15 * (i + 1))), getHeight() - 25, 50, Color.BLUE, Color.BLUE);
 		}
 		
-		for (int i = 0; i < ships.length; i++)
+		for (int k = 0; k < ships.length; k++)
 		{ 
-			ships[i] = new Ship(50 + i *150, 50, 100, (int) (100/1.5), i);
+			ships[k] = new Ship(50 + k *150, 50, 100, (int) (100/1.5), k);
 		}
+		
+		//c = new Cannon (getWidth()/2, getHeight()/2, 45, 50, 90); 
 	}
 
 	public static void main(String[] args) {
