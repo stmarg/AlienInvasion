@@ -23,9 +23,9 @@ public class madigame extends SimpleApp {
 		double angle = Math.toDegrees(radians);
 		c.setAngle(angle); 
 		//Kevin is doning a similar thing...Would it make sense for the Cannon to contain this setAngle code? In other words, a way to set it's angle by passing in an x and y?
-		 double radians =  Math.atan2(c.getY()-me.getY(), -c.getX()+me.getX());
-		 double angle = Math.toDegrees(radians);
-		 c.setAngle(angle); 
+		radians =  Math.atan2(c.getY()-me.getY(), -c.getX()+me.getX());
+		angle = Math.toDegrees(radians);
+		c.setAngle(angle); 
 		angle = 180 - angle;
 	}
 	
@@ -53,6 +53,12 @@ public class madigame extends SimpleApp {
 			int y = getHeight() - 25;
 
 			buildings[i] = new Building(x, y, 50, Color.RED, Color.BLACK);
+			
+			if (ships[i].didHit(buildings[i]) )
+			{
+				score -= 5;
+				System.out.println("HIT");
+			}
 		}
 		
 		c = new Cannon((getWidth() / 2)+30, getHeight()-100,100 , 50, angle);
@@ -73,18 +79,18 @@ public class madigame extends SimpleApp {
 				if (ships[i].getY() > getHeight()) 
 				{
 					ships[i].setY(-100);
-					score -= 5;
+					//score -= 5;
 				}
 			}
-			
+		
 			//INSERT DIDHIT MISSILE+SHIP TO MAKE SHIP MOVE UP -100
-			
 			
 			for (Building b : buildings) 
 			{
 				b.draw(gc);
 				
 			}
+			
 			
 			for (Missile m : bullets)
 			{
