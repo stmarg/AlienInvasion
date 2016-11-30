@@ -13,6 +13,8 @@ public class KevinGame extends SimpleApp {
 	private int score = 0;
 	private int level = 1;
 	private int ammo = 100;
+	private boolean refillAmmo = false;
+	
 	private boolean fire = false;
 	private boolean addShip = false;
 
@@ -30,7 +32,13 @@ public class KevinGame extends SimpleApp {
 	}
 
 	public void updateAnimation(long arg0) {
-
+		if (refillAmmo == true) {
+			if (ammo < 100) {
+				ammo++;
+			} else {
+				refillAmmo = false;
+			}
+		}
 	}
 
 	public void draw(GraphicsContext gc) {
@@ -47,17 +55,18 @@ public class KevinGame extends SimpleApp {
 				ships.get(i).setSpeed((int) 1.5, ((int) (Math.random() * 4) + 3));
 			}
 
-			for (Building b : buildings) {
-				b.draw(gc);
+			for (int j = 0; j < buildings.length; j++) {
+				
+				buildings[j].draw(gc);
 
 				// Check if ship1 hit building
-				if (ships.get(i).didHit(b) == true) {
+				if (ships.get(i).didHit(buildings[j]) == true) {
 					score = score + 100;
 					gc.fillText("OUCH", getWidth() / 2, getHeight() / 2);
 					ships.remove(i);
 				}
-
-				if (s1.didHit(b) == true) {
+				
+				if (s1.didHit(buildings[j]) == true) {
 					score = score + 300;
 					gc.fillText("OUCH", getWidth() / 2, getHeight() / 2);
 					s1.setY(-100);
@@ -84,9 +93,10 @@ public class KevinGame extends SimpleApp {
 		// c.rotate(gc);
 
 		// Score
+		gc.setFill(Color.DARKSLATEBLUE);
 		gc.fillText("Score: " + score + "  " + ammo, getWidth() - getWidth() / 8, getHeight() / 8);
 		gc.fillText("" + level, getWidth() / 2, getHeight() / 4);
-		gc.fillText("" + ammo, c.getX() + c.getLength() / 2, c.getY() + c.getWidth()/2);
+		gc.fillText("" + ammo, c.getX() + c.getLength() / 2 - 10, c.getY() + c.getWidth()/2 + 5);
 
 		// Drawing missile
 		for (Missile m : bullets) {
@@ -99,6 +109,10 @@ public class KevinGame extends SimpleApp {
 				bullets.remove(m);
 			}
 		}
+		
+		if (ammo == 0) {
+			refillAmmo = true;
+		}
 
 		// Firing missiles
 		if (fire == true) {
@@ -108,7 +122,7 @@ public class KevinGame extends SimpleApp {
 		}
 
 		// Draw Lines
-		if (drawLine == true) {
+		if (drawLine == true && refillAmmo == false) {
 			gc.strokeLine(c.getX() + c.getLength() / 2, c.getY(), lineX, lineY);
 		}
 
@@ -133,9 +147,9 @@ public class KevinGame extends SimpleApp {
 	public void setupApp(GraphicsContext gc) {
 		c = new Cannon(getWidth() / 2 - 20, getHeight() - 70, 40, 40, 90);
 
-		ships.add(new Ship((int) (Math.random() * (getWidth() - 100)) + 100, 50, 100, (int) (100 / 1.5)));
-		ships.add(new Ship((int) (Math.random() * (getWidth() - 100)) + 100, 50, 100, (int) (100 / 1.5)));
-		ships.add(new Ship((int) (Math.random() * (getWidth() - 100)) + 100, 50, 100, (int) (100 / 1.5)));
+		ships.add(new Ship((int) (Math.random() * (getWidth() - 100)) + 100, 50, 100, (int) (100 / 1.5), 1));
+		ships.add(new Ship((int) (Math.random() * (getWidth() - 100)) + 100, 50, 100, (int) (100 / 1.5), 1));
+		ships.add(new Ship((int) (Math.random() * (getWidth() - 100)) + 100, 50, 100, (int) (100 / 1.5), 1));
 
 		s1 = new Ship(getWidth() / 2, -50, 100, (int) (100 / 1.5), 2);
 
@@ -171,7 +185,7 @@ public class KevinGame extends SimpleApp {
 		double radians = Math.atan2(c.getY() - m.getY(), -c.getX() + m.getX());
 		c.setAngle(Math.toDegrees(radians));
 
-		if (ammo > 0) {
+		if (ammo > 0 && refillAmmo == false) {
 			ammo--;
 			fire = true;
 		}
