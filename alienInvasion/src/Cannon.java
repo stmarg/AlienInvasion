@@ -70,7 +70,7 @@ public class Cannon
 
 
 	public Missile shoot() {
-		//Use the other Missile constructor. You need to tell the missile what its location is and maybe it's speed
+		//Use the other Missile constructor. You need to tell the missile what its location is and maybe its speed
 		Missile m = new Missile(angle);
 		return m;
 	}
