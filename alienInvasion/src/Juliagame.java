@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import tsinn.ui.Drawable;
@@ -6,9 +8,15 @@ import tsinn.ui.SimpleApp;
 public class Juliagame extends SimpleApp {
 	Building[] buildings = new Building[6];
 	Ship[] ships = new Ship[3];
+	ArrayList <Missile> bullets = new ArrayList<> ();
 	
-	private Ship s; 
-	private Building b; 
+	
+	//Don't have both arrays and single variables. Use arrays when you have many things (like buildings and ships), use single variables when you have only one thing...like a cannon.
+	//Your program is crashing because you are using this single ship variable when you should be using the array.
+	//private Ship s; 
+	//private Building b; 
+	//private Missile m; 
+	private Cannon c; 
 	
 
 	public void updateAnimation(long arg0) {
@@ -19,13 +27,17 @@ public class Juliagame extends SimpleApp {
 	{
 		
 		for (int i = 0; i < buildings.length; i++) {
-			buildings[i].draw(gc);
-		}
-		for (Building b : buildings) 
-		{
-			if (b.checkHit(s) == true) 
+			buildings[i].draw(gc); 
+		//}
+		
+		//for (Building b : buildings) 
+		//{
+			for (Ship s : ships) 
 			{
-				gc.fillText("Building Hit", getWidth() / 2, getHeight() / 2);
+				if (buildings[i].checkHit(s) == true) 
+				{
+					gc.fillText("Building Hit", getWidth() / 2, getHeight() / 2);
+				}
 			}
 		} 
 
@@ -34,7 +46,13 @@ public class Juliagame extends SimpleApp {
 			s.draw(gc);
 			s.move();
 		}
+		
+		for (Missile m : bullets)
+		{ 
 			
+		}
+		
+		c.draw(gc); 
 	}
 
 	public void setupApp(GraphicsContext gc) 

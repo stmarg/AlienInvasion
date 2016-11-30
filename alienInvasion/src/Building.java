@@ -11,7 +11,7 @@ public class Building
 {
 	private int x;
 	private int y;
-	private int size;
+	private int size; 
 	private Color bcolor;
 	private Color tcolor;
 	private boolean alive = true;
@@ -34,35 +34,30 @@ public class Building
 		gc.fillRect(x + size / 3, y + size / 4, size / 3, size - size / 4);
 	}
 
+	 
 	public boolean checkHit(Ship s) 
-	{
+	{	
 		
-		int buildingLeft = this.x; 
-		int buildingRight = this.x + this.size; 
-
-		int shipLeft = s.getX(); 
-		int shipRight = s.getX() + s.getWidth(); 
-
-		int buildingTop = this.y - this.size; 
-		int buildingBottom = this.y; 
-
+		double buildingLeft = this.x; 
+		double buildingRight = this.x + this.size; 
+		double buildingTop = this.y; 
+		double buildingBottom = this.y + this.size; 
+		
+		double shipLeft = s.getX(); 
+		double shipRight = s.getX() + s.getWidth(); 
 		double shipTop = s.getY(); 
-		double shipBottom = s.getY() - s.getHeight(); 
-
-
-		if ((buildingLeft < shipLeft && buildingLeft > shipRight) ||  
-			(buildingLeft > shipLeft && buildingRight < shipRight)) 
+		double shipBottom = s.getY() + s.getHeight(); 
+		
+		if (shipBottom > buildingTop && shipTop < buildingBottom && 
+				shipLeft < buildingRight && shipRight > buildingLeft)
 		{ 
-			if ((shipBottom < buildingTop && shipBottom > buildingBottom) || 
-				(shipTop < buildingTop && shipTop > buildingBottom))
-			{ 
-				return true; 
-			} 
-		} 	
-
+			return true; 
+		}
+		
 		return false; 
-
 	} 
+		
+	
 
 	public int getX() {
 		return x;

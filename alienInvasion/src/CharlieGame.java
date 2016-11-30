@@ -78,6 +78,8 @@ public class CharlieGame extends SimpleApp
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
+		
+		//Why are you using M and missiles?
 		if (M != null)
 		{
 			M.draw(gc);
