@@ -9,7 +9,7 @@ import tsinn.ui.SimpleApp;
 public class JasonGame extends SimpleApp {
 	
 	//If there is only one Cannon, don't use an array for it
-	Cannon[] cc = new Cannon[1];
+	Cannon c = new Cannon();
 	
 	Building[] bb = new Building[6];
 	Ship[] ss = new Ship[8];

@@ -8,6 +8,7 @@ public class Cannon
 	private double angle;
 	private int barrelx;
 	private int barrely;
+	private int barrelh;
 	private int width;
 	private int height;
 
@@ -62,16 +63,14 @@ public class Cannon
 	}
 
 	public Missile shoot() {
-		double setangle;
-		double setdiameter;
-		double setspeed;
+		double setangle = 10;
+		double setdiameter = 10;
+		double setspeed = 10;
 		Missile m = new Missile( x, y, setdiameter, setangle, setspeed);
 		{
 			barrelx = x ;
 			barrely = y;
-			diameter = setdiameter;
 			angle= setangle;
-			speed = setspeed;
 			return m;
 		}
 
@@ -89,6 +88,7 @@ public class Cannon
 		gc.save();
 		gc.translate(x,y);
 		gc.rotate(angle);
+		gc.restore();
 		gc.rect(50,-25,100,50);
 	}
 }
