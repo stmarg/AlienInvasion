@@ -10,9 +10,12 @@ public class Juliagame extends SimpleApp {
 	Ship[] ships = new Ship[3];
 	ArrayList <Missile> bullets = new ArrayList<> ();
 	
-	private Ship s; 
-	private Building b; 
-	private Missile m; 
+	
+	//Don't have both arrays and single variables. Use arrays when you have many things (like buildings and ships), use single variables when you have only one thing...like a cannon.
+	//Your program is crashing because you are using this single ship variable when you should be using the array.
+	//private Ship s; 
+	//private Building b; 
+	//private Missile m; 
 	private Cannon c; 
 	
 
@@ -24,13 +27,17 @@ public class Juliagame extends SimpleApp {
 	{
 		
 		for (int i = 0; i < buildings.length; i++) {
-			buildings[i].draw(gc);
-		}
-		for (Building b : buildings) 
-		{
-			if (b.checkHit(s) == true) 
+			buildings[i].draw(gc); 
+		//}
+		
+		//for (Building b : buildings) 
+		//{
+			for (Ship s : ships) 
 			{
-				gc.fillText("Building Hit", getWidth() / 2, getHeight() / 2);
+				if (buildings[i].checkHit(s) == true) 
+				{
+					gc.fillText("Building Hit", getWidth() / 2, getHeight() / 2);
+				}
 			}
 		} 
 

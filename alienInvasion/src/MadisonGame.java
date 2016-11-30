@@ -9,6 +9,8 @@ public class MadisonGame extends SimpleApp
 	Ship[] ships = new Ship[3];
 	Cannon[] cannon = new Cannon[1];
 	
+	//Why do you have both arrays and single variables. 
+	//There are many ships and many buildings, so use arrays for those; however, there is only one cannon, so use a single variable for the cannon.
 	private Ship s; 
 	private Building b; 
 	private Cannon c;
@@ -54,6 +56,7 @@ public class MadisonGame extends SimpleApp
 			ships[i] = new Ship(50 + i *150, 50, 100, (int) (100/1.5), i);
 		}
 		
+		//Remove this. Use just the single private variable. Specify an actual x & y value. For example, getWidth()/2 and getHeight()-50
 		for (int i = 0; i < cannon.length; i++)
 		{
 			cannon[i] = new Cannon(x, y, 50, Color.BLACK, Color.BLACK);

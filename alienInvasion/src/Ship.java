@@ -4,12 +4,12 @@ import javafx.scene.image.Image;
 public class Ship {
 	private double x;
 	private double originalx;
-	private int y;
+	private double y;
 	private int width;
 	private int height;
 	private int originalW;
 	private double vx = (int) 1.5;
-	private int vy = (int) (Math.random() * 3) + 2;
+	private double vy = (int) (Math.random() * 2.5) + 1.5;
 	private int vs = 2;
 
 	/**
@@ -24,10 +24,10 @@ public class Ship {
 	public static final int TOMMY_MODE = 2;
 	private int mode = 1;
 
-	private Image Alien = new Image("Alien.jpg");
+	private Image Alien = new Image("Alien.png");
 	private Image Tommy = new Image("Tommy.png");
 
-	public Ship(double x, int y, int width, int height, int mode) {
+	public Ship(double x, double y, int width, int height, int mode) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -44,17 +44,13 @@ public class Ship {
 	 * the original constructor, passing in the value ALIEN_MODE as the mode
 	 * value
 	 * 
-	 * @param x
-	 *            The location of the ship in the x coordinate
-	 * @param y
-	 *            The location of the ship in the y coordinate
-	 * @param width
-	 *            The width of the ship
-	 * @param height
-	 *            The height of the ship
+	 * @param x - The location of the ship in the x coordinate
+	 * @param y - The location of the ship in the y coordinate
+	 * @param width - The width of the ship
+	 * @param height - The height of the ship
 	 */
 
-	public Ship(int x, int y, int width, int height) {
+	public Ship(double x, double y, int width, int height) {
 		this(x, y, width, height, ALIEN_MODE);
 	}
 
@@ -96,15 +92,15 @@ public class Ship {
 		double bRight = b.getX() + b.getS();
 		double bTop = b.getY();
 		double bBottom = b.getY() + b.getS();
+		
+		return sRight > bLeft && sLeft < bRight && sBottom > bTop && sTop < bBottom;
 
-		if (sRight > bLeft && sLeft < bRight && sBottom > bTop && sTop < bBottom) {
-			return true;
-		} else {
-			return false;
-		}
+		// return (Math.abs(this.x + this.width/2) - b.getX() + (b.getS()/2)) <
+		// (s.w + b.getS())/2 && abs(s.y + (s.h/2) - b.y + (b.getS()/2) < (s.b +
+		// b.getS())/2)
 	}
 
-	public void setLocation(int x, int y) {
+	public void setLocation(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -121,7 +117,7 @@ public class Ship {
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setY(double y) {
 		this.y = y;
 	}
 

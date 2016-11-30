@@ -19,9 +19,16 @@ public class madigame extends SimpleApp {
 	// Angle
 	public void onMouseMove(MouseEvent me) 
 	{
+<<<<<<< HEAD
 		double radians =  Math.atan2(c.getY()-me.getY(), -c.getX()+me.getX());
 		double angle = Math.toDegrees(radians);
 		c.setAngle(angle); 
+=======
+		//Kevin is doning a similar thing...Would it make sense for the Cannon to contain this setAngle code? In other words, a way to set it's angle by passing in an x and y?
+		 double radians =  Math.atan2(c.getY()-me.getY(), -c.getX()+me.getX());
+		 double angle = Math.toDegrees(radians);
+		 c.setAngle(angle); 
+>>>>>>> branch 'HEAD' of https://github.com/stmarg/alienInvasion.git
 		angle = 180 - angle;
 	}
 	
@@ -55,6 +62,7 @@ public class madigame extends SimpleApp {
 	}
 
 	// This function draws the game provided that you are alive
+	//Needs to deal with ships hitting buildings and missiles hitting ships.
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub

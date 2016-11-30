@@ -27,12 +27,14 @@ public class Cannon
 		height = 800;
 	}
 
+	//No, This needs to be part of the draw method.  
 	public void rotate(GraphicsContext gc){
 		gc.save();
 		gc.translate(x,y);
 		gc.rotate(angle);
 		gc.rect(50,-25,100,50);
 	}
+	
 	public int getbX() {
 		return barrelx;
 		
@@ -66,7 +68,9 @@ public class Cannon
 		this.angle = angle;
 	}
 
+
 	public Missile shoot() {
+		//Use the other Missile constructor. You need to tell the missile what its location is and maybe it's speed
 		Missile m = new Missile(angle);
 		return m;
 	}
