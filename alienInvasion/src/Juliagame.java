@@ -27,7 +27,7 @@ public class Juliagame extends SimpleApp {
 	{
 		
 		for (int i = 0; i < buildings.length; i++) {
-			buildings[i].draw(gc);
+			buildings[i].draw(gc); 
 		//}
 		
 		//for (Building b : buildings) 

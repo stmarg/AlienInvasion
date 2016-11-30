@@ -11,7 +11,7 @@ public class Building
 {
 	private int x;
 	private int y;
-	private int size;
+	private int size; 
 	private Color bcolor;
 	private Color tcolor;
 	private boolean alive = true;
