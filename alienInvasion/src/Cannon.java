@@ -5,13 +5,16 @@ import javafx.scene.paint.Color;
 public class Cannon {
 	private int x;
 	private int y;
-	private double angle;
-	private int barrelx;
-	private int barrely;
-	private int barrelh = 100;
-	private int barrelw = 40;
 	private int width;
 	private int height;
+	
+	private int barrelx;
+	private int barrely;
+	private int barrelw = 40;
+	private int barrelh = 100;
+	
+	private double angle;
+	
 	private Image barrel = new Image("GunBarrel.png");
 
 	public Cannon(int x, int y, int width, int height, double angle) {
@@ -29,15 +32,7 @@ public class Cannon {
 		width = 800;
 		height = 800;
 	}
-
-	public int getbX() {
-		return barrelx;
-	}
-
-	public int getbY() {
-		return barrely;
-	}
-
+	
 	public int getX() {
 		return x;
 	}
@@ -46,6 +41,14 @@ public class Cannon {
 		return y;
 	}
 
+	public int getbX() {
+		return barrelx;
+	}
+
+	public int getbY() {
+		return barrely;
+	}
+	
 	public int getWidth() {
 		return width;
 	}
