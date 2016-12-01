@@ -1,4 +1,5 @@
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 /**
@@ -16,6 +17,8 @@ public class Building {
 	private Color bcolor;
 	private Color tcolor;
 	private boolean alive = true;
+	
+	private Image e = new Image("Explosion.png");
 
 	public Building(int x, int y, int size, Color bcolor, Color tcolor) {
 		this.x = x;
@@ -33,16 +36,13 @@ public class Building {
 			gc.fillRect(x + size / 4.2, y - size / 3 - size / 5, size / 4, size / 5);
 			gc.setFill(bcolor);
 			gc.fillRect(x + size / 3, y + size / 4, size / 3, size - size / 4);
+		} else {
+			gc.drawImage(e, x, y, size, size);
 		}
 	}
 
 	public boolean checkHit(Ship s) {
 		return s.didHit(this);
-	}
-
-	public void explode(GraphicsContext gc) {
-		gc.setFill(Color.BLACK);
-		gc.fillRect(x, y, size, size);
 	}
 
 	public int getX() {

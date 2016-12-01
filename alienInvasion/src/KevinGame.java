@@ -15,8 +15,7 @@ public class KevinGame extends SimpleApp {
 	private int ammo = 100;
 	private boolean refillAmmo = false;
 
-	private int health = 500;
-	private int maxHealth = 500;
+	private int health = 300;
 
 	private boolean fire = false;
 	private boolean addShip = false;
@@ -54,28 +53,36 @@ public class KevinGame extends SimpleApp {
 			// If ship goes below screen
 			if (ships.get(i).getY() > getHeight()) {
 				ships.get(i).setY(-50);
-				ships.get(i).setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
+				ships.get(i).setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
 				ships.get(i).setOriginalx(ships.get(i).getX());
 				ships.get(i).setSpeed((int) 1.5, ((int) (Math.random() * 4) + 3));
 			}
+			
+			// If ship hits line
+			if (ships.get(i).getY() + ships.get(i).getHeight() > getHeight() - health) {
+				ships.remove(i);
+				health = health - 20;
+			}
+			
+			if (s1.getY() + s1.getHeight() > getHeight() - health) {
+				s1.setY(-100);
+				health = health - 20;
+				s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
+			}
 
 			for (int j = 0; j < buildings.length; j++) {
-
 				buildings[j].draw(gc);
 
 				// Check if ship1 hit building
-				if (ships.get(i).didHit(buildings[j]) == true) {
-					score = score + 100;
-					gc.fillText("OUCH", getWidth() / 2, getHeight() / 2);
+				if (ships.get(i).didHit(buildings[j]) == true && buildings[j].isAlive() == true) {
 					ships.remove(i);
-					buildings[j].explode(gc);
 					buildings[j].setAlive(false);
 				}
-
-				if (s1.didHit(buildings[j]) == true) {
-					score = score + 300;
-					gc.fillText("OUCH", getWidth() / 2, getHeight() / 2);
+				
+				if (s1.didHit(buildings[j]) == true && buildings[j].isAlive() == true) {
 					s1.setY(-100);
+					s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
+					buildings[j].setAlive(false);
 				}
 			}
 		}
