@@ -37,25 +37,15 @@ public class Building
 	 
 	public boolean checkHit(Ship s) 
 	{	
-		
-		double buildingLeft = this.x; 
-		double buildingRight = this.x + this.size; 
-		double buildingTop = this.y; 
-		double buildingBottom = this.y + this.size; 
-		
-		double shipLeft = s.getX(); 
-		double shipRight = s.getX() + s.getWidth(); 
-		double shipTop = s.getY(); 
-		double shipBottom = s.getY() + s.getHeight(); 
-		
-		if (shipBottom > buildingTop && shipTop < buildingBottom && 
-				shipLeft < buildingRight && shipRight > buildingLeft)
-		{ 
-			return true; 
-		}
-		
-		return false; 
+		return s.didHit(this); 
+		 
 	} 
+	
+	public void explode(GraphicsContext gc)
+	{ 
+		gc.setFill(Color.BLACK);
+		gc.fillRect(x, y, size, size);
+	}
 		
 	
 
