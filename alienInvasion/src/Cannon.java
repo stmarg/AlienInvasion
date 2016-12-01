@@ -9,7 +9,8 @@ public class Cannon
 	private double angle;
 	private int barrelx;
 	private int barrely;
-	private int barrelh;
+	private int barrelh = 100;
+	private int barrelw = 40;
 	private int width;
 	private int height;
 	private Image barrel = new Image("GunBarrel.png");
@@ -84,6 +85,12 @@ public class Cannon
 	}
 
 	public void draw(GraphicsContext gc) {
+		gc.save();
+		gc.translate(x,y);
+		gc.rotate(angle);
+		gc.restore();
+		gc.drawImage(barrel, getX()+10, getY()-40, barrelw, barrelh);
+		
 		gc.setFill(Color.RED);
 		gc.fillRect(x, y, height, width);
 		gc.fillRect(x, y, height, width);
@@ -92,12 +99,5 @@ public class Cannon
 		gc.rotate(angle);
 		gc.restore();
 		gc.rect(50,-25,100,50);
-		
-		
-		gc.save();
-		gc.translate(x,y);
-		gc.rotate(angle);
-		gc.restore();
-		gc.drawImage(barrel, getbX(), getbY());
 	}
 }
