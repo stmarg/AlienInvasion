@@ -12,7 +12,7 @@ public class Cannon
 	private int barrelh;
 	private int width;
 	private int height;
-	private Image barrel = new Image(GunBarrel.png);
+	private Image barrel = new Image("GunBarrel.png");
 
 	public Cannon(int x, int y, int width, int height, double angle) {
 		this.x = x;
@@ -92,5 +92,12 @@ public class Cannon
 		gc.rotate(angle);
 		gc.restore();
 		gc.rect(50,-25,100,50);
+		
+		
+		gc.save();
+		gc.translate(x,y);
+		gc.rotate(angle);
+		gc.restore();
+		gc.drawImage(barrel, getbX(), getbY());
 	}
 }
