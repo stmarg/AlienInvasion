@@ -20,8 +20,8 @@ public class KevinGame extends SimpleApp {
 	private boolean fire = false;
 	private boolean addShip = false;
 
-	private double lineX = 0;
-	private double lineY = 0;
+	private double lineX;
+	private double lineY;
 	private boolean drawLine = false;
 
 	// Ship[] ships = new Ship[3];
@@ -160,7 +160,7 @@ public class KevinGame extends SimpleApp {
 	}
 
 	public void setupApp(GraphicsContext gc) {
-		c = new Cannon(getWidth() / 2 - 20, getHeight() - 70, 40, 40, 90);
+		c = new Cannon(getWidth() / 2 - 20, getHeight() - 60, 40, 40, 90);
 
 		ships.add(new Ship((int) (Math.random() * (getWidth() - 100)) + 100, 50, 100, (int) (100 / 1.5), 1));
 		ships.add(new Ship((int) (Math.random() * (getWidth() - 100)) + 100, 50, 100, (int) (100 / 1.5), 1));
