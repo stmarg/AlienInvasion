@@ -23,7 +23,7 @@ public class CharlieGame extends SimpleApp
 	
 	ArrayList <Ship> ships = new ArrayList<> ();
 	
-	Missile M = null;
+	//Missile M = null;
 	
 	Cannon C = new Cannon(700, 800, 100, 100, 90);
 	
@@ -108,7 +108,7 @@ public class CharlieGame extends SimpleApp
 		}*/
 		
 		
-		if (count % 100 == 0)
+		if (count % 150 == 0)
 		{
 			ships.add(new Ship((int)(this.getWidth() * Math.random()), 0, 100, 100));
 		}
