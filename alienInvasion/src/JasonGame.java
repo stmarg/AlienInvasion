@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -8,17 +10,31 @@ import tsinn.ui.SimpleApp;
 
 public class JasonGame extends SimpleApp {
 	
-	//If there is only one Cannon, don't use an array for it
-	Cannon c = new Cannon();
-	
-	Building[] bb = new Building[6];
-	Ship[] ss = new Ship[8];
+	Building[] buildings = new Building[6];
+	Ship[] ships = new Ship[3];
+	ArrayList <Missile> bullets = new ArrayList<> ();
 	private Cannon c ;
+	double angle = 90 ;
 	
-	//What are these for? You only need the arrays for buildings and ships.
-	private Building b;
-	private Ship s;
-	
+
+	public void onKeyPressed(KeyEvent ke)
+	{
+		// if left 
+	}
+		
+	public void setupApp(GraphicsContext gc) 
+	{
+		for (int i = 0; i < buildings.length; i++) 
+		{
+
+			buildings[i] = new Building((int) (getWidth() * (.25 * (i + 1))), getHeight() - 25, 50, Color.BLACK, Color.BLACK);
+		}
+		
+		for (int i = 0; i < ships.length; i++)
+		{ 
+			ships[i] = new Ship(50 + i *150, 50, 100, (int) (100/1.5), i);
+		}
+	}
 	//score
 	//angle
 	//
@@ -28,20 +44,12 @@ public class JasonGame extends SimpleApp {
 	
 	@Override
 	public void updateAnimation(long arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	//You deleted the "arg0" variable. Put something back in there. For example, gc
-	@Override
-	public void setupApp(GraphicsContext arg0) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void draw(GraphicsContext arg0) {
-		// TODO Auto-generated method stub
+	public void draw(GraphicsContext gc) {
+		
 		
 	}
 }
