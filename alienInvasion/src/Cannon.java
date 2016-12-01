@@ -33,12 +33,41 @@ public class Cannon {
 		height = 800;
 	}
 	
+	public void draw(GraphicsContext gc) {
+		gc.save();
+		gc.translate(x, y);
+		gc.rotate(angle);
+		gc.restore();
+
+		gc.drawImage(barrel, x, y - 40, barrelw, barrelh);
+		gc.setFill(Color.RED);
+		gc.fillRect(x, y, height, width);
+	}
+	
+	public Missile shoot() {
+		double setangle = 10;
+		double setdiameter = 10;
+		double setspeed = 10;
+		Missile m = new Missile(x, y, setdiameter, setangle, setspeed);
+		{
+			barrelx = x;
+			barrely = y;
+			angle = setangle;
+			return m;
+		}
+	}
+	
 	public int getX() {
 		return x;
 	}
 
 	public int getY() {
 		return y;
+	}
+	
+	public void setLocation(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 
 	public int getbX() {
@@ -63,35 +92,5 @@ public class Cannon {
 
 	public void setAngle(double angle) {
 		this.angle = angle;
-	}
-
-	public Missile shoot() {
-		double setangle = 10;
-		double setdiameter = 10;
-		double setspeed = 10;
-		Missile m = new Missile(x, y, setdiameter, setangle, setspeed);
-		{
-			barrelx = x;
-			barrely = y;
-			angle = setangle;
-			return m;
-		}
-
-	}
-
-	public void setLocation(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-
-	public void draw(GraphicsContext gc) {
-		gc.save();
-		gc.translate(x, y);
-		gc.rotate(angle);
-		gc.restore();
-
-		gc.drawImage(barrel, x, y - 40, barrelw, barrelh);
-		gc.setFill(Color.RED);
-		gc.fillRect(x, y, height, width);
 	}
 }
