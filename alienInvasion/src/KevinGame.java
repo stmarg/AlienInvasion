@@ -14,7 +14,10 @@ public class KevinGame extends SimpleApp {
 	private int level = 1;
 	private int ammo = 100;
 	private boolean refillAmmo = false;
-	
+
+	private int health = 500;
+	private int maxHealth = 500;
+
 	private boolean fire = false;
 	private boolean addShip = false;
 
@@ -24,6 +27,7 @@ public class KevinGame extends SimpleApp {
 
 	// Ship[] ships = new Ship[3];
 	Building[] buildings = new Building[4];
+	//ArrayList<Building> buildings = new ArrayList<>();
 	ArrayList<Missile> bullets = new ArrayList<>();
 	ArrayList<Ship> ships = new ArrayList<>();
 
@@ -56,7 +60,7 @@ public class KevinGame extends SimpleApp {
 			}
 
 			for (int j = 0; j < buildings.length; j++) {
-				
+
 				buildings[j].draw(gc);
 
 				// Check if ship1 hit building
@@ -64,8 +68,10 @@ public class KevinGame extends SimpleApp {
 					score = score + 100;
 					gc.fillText("OUCH", getWidth() / 2, getHeight() / 2);
 					ships.remove(i);
+					buildings[j].explode(gc);
+					buildings[j].setAlive(false);
 				}
-				
+
 				if (s1.didHit(buildings[j]) == true) {
 					score = score + 300;
 					gc.fillText("OUCH", getWidth() / 2, getHeight() / 2);
@@ -96,7 +102,7 @@ public class KevinGame extends SimpleApp {
 		gc.setFill(Color.DARKSLATEBLUE);
 		gc.fillText("Score: " + score + "  " + ammo, getWidth() - getWidth() / 8, getHeight() / 8);
 		gc.fillText("" + level, getWidth() / 2, getHeight() / 4);
-		gc.fillText("" + ammo, c.getX() + c.getLength() / 2 - 10, c.getY() + c.getWidth()/2 + 5);
+		gc.fillText("" + ammo, c.getX() + c.getLength() / 2 - 10, c.getY() + c.getWidth() / 2 + 5);
 
 		// Drawing missile
 		for (Missile m : bullets) {
@@ -109,7 +115,7 @@ public class KevinGame extends SimpleApp {
 				bullets.remove(m);
 			}
 		}
-		
+
 		if (ammo == 0) {
 			refillAmmo = true;
 		}
@@ -125,6 +131,8 @@ public class KevinGame extends SimpleApp {
 		if (drawLine == true && refillAmmo == false) {
 			gc.strokeLine(c.getX() + c.getLength() / 2, c.getY(), lineX, lineY);
 		}
+		
+		gc.strokeLine(0, getHeight()-health, getWidth(), getHeight()-health);
 
 		refillShip();
 	}

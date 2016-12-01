@@ -1,4 +1,5 @@
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class Cannon 
@@ -8,9 +9,11 @@ public class Cannon
 	private double angle;
 	private int barrelx;
 	private int barrely;
-	private int barrelh;
+	private int barrelh = 100;
+	private int barrelw = 40;
 	private int width;
 	private int height;
+	private Image barrel = new Image("GunBarrel.png");
 
 	public Cannon(int x, int y, int width, int height, double angle) {
 		this.x = x;
@@ -82,6 +85,12 @@ public class Cannon
 	}
 
 	public void draw(GraphicsContext gc) {
+		gc.save();
+		gc.translate(x,y);
+		gc.rotate(angle);
+		gc.restore();
+		gc.drawImage(barrel, getX()+10, getY()-40, barrelw, barrelh);
+		
 		gc.setFill(Color.RED);
 		gc.fillRect(x, y, height, width);
 		gc.fillRect(x, y, height, width);
