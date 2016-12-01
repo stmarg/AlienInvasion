@@ -9,7 +9,7 @@ public class Ship {
 	private int height;
 	private int originalW;
 	private double vx = (int) 1.5;
-	private double vy = (int) (Math.random() * 2.5) + 1.5;
+	private double vy = (int) (Math.random() * 2) + 1.5;
 	private int vs = 2;
 
 	/**
@@ -98,11 +98,6 @@ public class Ship {
 		// return (Math.abs(this.x + this.width/2) - b.getX() + (b.getS()/2)) <
 		// (s.w + b.getS())/2 && abs(s.y + (s.h/2) - b.y + (b.getS()/2) < (s.b +
 		// b.getS())/2)
-	}
-
-	public void setLocation(double x, double y) {
-		this.x = x;
-		this.y = y;
 	}
 
 	public double getX() {
