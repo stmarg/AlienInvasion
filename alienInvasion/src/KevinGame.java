@@ -27,6 +27,7 @@ public class KevinGame extends SimpleApp {
 
 	// Ship[] ships = new Ship[3];
 	Building[] buildings = new Building[4];
+	//ArrayList<Building> buildings = new ArrayList<>();
 	ArrayList<Missile> bullets = new ArrayList<>();
 	ArrayList<Ship> ships = new ArrayList<>();
 
@@ -67,17 +68,16 @@ public class KevinGame extends SimpleApp {
 					score = score + 100;
 					gc.fillText("OUCH", getWidth() / 2, getHeight() / 2);
 					ships.remove(i);
+					buildings[j].explode(gc);
+					buildings[j].setAlive(false);
 				}
 
 				if (s1.didHit(buildings[j]) == true) {
 					score = score + 300;
 					gc.fillText("OUCH", getWidth() / 2, getHeight() / 2);
 					s1.setY(-100);
-					
-					buildings[j].explode(gc);
 				}
 			}
-
 		}
 
 		// Level 2 and beyond
