@@ -1,4 +1,5 @@
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class Cannon 
@@ -11,6 +12,7 @@ public class Cannon
 	private int barrelh;
 	private int width;
 	private int height;
+	private Image barrel = new Image(GunBarrel.png);
 
 	public Cannon(int x, int y, int width, int height, double angle) {
 		this.x = x;
