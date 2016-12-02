@@ -16,6 +16,7 @@ public class KevinGame extends SimpleApp {
 	private boolean refillAmmo = false;
 
 	private int health = 300;
+	//private int health = 10;
 
 	private boolean fire = false;
 	private boolean addShip = false;
@@ -24,7 +25,6 @@ public class KevinGame extends SimpleApp {
 	private double lineY;
 	private boolean drawLine = false;
 
-	// Ship[] ships = new Ship[3];
 	Building[] buildings = new Building[4];
 	//ArrayList<Building> buildings = new ArrayList<>();
 	ArrayList<Missile> bullets = new ArrayList<>();
@@ -45,6 +45,20 @@ public class KevinGame extends SimpleApp {
 	}
 
 	public void draw(GraphicsContext gc) {
+		// Detect hitting the health bar
+		for (int i = 0; i < ships.size(); i++) {
+			if (ships.get(i).getY() + ships.get(i).getHeight() > getHeight() - health) {
+				ships.remove(i);
+				health = health - 20;
+			}
+		}
+		
+		if (s1.getY() + s1.getHeight() > getHeight() - health) {
+			s1.setY(-100);
+			health = health - 20;
+			s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
+		}
+		
 		for (int i = 0; i < ships.size(); i++) {
 			// Basic ship draw/move
 			ships.get(i).draw(gc);
@@ -55,35 +69,26 @@ public class KevinGame extends SimpleApp {
 				ships.get(i).setY(-50);
 				ships.get(i).setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
 				ships.get(i).setOriginalx(ships.get(i).getX());
-				ships.get(i).setSpeed((int) 1.5, ((int) (Math.random() * 4) + 3));
 			}
-			
-			// If ship hits line
-			if (ships.get(i).getY() + ships.get(i).getHeight() > getHeight() - health) {
-				ships.remove(i);
-				health = health - 20;
-			}
-			
-			if (s1.getY() + s1.getHeight() > getHeight() - health) {
-				s1.setY(-100);
-				health = health - 20;
-				s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
-			}
-
-			for (int j = 0; j < buildings.length; j++) {
-				buildings[j].draw(gc);
-
-				// Check if ship1 hit building
+		}
+		
+		// Draw buildings
+		for (Building b: buildings) {
+			b.draw(gc);
+		}
+		
+		for (int j = 0; j < buildings.length; j++) {
+			for (int i = 0; i < ships.size(); i++) {
 				if (ships.get(i).didHit(buildings[j]) == true && buildings[j].isAlive() == true) {
 					ships.remove(i);
 					buildings[j].setAlive(false);
 				}
-				
-				if (s1.didHit(buildings[j]) == true && buildings[j].isAlive() == true) {
-					s1.setY(-100);
-					s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
-					buildings[j].setAlive(false);
-				}
+			}
+			
+			if (s1.didHit(buildings[j]) == true && buildings[j].isAlive() == true) {
+				s1.setY(-100);
+				s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
+				buildings[j].setAlive(false);
 			}
 		}
 
