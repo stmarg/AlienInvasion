@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 public class Missile
 {
 	private double xPos, yPos, diameter, angle, speed, sx, sy;
-	private boolean DidHit = false;
+	private boolean inactive = false;
 	private Color c;
 	
 	public Missile (double x, double y, double setdiameter, double setangle, double setspeed)
@@ -51,14 +51,14 @@ public class Missile
 	
 	public void draw(GraphicsContext gc)//takes the angle in degrees
 	{	
-		if (this.DidHit == false)
-		{
+		//if (this.inactive == false)
+		//{
 			gc.setFill(c);
 			gc.fillOval(xPos, yPos, diameter, diameter);
 
 			xPos += sx;
 			yPos += sy;
-		}
+		//}
 	}
 	
 	public void setPos(double x, double y)
@@ -67,9 +67,16 @@ public class Missile
 		this.yPos = y;
 	}
 	
-	public boolean DidHit(Ship s)
+	public boolean didHit(Ship s)
 	{
-		if ((s.getX() + s.getWidth()/2 - this.getxPos()) < (s.getWidth()/2 + this.getDiameter()/2) && (s.getY() + s.getHeight()/2 - this.getyPos()) < (s.getHeight()/2 + this.getDiameter()/2))
+		double sx = s.getX()+(s.getWidth()/2);
+		double sy = s.getY()+(s.getHeight()/2);
+		double tx = this.getxPos()+(this.getDiameter()/2);
+		double ty = this.getyPos()+(this.getDiameter()/2);
+	
+		
+		if (Math.abs(sx-tx) < (s.getWidth()+this.getDiameter())/2 && 
+			Math.abs(sy-ty) < (s.getHeight()+ this.getDiameter()/2))
 		{
 			return true;
 			
@@ -77,9 +84,19 @@ public class Missile
 		return false;
 	}
 	
-	public void setDidHit(boolean dh)
+	public void setInactive(boolean dh)
 	{
-		this.DidHit = dh;
+		this.inactive = dh;
+	}
+	
+	public boolean isInactive()
+	{
+		return inactive;
+	}
+	
+	public boolean isActive()
+	{
+		return inactive==false;
 	}
 	
 	public double getxPos()
