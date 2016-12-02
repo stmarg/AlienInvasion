@@ -16,7 +16,7 @@ public class KevinGame extends SimpleApp {
 	private boolean refillAmmo = false;
 
 	private int health = 300;
-	//private int health = 10;
+	// private int health = 10;
 
 	private boolean fire = false;
 	private boolean addShip = false;
@@ -26,7 +26,7 @@ public class KevinGame extends SimpleApp {
 	private boolean drawLine = false;
 
 	Building[] buildings = new Building[4];
-	//ArrayList<Building> buildings = new ArrayList<>();
+	// ArrayList<Building> buildings = new ArrayList<>();
 	ArrayList<Missile> bullets = new ArrayList<>();
 	ArrayList<Ship> ships = new ArrayList<>();
 
@@ -45,20 +45,6 @@ public class KevinGame extends SimpleApp {
 	}
 
 	public void draw(GraphicsContext gc) {
-		// Detect hitting the health bar
-		for (int i = 0; i < ships.size(); i++) {
-			if (ships.get(i).getY() + ships.get(i).getHeight() > getHeight() - health) {
-				ships.remove(i);
-				health = health - 20;
-			}
-		}
-		
-		if (s1.getY() + s1.getHeight() > getHeight() - health) {
-			s1.setY(-100);
-			health = health - 20;
-			s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
-		}
-		
 		for (int i = 0; i < ships.size(); i++) {
 			// Basic ship draw/move
 			ships.get(i).draw(gc);
@@ -71,28 +57,13 @@ public class KevinGame extends SimpleApp {
 				ships.get(i).setOriginalx(ships.get(i).getX());
 			}
 		}
-		
+
 		// Draw buildings
-		for (Building b: buildings) {
+		for (Building b : buildings) {
 			b.draw(gc);
 		}
-		
-		for (int j = 0; j < buildings.length; j++) {
-			for (int i = 0; i < ships.size(); i++) {
-				if (ships.get(i).didHit(buildings[j]) == true && buildings[j].isAlive() == true) {
-					ships.remove(i);
-					buildings[j].setAlive(false);
-				}
-			}
-			
-			if (s1.didHit(buildings[j]) == true && buildings[j].isAlive() == true) {
-				s1.setY(-100);
-				s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
-				buildings[j].setAlive(false);
-			}
-		}
 
-		// Level 2 and beyond
+		// Ship 2
 		if (level >= 2) {
 			s1.draw(gc);
 			s1.move();
@@ -110,9 +81,9 @@ public class KevinGame extends SimpleApp {
 		c.draw(gc);
 		// c.rotate(gc);
 
-		// Score
+		// Text displaying
 		gc.setFill(Color.DARKSLATEBLUE);
-		gc.fillText("Score: " + score + "  " + ammo, getWidth() - getWidth() / 8, getHeight() / 8);
+		gc.fillText("Score: " + score + "  ", getWidth() - getWidth() / 8, getHeight() / 8);
 		gc.fillText("" + level, getWidth() / 2, getHeight() / 4);
 		gc.fillText("" + ammo, c.getX() + c.getLength() / 2 - 10, c.getY() + c.getWidth() / 2 + 5);
 
@@ -128,6 +99,7 @@ public class KevinGame extends SimpleApp {
 			}
 		}
 
+		// Refill ammo when depleted
 		if (ammo == 0) {
 			refillAmmo = true;
 		}
@@ -143,10 +115,12 @@ public class KevinGame extends SimpleApp {
 		if (drawLine == true && refillAmmo == false) {
 			gc.strokeLine(c.getX() + c.getLength() / 2, c.getY(), lineX, lineY);
 		}
-		
-		gc.strokeLine(0, getHeight()-health, getWidth(), getHeight()-health);
 
+		gc.strokeLine(0, getHeight() - health, getWidth(), getHeight() - health);
+
+		// Call functions
 		refillShip();
+		collision();
 	}
 
 	public void refillShip() {
@@ -161,6 +135,38 @@ public class KevinGame extends SimpleApp {
 			}
 
 			addShip = false;
+		}
+	}
+
+	public void collision() {
+		// Ship hitting safety bar
+		for (int i = 0; i < ships.size(); i++) {
+			if (ships.get(i).getY() + ships.get(i).getHeight() > getHeight() - health) {
+				ships.remove(i);
+				health = health - 20;
+			}
+		}
+
+		if (s1.getY() + s1.getHeight() > getHeight() - health) {
+			s1.setY(-100);
+			health = health - 20;
+			s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
+		}
+
+		// Ship hit buildings
+		for (int j = 0; j < buildings.length; j++) {
+			for (int i = 0; i < ships.size(); i++) {
+				if (ships.get(i).didHit(buildings[j]) == true && buildings[j].isAlive() == true) {
+					ships.remove(i);
+					buildings[j].setAlive(false);
+				}
+			}
+
+			if (s1.didHit(buildings[j]) == true && buildings[j].isAlive() == true) {
+				s1.setY(-100);
+				s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
+				buildings[j].setAlive(false);
+			}
 		}
 	}
 
