@@ -190,7 +190,8 @@ public class KevinGame extends SimpleApp {
 		// Bullet hit powerups
 		for (int j = 0; j < powerups.size(); j++) {
 			for (int i = 0; i < bullets.size(); i++) {
-				if (bullets.get(i).didHit(powerups.get(j)) == true) {
+				//if (bullets.get(i).didHit(powerups.get(j)) == true) {
+					if (powerups.get(j).didHit(bullets.get(i)) == true) {
 					ammo = ammo + 10;
 					powerups.remove(j);
 				}

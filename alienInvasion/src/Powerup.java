@@ -28,6 +28,16 @@ public class Powerup {
 		}
 	}
 
+	public boolean didHit(Missile m) {
+		double mx = m.getxPos() + (m.getDiameter() / 2);
+		double my = m.getyPos() + (m.getDiameter() / 2);
+		double tx = this.x + (this.width / 2);
+		double ty = this.y + (this.height / 2);
+
+		return Math.abs(mx - tx) < (m.getDiameter() + this.width) / 2
+				&& Math.abs(my - ty) < (m.getDiameter() + this.height / 2);
+	}
+
 	public int getX() {
 		return x;
 	}

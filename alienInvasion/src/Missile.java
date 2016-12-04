@@ -11,11 +11,10 @@ import javafx.scene.paint.Color;
  */
 public class Missile {
 	private double xPos, yPos, diameter, angle, speed, sx, sy;
-	private boolean DidHit = false;
+	private boolean inactive = false;
 	private Color c;
 
 	public Missile(double x, double y, double setdiameter, double setangle, double setspeed) {
-
 		xPos = x;
 		yPos = y;
 		diameter = setdiameter;
@@ -25,7 +24,6 @@ public class Missile {
 
 		sx = speed * Math.cos(angle / 180 * 3.1416);
 		sy = -speed * Math.sin(angle / 180 * 3.1416);
-
 	}
 
 	public Missile(double setangle) {
@@ -48,44 +46,50 @@ public class Missile {
 
 	public void draw(GraphicsContext gc)// takes the angle in degrees
 	{
-		if (this.DidHit == false) {
-			gc.setFill(c);
-			gc.fillOval(xPos, yPos, diameter, diameter);
+		// if (this.inactive == false)
+		// {
+		gc.setFill(c);
+		gc.fillOval(xPos, yPos, diameter, diameter);
 
-			xPos += sx;
-			yPos += sy;
-		}
+		xPos += sx;
+		yPos += sy;
+		// }
 	}
 
-	// Kevin - I'm commenting this out for now because it does not work
-	/*
-	public boolean DidHit(Ship s) {
-		if ((s.getX() + s.getWidth() / 2 - this.getxPos()) < (s.getWidth() / 2 + this.getDiameter() / 2)
-				&& (s.getY() + s.getHeight() / 2 - this.getyPos()) < (s.getHeight() / 2 + this.getDiameter() / 2)) {
+	public boolean didHit(Ship s) {
+		double sx = s.getX() + (s.getWidth() / 2);
+		double sy = s.getY() + (s.getHeight() / 2);
+		double tx = this.getxPos() + (this.getDiameter() / 2);
+		double ty = this.getyPos() + (this.getDiameter() / 2);
+
+		if (Math.abs(sx - tx) < (s.getWidth() + this.getDiameter()) / 2
+				&& Math.abs(sy - ty) < (s.getHeight() + this.getDiameter() / 2)) {
 			return true;
+
 		}
-		
 		return false;
 	}
-	*/
-	
+
 	public boolean didHit(Powerup p) {
-		return this.xPos + this.diameter > p.getX() && this.xPos < p.getX() + p.getWidth()
-				&& this.yPos + this.diameter > p.getY() && this.yPos < p.getY() + p.getHeight();
-	}
-/*
-	public boolean didHit(Ship p) {
-		return this.xPos + this.diameter > p.getX() && this.xPos < p.getX() + p.getWidth()
-				&& this.yPos + this.diameter > p.getY() && this.yPos < p.getY() + p.getHeight();
-	}
-	*/
-	public boolean didHit(Ship s) {
-		return s.didHit(this);
+		double px = p.getX()+(p.getWidth()/2);
+		double py = p.getY()+(p.getHeight()/2);
+		double tx = this.getxPos()+(this.getDiameter()/2);
+		double ty = this.getyPos()+(this.getDiameter()/2);
+		
+		return Math.abs(px-tx) < (p.getWidth()+this.getDiameter())/2 && 
+				Math.abs(py-ty) < (p.getHeight()+ this.getDiameter()/2);
 	}
 
-	// Kevin - Why do we need this one?
-	public void setDidHit(boolean dh) {
-		this.DidHit = dh;
+	public void setInactive(boolean dh) {
+		this.inactive = dh;
+	}
+
+	public boolean isInactive() {
+		return inactive;
+	}
+
+	public boolean isActive() {
+		return inactive == false;
 	}
 
 	public double getxPos() {

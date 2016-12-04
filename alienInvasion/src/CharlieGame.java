@@ -32,7 +32,6 @@ public class CharlieGame extends SimpleApp
 	
 	public void onKeyPressed(KeyEvent ke)
 	{
-		
 		if (ke.isControlDown() == true)
 		{
 			C.setAngle(C.getAngle() + 22.5);
@@ -44,7 +43,6 @@ public class CharlieGame extends SimpleApp
 			C.setAngle(C.getAngle() - 22.5);
 			//this.angle = this.angle - 22.5;
 		}
-		
 		
 		if (ke.isShiftDown() == true)
 		{
@@ -125,14 +123,43 @@ public class CharlieGame extends SimpleApp
 		
 		for (Missile m : missiles)
 		{
+		
+			if (m.isActive())
+			{
 			m.draw(gc);
+			
+			for (Ship s : ships)
+			{
+			
+				if (m.didHit(s))
+				{
+					m.setInactive(true);
+					
+					break;
+				}
+			
+			}
+			
+			}
+			
 		}
+		
+		
+		
+		
+		
+		
 		
 		for (Ship s : ships)
 		{
 			s.draw(gc);
 			s.move();
 		}
+		
+		
+		
+		
+		
 		
 		
 		
