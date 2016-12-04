@@ -16,7 +16,7 @@ public class KevinGame extends SimpleApp {
 	private boolean refillAmmo = false;
 
 	private double pcount = 0;
-	private double pcountneed = 80;
+	private double pcountneed = 150;
 
 	private int health = 300;
 	// private int health = 10;
@@ -119,7 +119,7 @@ public class KevinGame extends SimpleApp {
 		if (pcount >= pcountneed) {
 			powerups.add(new Powerup((int) (Math.random() * (getWidth() - 100)) + 100, getHeight() / 2, 80, 50, 1));
 			pcount = 0;
-			pcountneed = pcountneed * 1.2;
+			pcountneed = pcountneed * 1.1;
 		}
 
 		// Firing missiles
@@ -188,12 +188,12 @@ public class KevinGame extends SimpleApp {
 		}
 
 		// Bullet hit powerups
-		for (int j = 0; j < powerups.size(); j++) {
-			for (int i = 0; i < bullets.size(); i++) {
-				//if (bullets.get(i).didHit(powerups.get(j)) == true) {
-					if (powerups.get(j).didHit(bullets.get(i)) == true) {
+		for (int i = 0; i < powerups.size(); i++) {
+			for (int j = 0; j < bullets.size(); j++) {
+				// if (bullets.get(i).didHit(powerups.get(j)) == true) {
+				if (powerups.get(i).didHit(bullets.get(j)) == true) {
 					ammo = ammo + 10;
-					powerups.remove(j);
+					powerups.remove(i);
 				}
 			}
 		}
@@ -208,7 +208,7 @@ public class KevinGame extends SimpleApp {
 				}
 			}
 		}
-		
+
 		for (int i = 0; i < bullets.size(); i++) {
 			if (bullets.get(i).didHit(s1) == true) {
 				score = score + 5;
