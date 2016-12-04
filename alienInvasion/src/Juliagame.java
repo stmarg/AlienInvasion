@@ -33,40 +33,31 @@ public class Juliagame extends SimpleApp {
 			// {
 			// s.draw(gc);
 			// }
-
 		}
 
 		for (int i = 0; i < buildings.length; i++) {
 			buildings[i].draw(gc);
 
-			// }
- 
 			// for (Building b : buildings)
 			// {
 			for (Ship s : ships) {
 				if (s.didHit(buildings[i]) == true) {
-					// if (buildings[i].checkHit(s) == true)
-					{
-						gc.setFill(Color.GREEN);
-						gc.fillText("Building Hit", getWidth() / 2, getHeight() / 2);
-
-						buildings[i].explode(gc);
-
-					}
+					gc.setFill(Color.GREEN);
+					gc.fillText("Building Hit", getWidth() / 2, getHeight() / 2);
 				}
 			}
-
-			for (Missile m : bullets) {
-
-			}
-
-			c.draw(gc);
 		}
+
+		for (Missile m : bullets) {
+
+		}
+
+		c.draw(gc);
+
 	}
 
 	public void setupApp(GraphicsContext gc) {
 		for (int i = 0; i < buildings.length; i++) {
-
 			buildings[i] = new Building((int) (getWidth() * (.14 * (i + 1))), getHeight() - 25, 50, Color.BLUE,
 					Color.BLUE);
 		}

@@ -15,6 +15,9 @@ public class KevinGame extends SimpleApp {
 	private int ammo = 100;
 	private boolean refillAmmo = false;
 
+	private double pcount = 0;
+	private double pcountneed = 80;
+
 	private int health = 300;
 	// private int health = 10;
 
@@ -29,6 +32,7 @@ public class KevinGame extends SimpleApp {
 	// ArrayList<Building> buildings = new ArrayList<>();
 	ArrayList<Missile> bullets = new ArrayList<>();
 	ArrayList<Ship> ships = new ArrayList<>();
+	ArrayList<Powerup> powerups = new ArrayList<>();
 
 	public static void main(String[] args) {
 		launch();
@@ -42,6 +46,8 @@ public class KevinGame extends SimpleApp {
 				refillAmmo = false;
 			}
 		}
+
+		pcount = pcount + (int) (2 * Math.random());
 	}
 
 	public void draw(GraphicsContext gc) {
@@ -83,8 +89,8 @@ public class KevinGame extends SimpleApp {
 
 		// Text displaying
 		gc.setFill(Color.DARKSLATEBLUE);
-		gc.fillText("Score: " + score + "  ", getWidth() - getWidth() / 8, getHeight() / 8);
-		gc.fillText("" + level, getWidth() / 2, getHeight() / 4);
+		gc.fillText("Score: " + score + "  " + pcount, getWidth() - getWidth() / 8, getHeight() / 8);
+		gc.fillText("" + level + " " + pcountneed, getWidth() / 2, getHeight() / 4);
 		gc.fillText("" + ammo, c.getX() + c.getLength() / 2 - 10, c.getY() + c.getWidth() / 2 + 5);
 
 		// Drawing missile
@@ -102,6 +108,18 @@ public class KevinGame extends SimpleApp {
 		// Refill ammo when depleted
 		if (ammo == 0) {
 			refillAmmo = true;
+		}
+
+		// Draw Powerups
+		for (Powerup p : powerups) {
+			p.draw(gc);
+		}
+
+		// Ammo appear
+		if (pcount >= pcountneed) {
+			powerups.add(new Powerup((int) (Math.random() * (getWidth() - 100)) + 100, getHeight() / 2, 80, 50, 1));
+			pcount = 0;
+			pcountneed = pcountneed * 1.2;
 		}
 
 		// Firing missiles
@@ -166,6 +184,37 @@ public class KevinGame extends SimpleApp {
 				s1.setY(-100);
 				s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
 				buildings[j].setAlive(false);
+			}
+		}
+
+		// Bullet hit powerups
+		for (int j = 0; j < powerups.size(); j++) {
+			for (int i = 0; i < bullets.size(); i++) {
+				if (bullets.get(i).didHit(powerups.get(j)) == true) {
+					ammo = ammo + 10;
+					powerups.remove(j);
+				}
+			}
+		}
+
+		// Bullet hit ships
+		for (int i = 0; i < bullets.size(); i++) {
+			for (int j = 0; j < ships.size(); j++) {
+				// if (bullets.get(i).didHit(ships.get(j)) == true) {
+				if (ships.get(j).didHit(bullets.get(i)) == true) {
+					score = score + 1;
+					ships.remove(j);
+				}
+			}
+		}
+		
+		for (int i = 0; i < bullets.size(); i++) {
+			if (bullets.get(i).didHit(s1) == true) {
+				score = score + 5;
+				s1.setY(-50);
+				s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
+				s1.setOriginalx(s1.getX());
+				s1.setSpeed(1, ((int) (Math.random() * 4) + 3));
 			}
 		}
 	}

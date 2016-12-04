@@ -99,6 +99,20 @@ public class Ship {
 		// (s.w + b.getS())/2 && abs(s.y + (s.h/2) - b.y + (b.getS()/2) < (s.b +
 		// b.getS())/2)
 	}
+	
+	public boolean didHit(Missile b) {
+		double sLeft = this.x;
+		double sRight = this.x + this.width;
+		double sTop = this.y;
+		double sBottom = this.y + this.height;
+		
+		double bLeft = b.getxPos();
+		double bRight = b.getxPos() + b.getDiameter();
+		double bTop = b.getyPos();
+		double bBottom = b.getyPos() + b.getDiameter();
+		
+		return sRight > bLeft && sLeft < bRight && sBottom > bTop && sTop < bBottom;
+	}
 
 	public double getX() {
 		return x;
