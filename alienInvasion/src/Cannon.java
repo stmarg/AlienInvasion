@@ -47,9 +47,9 @@ public class Cannon {
 	public Missile shoot() {
 		double diameter = 10;
 		double speed = 10;
-		Missile m = new Missile(barrelx, barrely, diameter, angle, speed);
+		
 		{
-			return m;
+			return new Missile(barrelx, barrely, diameter, angle, speed);
 		}
 	}
 	
