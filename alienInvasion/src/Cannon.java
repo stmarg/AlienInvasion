@@ -52,7 +52,14 @@ public class Cannon {
 			return m;
 		}
 	}
-	
+	void rotate(double rotangle)
+	{
+		angle += rotangle;
+	}
+	public void setRotationSpeed(double rotspeed)
+	{
+		
+	}
 	public int getX() {
 		return x;
 	}
