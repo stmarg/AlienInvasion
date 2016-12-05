@@ -38,10 +38,8 @@ public class Cannon {
 		gc.save();
 		gc.translate(x, y);
 		gc.rotate(angle);
-		gc.drawImage(barrel, x, y - 40, barrelw, barrelh);
+		gc.drawImage(barrel, 0, y - 40, barrelw, barrelh);
 		gc.restore();
-		gc.setFill(Color.RED);
-		gc.fillRect(x, y, height, width);
 	}
 	
 	public Missile shoot() {
