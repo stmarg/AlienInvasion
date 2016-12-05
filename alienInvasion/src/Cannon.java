@@ -45,14 +45,10 @@ public class Cannon {
 	}
 	
 	public Missile shoot() {
-		double setangle = 10;
-		double setdiameter = 10;
-		double setspeed = 10;
-		Missile m = new Missile(x, y, setdiameter, setangle, setspeed);
+		double diameter = 10;
+		double speed = 10;
+		Missile m = new Missile(barrelx, barrely, diameter, angle, speed);
 		{
-			barrelx = x;
-			barrely = y;
-			angle = setangle;
 			return m;
 		}
 	}
