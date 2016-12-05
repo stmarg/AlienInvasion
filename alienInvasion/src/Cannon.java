@@ -16,6 +16,7 @@ public class Cannon {
 	private double angle;
 	
 	private Image barrel = new Image("GunBarrel.png");
+	private double rotspeed ;
 
 	public Cannon(int x, int y, int width, int height, double angle) {
 		this.x = x;
@@ -37,9 +38,8 @@ public class Cannon {
 		gc.save();
 		gc.translate(x, y);
 		gc.rotate(angle);
-		gc.restore();
-
 		gc.drawImage(barrel, x, y - 40, barrelw, barrelh);
+		gc.restore();
 		gc.setFill(Color.RED);
 		gc.fillRect(x, y, height, width);
 	}
@@ -58,7 +58,7 @@ public class Cannon {
 	}
 	public void setRotationSpeed(double rotspeed)
 	{
-		
+		this.rotspeed = rotspeed;
 	}
 	public int getX() {
 		return x;
