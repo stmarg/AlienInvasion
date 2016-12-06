@@ -37,10 +37,10 @@ public class Cannon {
 	public void draw(GraphicsContext gc) {
 		gc.save();
 		gc.translate(x, y);
-		gc.rotate(angle);
-		gc.setFill(Color.BLACK);
+		gc.rotate(-angle+90);
+		//gc.setFill(Color.BLACK);
 		gc.drawImage(barrel, -barrelw/2, -barrelh/1.45, barrelw, barrelh);
-		gc.rect(x, y, barrelw, barrelh);
+		//gc.rect(x, y, -barrelw/2, -barrelh/1.45);
 		gc.restore();
 	}
 	
