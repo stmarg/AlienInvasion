@@ -35,6 +35,8 @@ public class Cannon {
 	}
 	
 	public void draw(GraphicsContext gc) {
+		//This code should work. Not quite sure why the angle value needed to be manipulated for it to work, 
+		//but Mr. Sinnot's code by itself was still not working on my comp -mAdI
 		gc.save();
 		gc.translate(x, y);
 		gc.rotate(-angle+90);
