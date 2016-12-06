@@ -38,7 +38,9 @@ public class Cannon {
 		gc.save();
 		gc.translate(x, y);
 		gc.rotate(angle);
-		gc.drawImage(barrel, 0, -40, barrelw, barrelh);
+		gc.setFill(Color.BLACK);
+		gc.drawImage(barrel, -barrelw/2, -barrelh/1.45, barrelw, barrelh);
+		gc.rect(x, y, barrelw, barrelh);
 		gc.restore();
 	}
 	
@@ -86,7 +88,7 @@ public class Cannon {
 	}
 
 	public double getAngle() {
-		return angle;
+		return (angle);
 	}
 
 	public void setAngle(double angle) {
