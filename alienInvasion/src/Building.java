@@ -61,7 +61,7 @@ public class Building {
 									}
 								}
 							}
-						}
+						} 
 					}
 				}
 				// gc.fillRect(x + size/3, y - size/8, size/3, size/2);
