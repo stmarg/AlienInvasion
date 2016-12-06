@@ -17,7 +17,7 @@ public class CharlieGame extends SimpleApp
 	
 	//Missile[] bullets = new Missile[10];
 	
-	Building[] buildings = new Building[6];
+	Building[] buildings = new Building[16];
 	
 	ArrayList <Missile> missiles = new ArrayList<> ();
 	
@@ -27,12 +27,19 @@ public class CharlieGame extends SimpleApp
 	
 	Cannon C = new Cannon(700, 800, 100, 100, 90);
 	
+	int lives = 16;
 	
 	
+	public void onMouseMove(MouseEvent me)
+	{
+		double radian = Math.atan2(C.getY()-me.getY(), me.getX()-C.getX());
+		double degree = radian*180/3.1416;
+		C.setAngle(degree);
+	}
 	
 	public void onKeyPressed(KeyEvent ke)
 	{
-		if (ke.isControlDown() == true)
+		/*if (ke.isControlDown() == true)
 		{
 			C.setAngle(C.getAngle() + 22.5);
 			//this.angle = this.angle + 22.5;
@@ -42,7 +49,7 @@ public class CharlieGame extends SimpleApp
 		{
 			C.setAngle(C.getAngle() - 22.5);
 			//this.angle = this.angle - 22.5;
-		}
+		}*/
 		
 		if (ke.isShiftDown() == true)
 		{
@@ -121,22 +128,43 @@ public class CharlieGame extends SimpleApp
 		
 		
 		
-		for (Missile m : missiles)
+		for (int i = 0; i < missiles.size(); i++)
 		{
+			Missile m = missiles.get(i);
+			
+			if (m.getyPos() < -m.getDiameter())
+			{
+				missiles.remove(m);
+			}
 		
 			if (m.isActive())
 			{
 			m.draw(gc);
 			
-			for (Ship s : ships)
+			for (int k = 0; k < ships.size(); k++)
 			{
+				Ship s = ships.get(k);
 			
 				if (m.didHit(s))
 				{
 					m.setInactive(true);
 					
+					ships.remove(k);
+					
 					break;
 				}
+				
+				for (int j = 0; j < buildings.length; j++)
+				{
+					
+					if (s.didHit(buildings[j]))
+					{
+						ships.remove(k);
+						buildings[j].setAlive(false);
+						lives--;
+					}
+				}
+				
 			
 			}
 			
@@ -144,8 +172,10 @@ public class CharlieGame extends SimpleApp
 			
 		}
 		
-		
-		
+		if (lives == 0)
+		{
+			gc.fillText("GAME OVER", this.getWidth()/2, this.getHeight()/2);
+		}
 		
 		
 		
@@ -213,7 +243,7 @@ public class CharlieGame extends SimpleApp
 		
 		for (int i = 0; i < buildings.length; i++)
 		{
-			buildings[i] = new Building(getWidth() * i / 6, getHeight() - 50, 50, Color.BLACK, Color.BURLYWOOD);
+			buildings[i] = new Building(getWidth() * i / buildings.length, getHeight() - 50, 50, Color.BLACK, Color.BURLYWOOD);
 		}
 		
 		
