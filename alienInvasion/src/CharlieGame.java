@@ -27,14 +27,19 @@ public class CharlieGame extends SimpleApp
 	
 	Cannon C = new Cannon(700, 800, 100, 100, 90);
 	
-	int lives = 6;
+	int lives = 16;
 	
 	
-	
+	public void onMouseMove(MouseEvent me)
+	{
+		double radian = Math.atan2(C.getY()-me.getY(), me.getX()-C.getX());
+		double degree = radian*180/3.1416;
+		C.setAngle(degree);
+	}
 	
 	public void onKeyPressed(KeyEvent ke)
 	{
-		if (ke.isControlDown() == true)
+		/*if (ke.isControlDown() == true)
 		{
 			C.setAngle(C.getAngle() + 22.5);
 			//this.angle = this.angle + 22.5;
@@ -44,7 +49,7 @@ public class CharlieGame extends SimpleApp
 		{
 			C.setAngle(C.getAngle() - 22.5);
 			//this.angle = this.angle - 22.5;
-		}
+		}*/
 		
 		if (ke.isShiftDown() == true)
 		{
