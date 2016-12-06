@@ -38,7 +38,7 @@ public class Cannon {
 		gc.save();
 		gc.translate(x, y);
 		gc.rotate(angle);
-		gc.drawImage(barrel, 0, y - 40, barrelw, barrelh);
+		gc.drawImage(barrel, 0, -40, barrelw, barrelh);
 		gc.restore();
 	}
 	
