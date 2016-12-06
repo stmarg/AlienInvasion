@@ -79,6 +79,13 @@ public class Missile {
 		return Math.abs(px-tx) < (p.getWidth()+this.getDiameter())/2 && 
 				Math.abs(py-ty) < (p.getHeight()+ this.getDiameter()/2);
 	}
+	
+	public void fall()
+	{
+		yPos = yPos + sy;
+		sy = sy + .2;
+	}
+	
 
 	public void setInactive(boolean dh) {
 		this.inactive = dh;
