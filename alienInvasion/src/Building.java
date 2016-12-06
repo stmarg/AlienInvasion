@@ -16,6 +16,7 @@ public class Building {
 	private Color bcolor;
 	private Color tcolor;
 	private boolean alive = true;
+	private int time;
 
 	public Building(int x, int y, int size, Color bcolor, Color tcolor) {
 		this.x = x;
@@ -33,11 +34,41 @@ public class Building {
 			gc.fillRect(x + size / 4.2, y - size / 3 - size / 5, size / 4, size / 5);
 			gc.setFill(bcolor);
 			gc.fillRect(x + size / 3, y + size / 4, size / 3, size - size / 4);
-		}
-		else
-		{ 
-			gc.setFill(Color.BLACK);
-			gc.fillRect(x, y, size, size);
+		} else {
+
+			if (time < 100) {
+				time++;
+				gc.setFill(tcolor);
+				gc.fillRect(x + size / 2, y - size / 3, size / 4, size / 3);
+				if (time < 80) {
+					gc.fillRect(x + size / 4, y - size / 5, size / 5, size / 4);
+					if (time < 70) {
+						gc.fillRect(x - size / 3, y + size / 10, size / 3, size / 5);
+						if (time < 60) {
+							gc.fillRect(x + size / 7, y + size / 9, size / 6, size / 5);
+							if (time < 50) {
+								gc.fillRect(x + size / 12, y + size / 11, size / 4, size / 3);
+								if (time < 40) {
+									gc.fillRect(x - size / 15, y - size / 8, size / 6, size / 4);
+									if (time < 30) {
+										gc.fillRect(x - size / 2, y - size / 12, size / 4, size / 2);
+										if (time < 20) {
+											gc.fillRect(x, y - 1.5 * size, size / 4, size / 3);
+											if (time < 10) {
+												gc.fillRect(x - size / 2, y - 1.15 * size, size / 6, size / 4);
+											}
+										}
+									}
+								}
+							}
+						} 
+					}
+				}
+				// gc.fillRect(x + size/3, y - size/8, size/3, size/2);
+				// gc.fillRect(x + size/1.5, y - size/1.5, size/2, size/2);
+				// gc.fillRect(x + size/1.5, y - size/2, size/3, size/2);
+			}
+
 		}
 	}
 

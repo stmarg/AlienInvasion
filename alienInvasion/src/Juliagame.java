@@ -51,10 +51,11 @@ public class Juliagame extends SimpleApp {
 			}
 
 			for (Missile m : bullets) {
-
+				m.draw(gc); 
 			}
 
 			c.draw(gc);
+			c.shoot(); 
 		}
 	}
 
@@ -71,6 +72,8 @@ public class Juliagame extends SimpleApp {
 
 		c = new Cannon(getWidth() / 2 - 1, getHeight() - 90, 90, 50, 90);
 	}
+	
+	
 
 	public static void main(String[] args) {
 		launch();
