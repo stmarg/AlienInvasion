@@ -59,11 +59,11 @@ public class LinnaGame extends SimpleApp
 			//Is this what you meant? It's still not drawing for me, so...
 			
 		}
-		c = new Cannon (getWidth()/2, getHeight()-20, 60, 60, 90);
+		c = new Cannon (getWidth()/2, getHeight()-20, 60, 60, 0);
 		
 	}
 	
-	public void mouseclicked(MouseEvent m)
+	public void onMousePressed(MouseEvent m)
 	{
 		c.shoot();
 	}
