@@ -27,7 +27,7 @@ public class CharlieGame extends SimpleApp
 	
 	Cannon C = new Cannon(700, 800, 100, 100, 90);
 	
-	int lives = 16;
+	int lives = 10;
 	
 	
 	public void onMouseMove(MouseEvent me)
@@ -64,7 +64,7 @@ public class CharlieGame extends SimpleApp
 			}*/
 			
 			
-			missiles.add(new Missile(C.getX(), C.getY(), 50, C.getAngle(), 4, Color.BLACK));
+			missiles.add(new Missile(C.getX(), C.getY(), 50, C.getAngle(), 20, Color.BLACK));
 			//missiles.add(C.shoot());
 			
 			//ships.add(new Ship(600, 100, 100, 100));
@@ -121,7 +121,7 @@ public class CharlieGame extends SimpleApp
 		
 		
 		
-		
+		gc.fillText("Lives: " + lives, 50, 50);
 		
 		
 		C.draw(gc);
@@ -132,7 +132,8 @@ public class CharlieGame extends SimpleApp
 		{
 			Missile m = missiles.get(i);
 			
-			m.fall();
+			m.fall(.5);
+			//m.wallbounce(0, getWidth());
 			
 			if (m.getyPos() < -m.getDiameter())
 			{
@@ -174,7 +175,7 @@ public class CharlieGame extends SimpleApp
 			
 		}
 		
-		if (lives == 0)
+		if (lives <= 0)
 		{
 			gc.fillText("GAME OVER", this.getWidth()/2, this.getHeight()/2);
 		}
