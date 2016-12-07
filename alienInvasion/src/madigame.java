@@ -15,6 +15,8 @@ public class madigame extends SimpleApp
 	private Building[] buildings = new Building[6];
 	private Cannon c;
 	private boolean shooting = false;
+	int kill_count = 0;
+	int difficulty = 2;
 	ArrayList<Missile> bullets = new ArrayList<>();
 
 	// Angle
@@ -45,7 +47,7 @@ public class madigame extends SimpleApp
 		{
 			ships[i] = new Ship((int) (Math.random() * getWidth()), (int) (Math.random() * -(getHeight() * 2)), 100,
 					100, 1);
-			ships[i].setSpeed(0, (int) (Math.random() * 2 + 1));
+			ships[i].setSpeed(0, (int) (Math.random() * difficulty + 1));
 		}
 
 		for (int j = 0;j < buildings.length; j++) 
@@ -77,6 +79,8 @@ public class madigame extends SimpleApp
 				{
 					ships[i].setY(-100);
 				}
+				ships[i].setSpeed(0, (int) (Math.random() * difficulty + 1));
+				
 				
 				for (int j = 0; j < buildings.length; j++) 
 				{
@@ -104,9 +108,16 @@ public class madigame extends SimpleApp
 					{
 						ships[i].setY(-100);
 						ships[i].setX(Math.random() * getWidth());
+						kill_count += 1;
 						
 					}
 				}
+				if (kill_count >= 10)
+				{
+					kill_count = 0;
+					difficulty += 0.5;
+				}
+				
 			}
 			c.draw(gc);
 			//System.out.println(c.getAngle());
