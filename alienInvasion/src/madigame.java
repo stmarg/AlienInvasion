@@ -115,7 +115,7 @@ public class madigame extends SimpleApp
 				if (kill_count >= 10)
 				{
 					kill_count = 0;
-					difficulty += 0.5;
+					difficulty += 1;
 				}
 				
 			}
