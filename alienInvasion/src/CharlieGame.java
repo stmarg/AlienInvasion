@@ -132,6 +132,8 @@ public class CharlieGame extends SimpleApp
 		{
 			Missile m = missiles.get(i);
 			
+			m.fall();
+			
 			if (m.getyPos() < -m.getDiameter())
 			{
 				missiles.remove(m);

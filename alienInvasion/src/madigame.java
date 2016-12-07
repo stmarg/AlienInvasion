@@ -14,7 +14,7 @@ public class madigame extends SimpleApp
 	private Ship[] ships = new Ship[10];
 	private Building[] buildings = new Building[6];
 	private Cannon c;
-	private int ammo = 100;
+	private boolean shooting = false;
 	ArrayList<Missile> bullets = new ArrayList<>();
 
 	// Angle
@@ -23,19 +23,12 @@ public class madigame extends SimpleApp
 		double radians = Math.atan2(c.getY() - me.getY(), -c.getX() + me.getX());
 		double angle = Math.toDegrees(radians);
 		c.setAngle(angle);
-		// Kevin is doning a similar thing...Would it make sense for the Cannon
-		// to contain this setAngle code? In other words, a way to set it's
-		// angle by passing in an x and y?
-		radians = Math.atan2(c.getY() - me.getY(), -c.getX() + me.getX());
-		angle = Math.toDegrees(radians);
-		c.setAngle(angle);
-		angle = 180 - angle;
 	}
 	
 	//Shoot
 	public void onMousePressed(MouseEvent me) 
 	{
-		ammo++;
+		shooting = true;
 		bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
 	}
 
@@ -97,7 +90,7 @@ public class madigame extends SimpleApp
 				}
 				for (Missile m : bullets) 
 				{
-					if (ammo != 0) 
+					if (shooting == true) 
 					{
 						m.draw(gc);
 					}
@@ -110,11 +103,13 @@ public class madigame extends SimpleApp
 					if (m.didHit(ships[i]) == true)
 					{
 						ships[i].setY(-100);
+						ships[i].setX(Math.random() * getWidth());
 						
 					}
 				}
 			}
 			c.draw(gc);
+			//System.out.println(c.getAngle());
 			gc.setFill(Color.GREEN);
 			gc.setFont(javafx.scene.text.Font.font(50));
 			String scoreL = "" + score;

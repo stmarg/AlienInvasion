@@ -8,12 +8,14 @@ import tsinn.ui.SimpleApp;
 
 //ships aren't drawing??????
 
+//need help with cannon, isn't moving and isn't shooting
 
 public class LinnaGame extends SimpleApp
 {
 	Building[] buildings = new Building [3];
 	Ship[] ships = new Ship [2];
 	private Cannon c;
+	int angle = 0;
 	
 	
 	@Override
@@ -59,11 +61,11 @@ public class LinnaGame extends SimpleApp
 			//Is this what you meant? It's still not drawing for me, so...
 			
 		}
-		c = new Cannon (getWidth()/2, getHeight()-20, 60, 60, 90);
+		c = new Cannon (getWidth()/2, getHeight()-20, 60, 60, angle);
 		
 	}
 	
-	public void mouseclicked(MouseEvent m)
+	public void onMousePressed(MouseEvent m)
 	{
 		c.shoot();
 	}

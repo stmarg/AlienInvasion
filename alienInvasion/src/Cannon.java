@@ -35,10 +35,14 @@ public class Cannon {
 	}
 	
 	public void draw(GraphicsContext gc) {
+		//This code should work. Not quite sure why the angle value needed to be manipulated for it to work, 
+		//but Mr. Sinnot's code by itself was still not working on my comp -mAdI
 		gc.save();
 		gc.translate(x, y);
-		gc.rotate(angle);
-		gc.drawImage(barrel, 0, -40, barrelw, barrelh);
+		gc.rotate(-angle+90);
+		//gc.setFill(Color.BLACK);
+		gc.drawImage(barrel, -barrelw/2, -barrelh/1.45, barrelw, barrelh);
+		//gc.rect(x, y, -barrelw/2, -barrelh/1.45);
 		gc.restore();
 	}
 	
@@ -86,7 +90,7 @@ public class Cannon {
 	}
 
 	public double getAngle() {
-		return angle;
+		return (angle);
 	}
 
 	public void setAngle(double angle) {
