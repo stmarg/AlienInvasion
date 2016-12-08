@@ -50,7 +50,7 @@ public class CharlieGame extends SimpleApp
 		if (ke.isShiftDown() == true && paused == false)
 		{
 				
-			missiles.add(new Missile(C.getX(), C.getY(), 50, C.getAngle(), 2, Color.BLACK));
+			missiles.add(new Missile(C.getX(), C.getY(), 50, C.getAngle(), 20, Color.BLACK));
 			//missiles.add(C.shoot());
 			missilesfired++;
 			playing = true;
@@ -106,7 +106,7 @@ public class CharlieGame extends SimpleApp
 				{
 					Missile m = missiles.get(i);
 					
-					//m.fall(.05);
+					m.fall(.5);
 					//m.wallbounce(0, getWidth());
 					
 					if (m.getyPos() < -m.getDiameter())
@@ -170,6 +170,7 @@ public class CharlieGame extends SimpleApp
 			gc.fillText("You lasted: " + (int)(Math.floor(count/60)) + " seconds", getWidth()/2, getHeight()/2 + 50);
 			gc.fillText("Accuracy: " + (int)(100 * collisions/missilesfired) + "%", getWidth()/2, getHeight()/2 + 100);
 			gc.fillText("press shift to begin, control to pause, and shift to shoot", getWidth()/2, getHeight()/2 + 200);
+			
 		}
 	}	
 
