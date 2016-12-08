@@ -11,6 +11,8 @@ public class CharlieGame extends SimpleApp
 	double count = 0;
 	double limit = 0;
 	boolean paused = false;
+	boolean playing = true;
+	double accuracy = 0;
 	
 	Building[] buildings = new Building[16];
 	
@@ -76,7 +78,7 @@ public class CharlieGame extends SimpleApp
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
-		if (!paused)
+		if (playing && !paused)
 		{
 		
 		count++;
@@ -136,7 +138,7 @@ public class CharlieGame extends SimpleApp
 		
 		if (lives <= 0)
 		{
-			gc.fillText("GAME OVER", this.getWidth()/2, this.getHeight()/2);
+			playing = false;
 		}
 		
 		for (Ship s : ships)
@@ -151,9 +153,14 @@ public class CharlieGame extends SimpleApp
 		}
 		
 		}
-		else
+		else if (paused == true)
 		{
 			gc.fillText("PAUSED", getWidth()/2, getHeight()/2);
+		}
+		else
+		{
+			gc.fillText("GAME OVER", getWidth()/2, getHeight()/2);
+			gc.fillText("You lasted: " + (int)(Math.floor(count/60)) + " seconds", getWidth()/2, getHeight()/2 + 50);
 		}
 	}	
 
