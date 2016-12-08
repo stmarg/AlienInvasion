@@ -12,15 +12,24 @@ public class JasonGame extends SimpleApp {
 	Building[] buildings = new Building[6];
 	Ship[] ships = new Ship[3];
 	ArrayList <Missile> bullets = new ArrayList<> ();
+	int ammo = 100 ;
 	private Cannon c;
 	double angle = 90 ;
 	
 
-	public void onKeyPressed(KeyEvent ke)
+	public void onMouseMove (MouseEvent me)
+	{
+		
+		c.setAngle(angle);
+	}
+	public void onMousePressed(MouseEvent me) 
 	{
 		
 	}
 		
+	public void onMouseReleased(MouseEvent m) {
+		c.shoot();
+	}
 	public void setupApp(GraphicsContext gc) 
 	{
 		for (int i = 0; i < buildings.length; i++) 
@@ -47,7 +56,13 @@ public class JasonGame extends SimpleApp {
 	
 	public void draw(GraphicsContext gc) {
 		c.draw(gc);
-		
+		for (int i = 0; i < buildings.length; i++){
+			
+		}
+		for (int i = 0; i < ships.length; i++){
+			ships[i].draw(gc);
+			ships[i].move();
+		}
 		
 	}
 }
