@@ -8,8 +8,8 @@ public class Ship {
 	private int width;
 	private int height;
 	private int originalW;
-	private double vx = (int) 1.5;
-	private double vy = (int) (Math.random() * 2) + 1.5;
+	private double vx = 1.5;
+	private double vy = (Math.random() * 2) + 1.5;
 	private int vs = 2;
 
 	/**
