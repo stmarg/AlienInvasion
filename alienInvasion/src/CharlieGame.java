@@ -11,8 +11,9 @@ public class CharlieGame extends SimpleApp
 	double count = 0;
 	double limit = 0;
 	boolean paused = false;
-	boolean playing = true;
-	double accuracy = 0;
+	boolean playing = false;
+	double missilesfired = 0;
+	double collisions = 0;
 	
 	Building[] buildings = new Building[16];
 	
@@ -51,6 +52,8 @@ public class CharlieGame extends SimpleApp
 				
 			missiles.add(new Missile(C.getX(), C.getY(), 50, C.getAngle(), 2, Color.BLACK));
 			//missiles.add(C.shoot());
+			missilesfired++;
+			playing = true;
 
 		}
 		
@@ -91,6 +94,8 @@ public class CharlieGame extends SimpleApp
 		
 		gc.fillText("Lives: " + lives, 50, 50);
 		
+		gc.fillText("Accuracy: " + 100 * collisions/missilesfired + "%", 50, 100);
+		
 		C.draw(gc);
 			
 			for (int k = 0; k < ships.size(); k++)
@@ -116,9 +121,11 @@ public class CharlieGame extends SimpleApp
 			
 						if (m.didHit(s))
 						{
-						m.setInactive(true);
+							m.setInactive(true);
 						
 							ships.remove(k);
+							
+							collisions++;
 					
 							break;
 						}
@@ -161,6 +168,8 @@ public class CharlieGame extends SimpleApp
 		{
 			gc.fillText("GAME OVER", getWidth()/2, getHeight()/2);
 			gc.fillText("You lasted: " + (int)(Math.floor(count/60)) + " seconds", getWidth()/2, getHeight()/2 + 50);
+			gc.fillText("Accuracy: " + (int)(100 * collisions/missilesfired) + "%", getWidth()/2, getHeight()/2 + 100);
+			gc.fillText("press shift to begin, control to pause, and shift to shoot", getWidth()/2, getHeight()/2 + 200);
 		}
 	}	
 
