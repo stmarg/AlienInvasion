@@ -7,6 +7,7 @@ public class Powerup {
 	private int width;
 	private int height;
 	private int mode;
+	private boolean isAlive = true;
 
 	private Image Ammo = new Image("Ammo.png");
 
@@ -76,5 +77,13 @@ public class Powerup {
 
 	public void setMode(int mode) {
 		this.mode = mode;
+	}
+
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
 }

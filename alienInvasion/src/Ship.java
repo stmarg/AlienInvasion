@@ -8,8 +8,8 @@ public class Ship {
 	private int width;
 	private int height;
 	private int originalW;
-	private double vx = (int) 1.5;
-	private double vy = (int) (Math.random() * 2) + 1.5;
+	private double vx = 1.5;
+	private double vy = (Math.random() * 2) + 1.5;
 	private int vs = 2;
 
 	/**
@@ -93,8 +93,8 @@ public class Ship {
 		double bTop = b.getY();
 		double bBottom = b.getY() + b.getS();
 		
-		return sRight > bLeft && sLeft < bRight && sBottom > bTop && sTop < bBottom;
-
+		return sRight > bLeft && sLeft < bRight && sBottom > bTop && sTop < bBottom && this != null;
+		
 		// return (Math.abs(this.x + this.width/2) - b.getX() + (b.getS()/2)) <
 		// (s.w + b.getS())/2 && abs(s.y + (s.h/2) - b.y + (b.getS()/2) < (s.b +
 		// b.getS())/2)

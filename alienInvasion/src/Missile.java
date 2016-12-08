@@ -80,10 +80,18 @@ public class Missile {
 				Math.abs(py-ty) < (p.getHeight()+ this.getDiameter()/2);
 	}
 	
-	public void fall()
+	public void fall(double acc)
 	{
 		yPos = yPos + sy;
-		sy = sy + .2;
+		sy = sy + acc;
+	}
+	
+	public void wallbounce(double leftwall, double rightwall) //doesn't work. Not sure why.
+	{
+		if (xPos < leftwall || xPos > rightwall)
+		{
+			this.angle = 180 - angle;
+		}
 	}
 	
 

@@ -16,7 +16,7 @@ public class Cannon {
 	private double angle;
 	
 	private Image barrel = new Image("GunBarrel.png");
-	private double rotspeed ;
+	private double rotspeed;
 
 	public Cannon(int x, int y, int width, int height, double angle) {
 		this.x = x;
