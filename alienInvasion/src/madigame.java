@@ -31,7 +31,7 @@ public class madigame extends SimpleApp
 	public void onMousePressed(MouseEvent me) 
 	{
 		shooting = true;
-		bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 4));
+		bullets.add(new Missile(c.getX(), c.getY(), 10, c.getAngle(), 15));
 	}
 
 	public void updateAnimation(long arg0) 
@@ -47,7 +47,7 @@ public class madigame extends SimpleApp
 		{
 			ships[i] = new Ship((int) (Math.random() * getWidth()), (int) (Math.random() * -(getHeight() * 2)), 100,
 					100, 1);
-			ships[i].setSpeed(0, (int) (Math.random() * difficulty + 1));
+			//ships[i].setSpeed(0, (int) (Math.random() * difficulty + 1));
 		}
 
 		for (int j = 0;j < buildings.length; j++) 
@@ -71,6 +71,21 @@ public class madigame extends SimpleApp
 			//Cannon
 			c.draw(gc);
 			//Ships and buildings 
+			for (int j = 0; j < buildings.length; j++) 
+			{
+				buildings[j].draw(gc);
+			}
+			for (Missile m : bullets) 
+			{
+				if (shooting == true) 
+				{
+					m.draw(gc);
+				}
+				if (m.getxPos() > getWidth() && m.getxPos() < 0 && m.getyPos() > getHeight() && m.getyPos() < 10) 
+				{
+					bullets.remove(m);
+				}
+			}
 			for (int i = 0; i < ships.length; i++) 
 			{
 				ships[i].draw(gc);
@@ -81,34 +96,35 @@ public class madigame extends SimpleApp
 				}
 				ships[i].setSpeed(0, (int) (Math.random() * difficulty + 1));
 				
-				
 				for (int j = 0; j < buildings.length; j++) 
 				{
-					buildings[j].draw(gc);
+				//	buildings[j].draw(gc);
 
 					if (ships[i].didHit(buildings[j]) == true) 
 					{
 						ships[i].setY(-100);
 						score -= 5;
+						
 					}
 				}
 				for (Missile m : bullets) 
 				{
-					if (shooting == true) 
-					{
-						m.draw(gc);
-					}
+					//if (shooting == true) 
+					//{
+						//m.draw(gc);
+					//}
 
-					if (m.getxPos() > getWidth() && m.getxPos() < 0 && m.getyPos() > getHeight() && m.getyPos() < 10) 
-					{
-						bullets.remove(m);
-					}
+					//if (m.getxPos() > getWidth() && m.getxPos() < 0 && m.getyPos() > getHeight() && m.getyPos() < 10) 
+					//{
+						//bullets.remove(m);
+					//}
 					
 					if (m.didHit(ships[i]) == true)
 					{
 						ships[i].setY(-100);
 						ships[i].setX(Math.random() * getWidth());
 						kill_count += 1;
+						bullets.remove(m);
 						
 					}
 				}
