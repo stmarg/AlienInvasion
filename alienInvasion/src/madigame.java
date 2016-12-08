@@ -58,7 +58,8 @@ public class madigame extends SimpleApp
 			buildings[j] = new Building(x, y, 50, Color.RED, Color.BLACK);
 		}
 
-		c = new Cannon((getWidth() / 2) + 30, getHeight() - 100, 100, 50, angle);
+		c = new Cannon((getWidth() / 2) + 30,  getHeight()-50, 200, 100, angle);
+		
 	}
 
 	// This function draws the game provided that you are alive
@@ -131,11 +132,14 @@ public class madigame extends SimpleApp
 				if (kill_count >= 10)
 				{
 					kill_count = 0;
-					difficulty += 1;
+					difficulty += 0.75;
+					System.out.println( difficulty);
 				}
 				
 			}
 			c.draw(gc);
+			gc.setFill(Color.BEIGE);
+			gc.rect((getWidth()/2) +30,getHeight(), 50, 50); 
 			//System.out.println(c.getAngle());
 			gc.setFill(Color.GREEN);
 			gc.setFont(javafx.scene.text.Font.font(50));
