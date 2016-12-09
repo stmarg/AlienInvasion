@@ -8,10 +8,11 @@ import java.util.ArrayList;
 public class CharlieGame extends SimpleApp
 {
 	
-	double count = 60;
+	double count = 0;
 	double limit = 0;
 	boolean paused = false;
 	boolean playing = false;
+	boolean won = false;
 	double missilesfired = 0;
 	double collisions = 0;
 	
@@ -61,13 +62,16 @@ public class CharlieGame extends SimpleApp
 		{
 			if (playing == true)
 			{
+				playing = false;
 				paused = true;
 			} else if (paused == true)
 			{
 				paused = false;
+				playing = true;
 			} else
 			{
 				playing = true;
+				won = false;
 				missilesfired = 0;
 				collisions = 0;
 				count = 0;
@@ -87,10 +91,16 @@ public class CharlieGame extends SimpleApp
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
-		if (playing && !paused)
+		if (playing && !won)
 		{
 		
 		count++;
+		
+		if (count >= 60 * 3)
+		{
+			playing = false;
+			//won = true;
+		}
 		
 		if (count >= limit)
 		{
@@ -107,6 +117,7 @@ public class CharlieGame extends SimpleApp
 		if (lives <= 0)
 		{
 			playing = false;
+			won = true;
 		}
 		
 		for (Ship s : ships)
@@ -120,7 +131,7 @@ public class CharlieGame extends SimpleApp
 			if (m.isActive())
 			{
 				m.draw(gc);
-				//m.fall(.5);
+				m.fall(.5);
 			}
 
 		}
@@ -136,6 +147,33 @@ public class CharlieGame extends SimpleApp
 		else if (paused == true)
 		{
 			gc.fillText("PAUSED", getWidth()/2, getHeight()/2);
+		}
+		else if (won == true)
+		{
+			gc.setFill(Color.DARKSEAGREEN);
+			gc.setFont(javafx.scene.text.Font.font(200));
+			gc.fillText("YOU WON!", 400, 400);
+			gc.fillText("You lasted: " + (int)(Math.floor(count/60)) + " seconds", getWidth()/2, getHeight()/2 + 50);
+			gc.fillText("Accuracy: " + (int)(100 * collisions/missilesfired) + "%", getWidth()/2, getHeight()/2 + 100);
+			gc.fillText("press control for a new game, control to pause, and shift to shoot", getWidth()/2 - 300, getHeight()/2 + 200);
+			
+			lives = 10;
+			limit = 60;
+			
+			for (Missile m : missiles)
+			{
+				missiles.remove(m);
+			}
+			
+			for (Ship s : ships)
+			{
+				ships.remove(s);
+			}
+			
+			for (int b = 0; b < buildings.length; b++)
+			{
+				buildings[b].setAlive(true);
+			}
 		}
 		else
 		{
