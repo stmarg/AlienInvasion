@@ -1,7 +1,8 @@
 import java.util.ArrayList;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import tsinn.ui.SimpleApp;
 
@@ -15,19 +16,26 @@ public class madigame extends SimpleApp
 	private Building[] buildings = new Building[6];
 	private Cannon c;
 	private boolean shooting = false;
-	int kill_count = 0;
-	int difficulty = 2;
+	double kill_count = 0;
+	double difficulty = 2;
 	ArrayList<Missile> bullets = new ArrayList<>();
+	Media hit = new Media("Pan.mp3");
+		MediaPlayer hitplayer = new MediaPlayer(hit);
+	
 
 	// Angle
 	public void onMouseMove(MouseEvent me) 
 	{
 		double radians = Math.atan2(c.getY() - me.getY(), -c.getX() + me.getX());
 		double angle = Math.toDegrees(radians);
+		if (angle>=0 && angle<= 180)
+		{
 		c.setAngle(angle);
+		}
 	}
 	
 	//Shoot
+	
 	public void onMousePressed(MouseEvent me) 
 	{
 		shooting = true;
@@ -45,7 +53,7 @@ public class madigame extends SimpleApp
 		// TODO Auto-generated method stub
 		for (int i = 0; i < ships.length; i++) 
 		{
-			ships[i] = new Ship((int) (Math.random() * getWidth()), (int) (Math.random() * -(getHeight() * 2)), 100,
+			ships[i] = new Ship((int) (Math.random() * getWidth()-100), (int) (Math.random() * -(getHeight() * 2)), 100,
 					100, 1);
 			//ships[i].setSpeed(0, (int) (Math.random() * difficulty + 1));
 		}
@@ -58,7 +66,7 @@ public class madigame extends SimpleApp
 			buildings[j] = new Building(x, y, 50, Color.RED, Color.BLACK);
 		}
 
-		c = new Cannon((getWidth() / 2) + 30,  getHeight()-50, 200, 100, angle);
+		c = new Cannon((getWidth() / 2) + 30,  getHeight()-60, 200, 100, angle);
 		
 	}
 
@@ -126,21 +134,21 @@ public class madigame extends SimpleApp
 						ships[i].setX(Math.random() * getWidth());
 						kill_count += 1;
 						bullets.remove(m);
-						
+						hitplayer.play();
 					}
-				}
-				if (kill_count >= 10)
-				{
-					kill_count = 0;
-					difficulty += 0.75;
-					System.out.println( difficulty);
 				}
 				
 			}
+			if (kill_count > 10)
+			{
+				kill_count = 0;
+				difficulty += 0.75;
+				//System.out.println( difficulty);
+			}
 			c.draw(gc);
-			gc.setFill(Color.BEIGE);
-			gc.rect((getWidth()/2) +30,getHeight(), 50, 50); 
-			//System.out.println(c.getAngle());
+			gc.setFill(Color.CRIMSON);
+			gc.fillRect((getWidth()/2)+5, getHeight()-52, 50, 50);
+			//System.out.println(difficulty);
 			gc.setFill(Color.GREEN);
 			gc.setFont(javafx.scene.text.Font.font(50));
 			String scoreL = "" + score;
