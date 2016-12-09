@@ -21,8 +21,8 @@ public class KevinGame extends SimpleApp {
 	private double pcount = 0;
 	private double pcountneed = 150;
 
-	// private int health = 300;
-	private int health = 10;
+	private int health = 300;
+	//private int health = 10;
 
 	private boolean fire = false;
 	private boolean addShip = false;
@@ -202,10 +202,12 @@ public class KevinGame extends SimpleApp {
 		// Bullet hit powerups
 		for (int i = 0; i < powerups.size(); i++) {
 			for (int j = 0; j < bullets.size(); j++) {
-				if (powerups.get(i).didHit(bullets.get(j)) == true && powerups.get(i).isAlive() == true) {
+				if (powerups.get(i).didHit(bullets.get(j)) == true) {
 					ammo = ammo + 10;
 					powerups.remove(i);
 					bullets.remove(j);
+					
+					break;
 				}
 			}
 		}
