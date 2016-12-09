@@ -12,7 +12,7 @@ public class KevinGame extends SimpleApp {
 
 	private boolean game = true;
 	private int hit = 4;
-	
+
 	private int score = 0;
 	private int level = 1;
 	private int ammo = 100;
@@ -21,8 +21,8 @@ public class KevinGame extends SimpleApp {
 	private double pcount = 0;
 	private double pcountneed = 150;
 
-	private int health = 300;
-	//private int health = 10;
+	// private int health = 300;
+	private int health = 10;
 
 	private boolean fire = false;
 	private boolean addShip = false;
@@ -83,7 +83,6 @@ public class KevinGame extends SimpleApp {
 					s1.setY(-50);
 					s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
 					s1.setOriginalx(s1.getX());
-					s1.setSpeed(1, ((int) (Math.random() * 4) + 3));
 				}
 			}
 
@@ -139,7 +138,7 @@ public class KevinGame extends SimpleApp {
 			}
 
 			gc.strokeLine(0, getHeight() - health, getWidth(), getHeight() - health);
-			
+
 			// Game over
 			if (hit == 0) {
 				game = false;
@@ -154,12 +153,16 @@ public class KevinGame extends SimpleApp {
 	public void refillShip() {
 		if (ships.size() == 0) {
 			level = level + 1;
-			addShip = true;
+			//addShip = true;
+			//game = false;
 		}
 
 		if (addShip == true) {
 			for (int i = 0; i < level + 2; i++) {
-				ships.add(new Ship((int) (Math.random() * (getWidth() - 100)) + 100, 50, 100, (int) (100 / 1.5)));
+				//ships.add(new Ship((Math.random() * (getWidth() - 100)) + 100, ((Math.random() * 30) - 800), 100,
+				//		(int) (100 / 1.5)));
+				//ships.add(new Ship((Math.random() * (getWidth() - 100)) + 100, -100, 100,
+				//		(int) (100 / 1.5)));
 			}
 
 			addShip = false;
@@ -176,8 +179,8 @@ public class KevinGame extends SimpleApp {
 		}
 
 		if (s1.getY() + s1.getHeight() > getHeight() - health) {
-			s1.setY(-100);
 			health = health - 20;
+			s1.setY(-100);
 			s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
 		}
 
@@ -206,7 +209,7 @@ public class KevinGame extends SimpleApp {
 					ammo = ammo + 10;
 					powerups.remove(i);
 					bullets.remove(j);
-					
+
 					break;
 				}
 			}
@@ -229,7 +232,6 @@ public class KevinGame extends SimpleApp {
 				s1.setY(-50);
 				s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
 				s1.setOriginalx(s1.getX());
-				s1.setSpeed(1, ((int) (Math.random() * 4) + 3));
 			}
 		}
 	}
