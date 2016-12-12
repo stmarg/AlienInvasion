@@ -12,24 +12,26 @@ public class JasonGame extends SimpleApp {
 	Building[] buildings = new Building[6];
 	Ship[] ships = new Ship[3];
 	ArrayList <Missile> bullets = new ArrayList<> ();
-	int ammo = 100 ;
 	private Cannon c;
+	private double ammo = 100 ;
+	private double score = 0;
+	private double health = 100;
+	private boolean alive = true;
 	double angle = 90 ;
 	
 
 	public void onMouseMove (MouseEvent me)
 	{
-		
-		c.setAngle(angle);
+		double radian = Math.atan2(c.getY()-me.getY(), me.getX()-c.getX());
+		double degrees = (180*radian/3.14159);
+		c.setAngle(degrees);
 	}
 	public void onMousePressed(MouseEvent me) 
 	{
-		
-	}
-		
-	public void onMouseReleased(MouseEvent m) {
 		c.shoot();
+		
 	}
+		
 	public void setupApp(GraphicsContext gc) 
 	{
 		for (int i = 0; i < buildings.length; i++) 
@@ -47,22 +49,44 @@ public class JasonGame extends SimpleApp {
 	public static void main(String[] args) {
 		launch();
 	}
+	public void collision(){
 	
+	}
 
 	public void updateAnimation(long arg0) {
 
 	}
 
-	
 	public void draw(GraphicsContext gc) {
+		//draw cannon
 		c.draw(gc);
+		//draw buildings
 		for (int i = 0; i < buildings.length; i++){
-			
+			buildings[i].draw(gc);
 		}
+		//draw ships
 		for (int i = 0; i < ships.length; i++){
 			ships[i].draw(gc);
 			ships[i].move();
+		
+		if (alive == true){
+			gc.setFill(Color.BLACK);
+			gc.setFont(javafx.scene.text.Font.font(20));
+			//draw ammo count
+			gc.fillText("Missles:"+ ammo, 0, -50);
+			//draw lives left
+			gc.fillText("Health:"+ health,0,-70);
+			//draw score
+			gc.fillText("Score" + score, 0, -90);
+		}
+		if (health == 0){
+			alive = false ;
+			gc.fillText("GAME OVER", getWidth()/2, getHeight()/2);
+			gc.fillText("Your final score was" + score, getWidth()/2,(getHeight()/2)-20);
 		}
 		
+		{
+		
+		}
 	}
 }
