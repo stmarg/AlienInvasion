@@ -21,8 +21,8 @@ public class KevinGame extends SimpleApp {
 	private double pcount = 0;
 	private double pcountneed = 150;
 
-	// private int health = 300;
-	private int health = 10;
+	private int health = 300;
+	// private int health = 10;
 
 	private boolean fire = false;
 	private boolean addShip = false;
@@ -153,16 +153,16 @@ public class KevinGame extends SimpleApp {
 	public void refillShip() {
 		if (ships.size() == 0) {
 			level = level + 1;
-			//addShip = true;
+			addShip = true;
 			//game = false;
 		}
-
+		
 		if (addShip == true) {
 			for (int i = 0; i < level + 2; i++) {
-				//ships.add(new Ship((Math.random() * (getWidth() - 100)) + 100, ((Math.random() * 30) - 800), 100,
-				//		(int) (100 / 1.5)));
-				//ships.add(new Ship((Math.random() * (getWidth() - 100)) + 100, -100, 100,
-				//		(int) (100 / 1.5)));
+				ships.add(new Ship((Math.random() * (getWidth() - 100)) + 100, ((Math.random() * 30) - 600), 100,
+						(int) (100 / 1.5)));
+				ships.add(new Ship((Math.random() * (getWidth() - 100)) + 100, -100, 100,
+						(int) (100 / 1.5)));
 			}
 
 			addShip = false;

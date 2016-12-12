@@ -2,10 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="FrontEnd2.jar"/>
-	<classpathentry kind="lib" path="src/Audio clips/Buzzer-SoundBible.com-188422102.mp3"/>
-	<classpathentry kind="lib" path="src/Audio clips/Frying Pan Hit-SoundBible.com-2141771342.mp3"/>
-	<classpathentry kind="lib" path="src/Audio clips/Langax_-_03_-_Electric_Shell.mp3"/>
-	<classpathentry kind="lib" path="src/Audio clips/Rifle-SoundBible.com-283898562.mp3"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
