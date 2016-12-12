@@ -15,7 +15,7 @@ public class KevinGame extends SimpleApp {
 
 	private int score = 0;
 	private int level = 1;
-	private int ammo = 100;
+	private double ammo = 100;
 	private boolean refillAmmo = false;
 
 	private double pcount = 0;
@@ -23,6 +23,9 @@ public class KevinGame extends SimpleApp {
 
 	private int health = 300;
 	// private int health = 10;
+	
+	private double bullethit = 1;
+	private double bulletshoot = 1;
 
 	private boolean fire = false;
 	private boolean addShip = false;
@@ -44,7 +47,7 @@ public class KevinGame extends SimpleApp {
 	public void updateAnimation(long arg0) {
 		if (refillAmmo == true) {
 			if (ammo < 100) {
-				ammo++;
+				ammo = ammo + 0.8;
 			} else {
 				refillAmmo = false;
 			}
@@ -94,7 +97,8 @@ public class KevinGame extends SimpleApp {
 			gc.setFill(Color.DARKSLATEBLUE);
 			gc.fillText("Score: " + score + "  " + pcount, getWidth() - getWidth() / 8, getHeight() / 8);
 			gc.fillText("" + level + " " + pcountneed, getWidth() / 2, getHeight() / 4);
-			gc.fillText("" + ammo, c.getX() + c.getLength() / 2 - 10, c.getY() + c.getWidth() / 2 + 5);
+			gc.fillText("" + Math.floor(ammo), c.getX() + c.getLength() / 2 - 10, c.getY() + c.getWidth() / 2 + 5);
+			gc.fillText("Accuracy: " + (bullethit/bulletshoot*100), getWidth()/2, 100);
 
 			// Drawing missile
 			for (Missile m : bullets) {
@@ -221,7 +225,9 @@ public class KevinGame extends SimpleApp {
 				// if (bullets.get(i).didHit(ships.get(j)) == true) {
 				if (ships.get(j).didHit(bullets.get(i)) == true) {
 					score = score + 1;
+					bullethit++;
 					ships.remove(j);
+					bullets.remove(i);
 				}
 			}
 		}
@@ -229,6 +235,8 @@ public class KevinGame extends SimpleApp {
 		for (int i = 0; i < bullets.size(); i++) {
 			if (bullets.get(i).didHit(s1) == true) {
 				score = score + 5;
+				bullethit++;
+				bullets.remove(i);
 				s1.setY(-50);
 				s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
 				s1.setOriginalx(s1.getX());
@@ -276,6 +284,7 @@ public class KevinGame extends SimpleApp {
 	public void onMouseReleased(MouseEvent m) {
 		double radians = Math.atan2(c.getY() - m.getY(), -c.getX() + m.getX());
 		c.setAngle(Math.toDegrees(radians));
+		bulletshoot++;
 
 		if (ammo > 0 && refillAmmo == false) {
 			ammo--;
