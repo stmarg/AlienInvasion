@@ -8,14 +8,14 @@ import tsinn.ui.SimpleApp;
 
 //ships aren't drawing??????
 
-//need help with cannon, isn't moving and isn't shooting
+//need help with cannon, isn't moving and isn't shooting- how to rotate cannon?
 
 public class LinnaGame extends SimpleApp
 {
 	Building[] buildings = new Building [3];
 	Ship[] ships = new Ship [2];
 	private Cannon c;
-	int angle = 0;
+	double angle = 0;
 	
 	
 	@Override
@@ -50,7 +50,7 @@ public class LinnaGame extends SimpleApp
 		{
 			buildings[i] = new Building((getWidth() / 4 + i * 420) - 110, getHeight() - 40, 60, Color.CYAN,
 					Color.ROYALBLUE);
-			//At first I thought it wasn't drawing.. then I realized the colors were just too light XD
+			//At first I thought it wasn't drawing... then I realized the colors were just too light XD
 		}
 		for (int i = 0; i < ships.length; i++)
 		{
