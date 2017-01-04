@@ -6,7 +6,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import tsinn.ui.SimpleApp;
 
-
+//you are getting a null pointer because you never create c.
+//currently, c is null
 public class JasonGame extends SimpleApp {
 	
 	Building[] buildings = new Building[6];
