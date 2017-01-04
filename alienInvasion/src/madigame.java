@@ -6,6 +6,9 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import tsinn.ui.SimpleApp;
 
+//If you're going to use additional resources (like sounds), you need to add them to the repository. Otherwise, your code wont run.
+//Also, your madigame already has a method called playSound that handles the whole media thing (It's part of SimpleApp which your game extends and therefore gets for "free")
+
 public class madigame extends SimpleApp 
 {
 	// Variables
