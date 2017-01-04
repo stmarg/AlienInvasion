@@ -8,6 +8,7 @@ import tsinn.ui.SimpleApp;
 
 //you are getting a null pointer because you never create c.
 //currently, c is null
+//you also seem to have extra curly brackets at the end.
 public class JasonGame extends SimpleApp {
 	
 	Building[] buildings = new Building[6];
