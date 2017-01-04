@@ -12,17 +12,20 @@ public class KevinGame extends SimpleApp {
 
 	private boolean game = true;
 	private int hit = 4;
-	
+
 	private int score = 0;
 	private int level = 1;
-	private int ammo = 100;
+	private double ammo = 100;
 	private boolean refillAmmo = false;
 
 	private double pcount = 0;
 	private double pcountneed = 150;
 
-	// private int health = 300;
-	private int health = 10;
+	private int health = 300;
+	// private int health = 10;
+	
+	private double bullethit = 1;
+	private double bulletshoot = 1;
 
 	private boolean fire = false;
 	private boolean addShip = false;
@@ -44,7 +47,7 @@ public class KevinGame extends SimpleApp {
 	public void updateAnimation(long arg0) {
 		if (refillAmmo == true) {
 			if (ammo < 100) {
-				ammo++;
+				ammo = ammo + 0.8;
 			} else {
 				refillAmmo = false;
 			}
@@ -83,7 +86,6 @@ public class KevinGame extends SimpleApp {
 					s1.setY(-50);
 					s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
 					s1.setOriginalx(s1.getX());
-					s1.setSpeed(1, ((int) (Math.random() * 4) + 3));
 				}
 			}
 
@@ -95,7 +97,8 @@ public class KevinGame extends SimpleApp {
 			gc.setFill(Color.DARKSLATEBLUE);
 			gc.fillText("Score: " + score + "  " + pcount, getWidth() - getWidth() / 8, getHeight() / 8);
 			gc.fillText("" + level + " " + pcountneed, getWidth() / 2, getHeight() / 4);
-			gc.fillText("" + ammo, c.getX() + c.getLength() / 2 - 10, c.getY() + c.getWidth() / 2 + 5);
+			gc.fillText("" + Math.floor(ammo), c.getX() + c.getLength() / 2 - 10, c.getY() + c.getWidth() / 2 + 5);
+			gc.fillText("Accuracy: " + (bullethit/bulletshoot*100), getWidth()/2, 100);
 
 			// Drawing missile
 			for (Missile m : bullets) {
@@ -139,7 +142,7 @@ public class KevinGame extends SimpleApp {
 			}
 
 			gc.strokeLine(0, getHeight() - health, getWidth(), getHeight() - health);
-			
+
 			// Game over
 			if (hit == 0) {
 				game = false;
@@ -155,11 +158,15 @@ public class KevinGame extends SimpleApp {
 		if (ships.size() == 0) {
 			level = level + 1;
 			addShip = true;
+			//game = false;
 		}
-
+		
 		if (addShip == true) {
 			for (int i = 0; i < level + 2; i++) {
-				ships.add(new Ship((int) (Math.random() * (getWidth() - 100)) + 100, 50, 100, (int) (100 / 1.5)));
+				ships.add(new Ship((Math.random() * (getWidth() - 100)) + 100, ((Math.random() * 30) - 600), 100,
+						(int) (100 / 1.5)));
+				ships.add(new Ship((Math.random() * (getWidth() - 100)) + 100, -100, 100,
+						(int) (100 / 1.5)));
 			}
 
 			addShip = false;
@@ -176,8 +183,8 @@ public class KevinGame extends SimpleApp {
 		}
 
 		if (s1.getY() + s1.getHeight() > getHeight() - health) {
-			s1.setY(-100);
 			health = health - 20;
+			s1.setY(-100);
 			s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10)));
 		}
 
@@ -202,10 +209,12 @@ public class KevinGame extends SimpleApp {
 		// Bullet hit powerups
 		for (int i = 0; i < powerups.size(); i++) {
 			for (int j = 0; j < bullets.size(); j++) {
-				if (powerups.get(i).didHit(bullets.get(j)) == true && powerups.get(i).isAlive() == true) {
+				if (powerups.get(i).didHit(bullets.get(j)) == true) {
 					ammo = ammo + 10;
 					powerups.remove(i);
 					bullets.remove(j);
+
+					break;
 				}
 			}
 		}
@@ -216,7 +225,9 @@ public class KevinGame extends SimpleApp {
 				// if (bullets.get(i).didHit(ships.get(j)) == true) {
 				if (ships.get(j).didHit(bullets.get(i)) == true) {
 					score = score + 1;
+					bullethit++;
 					ships.remove(j);
+					bullets.remove(i);
 				}
 			}
 		}
@@ -224,10 +235,11 @@ public class KevinGame extends SimpleApp {
 		for (int i = 0; i < bullets.size(); i++) {
 			if (bullets.get(i).didHit(s1) == true) {
 				score = score + 5;
+				bullethit++;
+				bullets.remove(i);
 				s1.setY(-50);
 				s1.setX((int) (Math.random() * (getWidth() - getWidth() / 10) + getWidth() / 14));
 				s1.setOriginalx(s1.getX());
-				s1.setSpeed(1, ((int) (Math.random() * 4) + 3));
 			}
 		}
 	}
@@ -272,6 +284,7 @@ public class KevinGame extends SimpleApp {
 	public void onMouseReleased(MouseEvent m) {
 		double radians = Math.atan2(c.getY() - m.getY(), -c.getX() + m.getX());
 		c.setAngle(Math.toDegrees(radians));
+		bulletshoot++;
 
 		if (ammo > 0 && refillAmmo == false) {
 			ammo--;

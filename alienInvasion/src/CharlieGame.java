@@ -11,8 +11,10 @@ public class CharlieGame extends SimpleApp
 	double count = 0;
 	double limit = 0;
 	boolean paused = false;
-	boolean playing = true;
-	double accuracy = 0;
+	boolean playing = false;
+	boolean won = false;
+	double missilesfired = 0;
+	double collisions = 0;
 	
 	Building[] buildings = new Building[16];
 	
@@ -46,22 +48,33 @@ public class CharlieGame extends SimpleApp
 			//this.angle = this.angle - 22.5;
 		}*/
 		
-		if (ke.isShiftDown() == true && paused == false)
+		if (ke.isShiftDown() == true && playing == true)
 		{
 				
-			missiles.add(new Missile(C.getX(), C.getY(), 50, C.getAngle(), 2, Color.BLACK));
+			missiles.add(new Missile(C.getX(), C.getY(), 50, C.getAngle(), 20, Color.BLACK));
 			//missiles.add(C.shoot());
+			missilesfired++;
+			//playing = true;
 
 		}
 		
 		if (ke.isControlDown() == true)
 		{
-			if (paused == false)
+			if (playing == true)
 			{
+				playing = false;
 				paused = true;
-			} else
+			} else if (paused == true)
 			{
 				paused = false;
+				playing = true;
+			} else
+			{
+				playing = true;
+				won = false;
+				missilesfired = 0;
+				collisions = 0;
+				count = 0;
 			}
 			
 		}
@@ -78,10 +91,16 @@ public class CharlieGame extends SimpleApp
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
-		if (playing && !paused)
+		if (playing && !won)
 		{
 		
 		count++;
+		
+		if (count >= 60 * 3)
+		{
+			playing = false;
+			//won = true;
+		}
 		
 		if (count >= limit)
 		{
@@ -91,54 +110,14 @@ public class CharlieGame extends SimpleApp
 		
 		gc.fillText("Lives: " + lives, 50, 50);
 		
-		C.draw(gc);
-			
-			for (int k = 0; k < ships.size(); k++)
-			{
-				Ship s = ships.get(k);
-				
-				for (int i = 0; i < missiles.size(); i++)
-				{
-					Missile m = missiles.get(i);
-					
-					//m.fall(.05);
-					//m.wallbounce(0, getWidth());
-					
-					if (m.getyPos() < -m.getDiameter())
-					{
-						missiles.remove(m);
-						i--;
-					}
-				
-					if (m.isActive())
-					{
-						m.draw(gc);
-			
-						if (m.didHit(s))
-						{
-						m.setInactive(true);
-						
-							ships.remove(k);
-					
-							break;
-						}
-					}
-				}
-				
-				for (int j = 0; j < buildings.length; j++)
-				{
-					if (s.didHit(buildings[j]))
-					{
-						ships.remove(k);
-						buildings[j].setAlive(false);
-						lives--;
-					}
-				}	
-		}
+		gc.fillText("Accuracy: " + 100 * collisions/missilesfired + "%", 50, 100);
+		
+		C.draw(gc);	
 		
 		if (lives <= 0)
 		{
 			playing = false;
+			won = true;
 		}
 		
 		for (Ship s : ships)
@@ -147,22 +126,119 @@ public class CharlieGame extends SimpleApp
 			s.move();
 		}
 		
+		for (Missile m : missiles)
+		{
+			if (m.isActive())
+			{
+				m.draw(gc);
+				m.fall(.5);
+			}
+
+		}
+		
 		for (int i = 1; i < buildings.length; i++)
 		{
 			buildings[i].draw(gc);
 		}
+		
+		this.CollisionDetection();
 		
 		}
 		else if (paused == true)
 		{
 			gc.fillText("PAUSED", getWidth()/2, getHeight()/2);
 		}
+		else if (won == true)
+		{
+			gc.setFill(Color.DARKSEAGREEN);
+			gc.setFont(javafx.scene.text.Font.font(200));
+			gc.fillText("YOU WON!", 400, 400);
+			gc.fillText("You lasted: " + (int)(Math.floor(count/60)) + " seconds", getWidth()/2, getHeight()/2 + 50);
+			gc.fillText("Accuracy: " + (int)(100 * collisions/missilesfired) + "%", getWidth()/2, getHeight()/2 + 100);
+			gc.fillText("press control for a new game, control to pause, and shift to shoot", getWidth()/2 - 300, getHeight()/2 + 200);
+			
+			lives = 10;
+			limit = 60;
+			
+			for (Missile m : missiles)
+			{
+				missiles.remove(m);
+			}
+			
+			for (Ship s : ships)
+			{
+				ships.remove(s);
+			}
+			
+			for (int b = 0; b < buildings.length; b++)
+			{
+				buildings[b].setAlive(true);
+			}
+		}
 		else
 		{
+			gc.setFill(Color.BLACK);
+			gc.setFont(javafx.scene.text.Font.font(20));
 			gc.fillText("GAME OVER", getWidth()/2, getHeight()/2);
 			gc.fillText("You lasted: " + (int)(Math.floor(count/60)) + " seconds", getWidth()/2, getHeight()/2 + 50);
+			gc.fillText("Accuracy: " + (int)(100 * collisions/missilesfired) + "%", getWidth()/2, getHeight()/2 + 100);
+			gc.fillText("press control for a new game, control to pause, and shift to shoot", getWidth()/2 - 300, getHeight()/2 + 200);
+			
+			lives = 10;
+			limit = 60;
+			
+			for (Missile m : missiles)
+			{
+				missiles.remove(m);
+			}
+			
+			for (Ship s : ships)
+			{
+				ships.remove(s);
+			}
+			
+			for (int b = 0; b < buildings.length; b++)
+			{
+				buildings[b].setAlive(true);
+			}
+			
 		}
 	}	
+	
+	public void CollisionDetection()
+	{
+		
+			for (int k = 0; k < ships.size(); k++)
+			{
+
+				for (int j = 0; j < buildings.length; j++)
+				{
+					if (ships.get(k).didHit(buildings[j]))
+					{
+						ships.remove(k);
+						buildings[j].setAlive(false);
+						lives--;
+						k--;
+					}
+				}
+				
+				for (int i = 0; i < missiles.size(); i++)
+				{
+					if (missiles.get(i).didHit(ships.get(k)))
+					{
+						missiles.get(i).setInactive(true);
+						missiles.remove(i);
+						ships.remove(k);
+						collisions++;
+						i--;
+						//break;
+					}
+					
+				}
+				
+			}	
+		
+	}
 
 	@Override
 	public void setupApp(GraphicsContext arg0) {
@@ -181,3 +257,5 @@ public class CharlieGame extends SimpleApp
 	}
 	
 }
+
+
